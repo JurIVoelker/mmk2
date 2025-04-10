@@ -1,8 +1,11 @@
+import Post from "@/components/post";
+
+const postNumber = 0;
 
 const Homepage = () => {
   return (
     <>
-            Works
+            <Post postNumber={postNumber}></Post>
     </>
   );
 };
