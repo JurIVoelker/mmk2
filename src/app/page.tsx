@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <DndContext onDragEnd={onDragEnd} autoScroll={false} sensors={sensors}>
-      <div className="w-full h-screen flex items-center justify-center overflow-hidden">
+      <div className="w-full h-full flex items-center justify-center overflow-hidden">
         <DraggableCard />
       </div>
     </DndContext>
