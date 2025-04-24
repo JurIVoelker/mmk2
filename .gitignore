@@ -42,3 +42,4 @@ next-env.d.ts
 
 bun.lock
 /.idea/workspace.xml
+/package-lock.json
