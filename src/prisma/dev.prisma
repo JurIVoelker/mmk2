@@ -11,16 +11,9 @@ datasource db {
   url      = "file:./db/database.db"
 }
 
-model User {
-  id        String    @id @default(cuid())
-  name      String
-  rankingId String
-  rankings  Ranking[] @relation("RankingUsers")
-}
-
 model Ranking {
   id        String   @id @default(cuid())
+  score     Int
   name      String
   createdAt DateTime @default(now())
-  users     User[]   @relation("RankingUsers")
 }
