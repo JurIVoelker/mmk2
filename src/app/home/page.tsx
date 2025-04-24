@@ -1,10 +1,9 @@
-import { Button } from "@/components/ui/button";
+import NewsSwiper from "@/components/news-swiper";
 
 const Homepage = () => {
   return (
     <>
-      <h1>aoweauwe</h1>
-      <Button variant={"ghost"}>Hallo</Button>
+      <NewsSwiper />
     </>
   );
 };
