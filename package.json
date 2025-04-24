@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "db:migrate": "prisma migrate dev --schema ./src/prisma/dev.prisma --name init",
-    "db:setup": "npx tsx ./src/prisma/scripts/setup.ts && npm run db:migrate"
+    "db:setup": "npx tsx ./src/prisma/scripts/setup.ts && npm run db:migrate",
+    "db:add-test-data": "npx tsx ./src/prisma/scripts/addTestData.ts "
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
