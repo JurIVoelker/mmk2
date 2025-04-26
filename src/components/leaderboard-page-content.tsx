@@ -31,6 +31,7 @@ const LeaderboardPageContent: React.FC<LeaderboardPageContentProps> = ({
         toast("Fehler beim Speichern der Platzierung", {
           description: error[0]?.message ?? "Unbekannter Fehler",
         });
+        setLoading(false);
         return;
       }
     }

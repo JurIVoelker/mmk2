@@ -1,7 +1,7 @@
 "use client";
 import { Ranking } from "@prisma/client";
 import RankingComponent from "./ranking";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getRequest } from "@/lib/requestUtils";
 import { Skeleton } from "./ui/skeleton";
 import { toast } from "sonner";
@@ -58,7 +58,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ rankings, userScore }) => {
       {rankingsWithUser.map((ranking, i) => {
         const position = ranking.id === "user" ? userPosition : i + 1;
         return (
-          <>
+          <React.Fragment key={ranking.id}>
             {position > rankings.length && position === userPosition && (
               <div
                 className=" w-full h-13 bg-slate-100 rounded-md p-3 text-center"
@@ -67,12 +67,8 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ rankings, userScore }) => {
                 ...
               </div>
             )}
-            <RankingComponent
-              key={ranking.id}
-              ranking={ranking}
-              position={position}
-            />
-          </>
+            <RankingComponent ranking={ranking} position={position} />
+          </React.Fragment>
         );
       })}
       {total && (
