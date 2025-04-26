@@ -11,7 +11,8 @@ export async function GET(req: NextRequest) {
       },
     },
   });
-  return new Response(JSON.stringify({ position }), {
+  const total = await prisma.ranking.count();
+  return new Response(JSON.stringify({ position: position + 1, total }), {
     status: 200,
   });
 }
