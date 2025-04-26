@@ -4,6 +4,7 @@ import RankingComponent from "./ranking";
 import { useEffect, useState } from "react";
 import { getRequest } from "@/lib/requestUtils";
 import { Skeleton } from "./ui/skeleton";
+import { toast } from "sonner";
 
 interface LeaderboardProps {
   rankings: Ranking[]; // Replace 'any' with the actual type of your ranking data
@@ -18,9 +19,14 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ rankings, userScore }) => {
     const fetchUserPosition = async () => {
       const { data, error } = (await getRequest(
         `/api/ranking/position?score=${userScore}`
-      )) as { data?: { position: number; total: number }; error?: Error };
+      )) as {
+        data?: { position: number; total: number };
+        error?: { message: string }[];
+      };
       if (error) {
-        // Todo handle
+        toast("Fehler beim Abrufen der Rangliste", {
+          description: error[0]?.message ?? "Unbekannter Fehler",
+        });
       } else {
         setUserPosition(data?.position as number);
         setTotal(data?.total as number);
@@ -30,7 +36,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ rankings, userScore }) => {
   }, [userScore]);
 
   if (userPosition === null) {
-    return <Skeleton className="w-full h-[56rem]" />;
+    return <Skeleton className="w-full h-[36.74rem]" />;
   }
 
   const userRanking = {
@@ -70,7 +76,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ rankings, userScore }) => {
         );
       })}
       {total && (
-        <div className=" w-full h-13 rounded-md p-3 text-center text-muted-foreground">
+        <div className=" w-full rounded-md p-3 text-center text-muted-foreground">
           Insgesamt {total} Spieler
         </div>
       )}

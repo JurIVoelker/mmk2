@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 const font = Outfit({
   variable: "--font-outfit",
@@ -19,6 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" className="h-full">
+      <Toaster />
       <body className={`${font.className} antialiased h-full`}>{children}</body>
     </html>
   );
