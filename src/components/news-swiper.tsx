@@ -13,31 +13,31 @@ const initialNewsItems = [
         id: 1,
         title: "Scientists Discover New Species in Amazon Rainforest",
         content: "A team of researchers has identified a previously unknown species of frog in the Amazon rainforest.",
-        image: "/placeholder.svg?height=200&width=400",
+        image: "",
     },
     {
         id: 2,
         title: "Tech Company Launches Revolutionary AI Assistant",
         content: "The new AI assistant can understand complex queries and provide human-like responses.",
-        image: "/placeholder.svg?height=200&width=400",
+        image: "",
     },
     {
         id: 3,
         title: "Global Climate Summit Reaches Historic Agreement",
         content: "World leaders have agreed to reduce carbon emissions by 50% by 2030 in a landmark climate deal.",
-        image: "/placeholder.svg?height=200&width=400",
+        image: "",
     },
     {
         id: 4,
         title: "New Study Shows Benefits of Mediterranean Diet",
         content: "Research confirms that following a Mediterranean diet can reduce the risk of heart disease by 30%.",
-        image: "/placeholder.svg?height=200&width=400",
+        image: "",
     },
     {
         id: 5,
         title: "Space Mission Successfully Lands on Mars",
         content: "The rover has begun collecting samples to search for signs of ancient microbial life.",
-        image: "/placeholder.svg?height=200&width=400",
+        image: "",
     },
 ]
 
@@ -172,6 +172,8 @@ export default function NewsSwiper() {
                         onClick={() => {
                             setCurrentIndex(0)
                             setNewsItems([...initialNewsItems])
+                            setRealNews([])
+                            setFakeNews([])
                         }}
                     >
                         Reset News
@@ -179,16 +181,16 @@ export default function NewsSwiper() {
                 </div>
             )}
 
-            <Tabs defaultValue="real" className="w-full mt-12">
+            <Tabs defaultValue="fake" className="w-full mt-12">
                 <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="real">Real News ({realNews.length})</TabsTrigger>
                     <TabsTrigger value="fake">Fake News ({fakeNews.length})</TabsTrigger>
+                    <TabsTrigger value="real">Real News ({realNews.length})</TabsTrigger>
                 </TabsList>
-                <TabsContent value="real" className="mt-4">
-                    {renderNewsList(realNews)}
-                </TabsContent>
                 <TabsContent value="fake" className="mt-4">
                     {renderNewsList(fakeNews)}
+                </TabsContent>
+                <TabsContent value="real" className="mt-4">
+                    {renderNewsList(realNews)}
                 </TabsContent>
             </Tabs>
         </div>
