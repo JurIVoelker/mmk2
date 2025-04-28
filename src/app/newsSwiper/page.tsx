@@ -1,6 +1,6 @@
 import NewsSwiper from "@/components/news-swiper";
 
-const Homepage = () => {
+const NewsSwiperPage = () => {
   return (
     <>
       <NewsSwiper />
@@ -8,4 +8,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default NewsSwiperPage;
