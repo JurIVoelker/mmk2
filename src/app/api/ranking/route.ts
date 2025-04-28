@@ -1,4 +1,5 @@
 import { prisma } from "@/prisma/prisma";
+import { revalidatePath } from "next/cache";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -9,6 +10,8 @@ export async function POST(req: NextRequest) {
       score,
     },
   });
+
+  revalidatePath("/leaderboard");
 
   return new Response("Ok", {
     status: 200,
