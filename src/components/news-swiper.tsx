@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent } from "@/components/ui/card"
 
-// Sample news data
 const initialNewsItems = [
     {
         id: 1,
@@ -75,14 +74,14 @@ export default function NewsSwiper() {
         x.set(0)
     }
 
-    const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
         const threshold = 100
         if (info.offset.x > threshold) {
-            handleSwipe("right")
+            void handleSwipe("right")
         } else if (info.offset.x < -threshold) {
-            handleSwipe("left")
+            void handleSwipe("left")
         } else {
-            controls.start({ x: 0, transition: { type: "spring", stiffness: 300, damping: 20 } })
+            void controls.start({ x: 0, transition: { type: "spring", stiffness: 300, damping: 20 } })
         }
     }
 
@@ -145,22 +144,22 @@ export default function NewsSwiper() {
                         </div>
                     </motion.div>
 
-                    <div className="absolute bottom-[-60px] left-0 right-0 flex justify-center gap-8">
+                    <div className="absolute bottom-[-60px] left-0 right-0 flex justify-center gap-12">
                         <Button
                             variant="outline"
                             size="icon"
-                            className="rounded-full bg-red-100 hover:bg-red-200 border-red-200"
+                            className="rounded-full bg-red-100 hover:bg-red-200 border-red-200 h-20 w-20"
                             onClick={() => handleSwipe("left")}
                         >
-                            <X className="h-6 w-6 text-red-500" />
+                            <X className="h-full w-full text-red-500" />
                         </Button>
                         <Button
                             variant="outline"
                             size="icon"
-                            className="rounded-full bg-green-100 hover:bg-green-200 border-green-200"
+                            className="rounded-full bg-green-100 hover:bg-green-200 border-green-200 h-20 w-20"
                             onClick={() => handleSwipe("right")}
                         >
-                            <Check className="h-6 w-6 text-green-500" />
+                            <Check className="h-full w-full text-green-500" />
                         </Button>
                     </div>
                 </div>
@@ -181,7 +180,7 @@ export default function NewsSwiper() {
                 </div>
             )}
 
-            <Tabs defaultValue="fake" className="w-full mt-12">
+            <Tabs defaultValue="fake" className="w-full mt-20">
                 <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="fake">Fake News ({fakeNews.length})</TabsTrigger>
                     <TabsTrigger value="real">Real News ({realNews.length})</TabsTrigger>
