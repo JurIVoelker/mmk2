@@ -43,3 +43,10 @@ next-env.d.ts
 bun.lock
 /.idea/workspace.xml
 /package-lock.json
+
+bun.lockb
+
+# Prisma
+src/prisma/migrations
+src/prisma/db
+
