@@ -50,3 +50,5 @@ bun.lockb
 src/prisma/migrations
 src/prisma/db
 
+articles.json
+
