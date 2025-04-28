@@ -54,18 +54,16 @@ export default function NewsSwiper() {
     const opacityRight = useTransform(x, xInput, [0, 0, 1])
 
     const currentItem = newsItems[currentIndex]
-    const hasMoreItems = currentIndex < newsItems.length
+    const isFinished = currentIndex < newsItems.length
 
     const handleSwipe = async (direction: "left" | "right") => {
-        if (!hasMoreItems) return
-
-        const item = newsItems[currentIndex]
+        if (!isFinished) return
 
         if (direction === "right") {
-            setRealNews([...realNews, item])
+            setRealNews([...realNews, currentItem])
             await controls.start({ x: "100%", opacity: 0, transition: { duration: 0.3 } })
         } else {
-            setFakeNews([...fakeNews, item])
+            setFakeNews([...fakeNews, currentItem])
             await controls.start({ x: "-100%", opacity: 0, transition: { duration: 0.3 } })
         }
 
@@ -104,7 +102,7 @@ export default function NewsSwiper() {
 
     return (
         <div className="w-full max-w-md mx-auto">
-            {hasMoreItems ? (
+            {isFinished ? (
                 <div className="relative h-[400px] w-full mb-8">
                     <motion.div
                         drag="x"
