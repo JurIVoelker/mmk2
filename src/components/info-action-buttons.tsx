@@ -21,7 +21,7 @@ export default function InfoActionButtons({
     };
 
     return (
-        <div className="flex justify-between w-full pt-2 pb-2">
+        <div className="flex justify-between w-full pt-2 pb-2 px-4">
             <div className="flex flex-col items-center cursor-pointer" onClick={() => onChangeContent(leftContent)}>
                 <button
                     className="cursor-pointer w-12 h-12 border-4 border-gray-600 rounded-full flex items-center justify-center"
@@ -29,7 +29,7 @@ export default function InfoActionButtons({
                 >
                     <ArrowLeft className="text-gray-600" size={32} />
                 </button>
-                <span className="text-l">{labelMap[leftContent]}</span>
+                <span className="w-16">{labelMap[leftContent]}</span>
             </div>
             <div className="flex gap-2 items-center">
                 {flow.map((item) => (
@@ -46,7 +46,7 @@ export default function InfoActionButtons({
                 >
                     <ArrowRight className="text-gray-600" size={32} />
                 </button>
-                <span className="text-l">{labelMap[rightContent]}</span>
+                <span className="w-16">{labelMap[rightContent]}</span>
             </div>
         </div>
     );
