@@ -1,20 +1,44 @@
 "use client";
-import { Article } from "@/app/scraper/page";
+import { Article as ScrapedArticle } from "@/app/scraper/page";
 import ScrapedArticlesTable from "../scraped-articles-table";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+import { getRequest } from "@/lib/requestUtils";
+import ScrapeResults from "./results";
 
 interface ScrapePageContentProps {
-  articles: Article[];
+  articles: ScrapedArticle[];
 }
+
+type ScrapedArticleDetails = {
+  assertion: string;
+  rating: string;
+  explaination: string;
+};
+
+export type ScrapedArticleWithDetails = ScrapedArticle & ScrapedArticleDetails;
 
 const ScrapePageContent: React.FC<ScrapePageContentProps> = ({ articles }) => {
   type Step = "initial" | "scraping" | "done";
   const [step, setStep] = useState<Step>("initial");
+  const [progress, setProgress] = useState(0);
+  const [scrapedData, setScrapedData] = useState<ScrapedArticleWithDetails[]>(
+    []
+  );
 
-  const onScrape = async (selectedArticles: Article[]) => {
-    console.log("Selected articles:", selectedArticles);
+  const onScrape = async (selectedArticles: ScrapedArticle[]) => {
     setStep("scraping");
+    const data: ScrapedArticleWithDetails[] = [];
+    for (const article of selectedArticles) {
+      const res = (await getRequest(
+        `/api/scrape?url=${encodeURIComponent(article.link)}`
+      )) as { data: ScrapedArticleDetails };
+      const obj = { ...res.data, ...article } as ScrapedArticleWithDetails;
+      data.push(obj);
+      setProgress(Math.floor((data.length / selectedArticles.length) * 100));
+    }
+    setScrapedData(data);
+    setStep("done");
   };
 
   return (
@@ -35,8 +59,15 @@ const ScrapePageContent: React.FC<ScrapePageContentProps> = ({ articles }) => {
         <div className="flex flex-col items-center justify-center h-full">
           <div className="flex items-center justify-center gap-3">
             <Loader2 className="animate-spin" />
-            <p className="text-lg">Artikel werden gescraped</p>
+            <p className="text-lg">Artikel werden gescraped ({progress} %)</p>
           </div>
+        </div>
+      )}
+      {step === "done" && (
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold mb-1">Gescrapete Artikel</h1>
+          <p className="mb-8">Hier sind die gescrapeten Artikel:</p>
+          <ScrapeResults articles={scrapedData} />
         </div>
       )}
     </>

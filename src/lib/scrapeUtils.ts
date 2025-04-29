@@ -1,7 +1,7 @@
 import { parse } from "node-html-parser";
 import { v6 as getUUID } from "uuid";
 
-export const parseArticles = (html: string) => {
+export const parseArticleOverview = (html: string) => {
   const rawArticles = parse(html).querySelectorAll(
     "#faktenchecks .elementor-shortcode a"
   );
@@ -32,4 +32,27 @@ export const parseArticles = (html: string) => {
     };
   });
   return articles;
+};
+
+export const parseArticle = (html: string) => {
+  const articleDetails = parse(html).querySelectorAll(
+    "#main .detail__wrapper > div"
+  );
+  const assertion =
+    articleDetails[0]
+      .querySelector(".detail__box-content")
+      ?.innerText?.trim() || "";
+  const rating =
+    articleDetails[1]
+      .querySelector(".detail__rating-text strong")
+      ?.innerText?.trim() || "";
+  const explainationText =
+    articleDetails[1].innerText?.trim()?.split("\n") || [];
+  const explaination =
+    explainationText[explainationText.length - 1].trim() || "";
+  return {
+    assertion,
+    rating,
+    explaination,
+  };
 };
