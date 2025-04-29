@@ -1,6 +1,6 @@
 import {ArrowLeft, ArrowRight} from "lucide-react";
 
-export default function ActionButtons() {
+export default function GameActionButtons() {
     return (
         <div className="flex justify-between">
             <div className="flex items-center gap-4 cursor-pointer">

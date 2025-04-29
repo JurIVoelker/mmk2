@@ -11,7 +11,7 @@ import {
     useSensor,
     useSensors,
 } from "@dnd-kit/core";
-import ActionButtons from "@/components/action-buttons";
+import GameActionButtons from "@/components/game-action-buttons";
 import {TextContent} from "@/components/card-layouts/text-content";
 import {ImageContent} from "@/components/card-layouts/image-content";
 import {VideoContent} from "@/components/card-layouts/video-content";
@@ -53,7 +53,7 @@ const Gamepage = () => {
                 </div>
                 <div className="w-[350px] pt-0 h-[75vh]"></div>
                 <div className="relative z-20">
-                    <ActionButtons/>
+                    <GameActionButtons/>
                 </div>
             </div>
             <div className="relative w-full h-full overflow-hidden">
