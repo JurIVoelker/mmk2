@@ -1,4 +1,4 @@
-export function VideoContent({ src, alt }: { src?: string; alt?: string }) {
+export function VideoContent({ src }: { src?: string}) {
     return (
         <div className="flex flex-col h-full w-full justify-between">
             <div className="flex-1 pl-0 pr-0 px-6">
