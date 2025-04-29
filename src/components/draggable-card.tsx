@@ -4,10 +4,14 @@ import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Skeleton } from "./ui/skeleton";
 import { CSS } from "@dnd-kit/utilities";
 
-export function DraggableCard() {
-  const { listeners, setNodeRef, transform, active } = useDraggable({
-    id: 1,
-  });
+export function DraggableCard( {
+    id,
+    children,
+  } : {
+  id: string | number;
+  children: React.ReactNode;
+}) {
+  const { listeners, setNodeRef, transform, active } = useDraggable({ id });
 
   const style = {
     transform: CSS.Translate.toString(transform),
@@ -31,11 +35,13 @@ export function DraggableCard() {
       style={style}
       {...listeners}
     >
-      <Skeleton className="h-full" />
-      <CardHeader>
-        <CardTitle>Card</CardTitle>
-        <CardDescription>Drag me: {transform?.x || 0}</CardDescription>
-      </CardHeader>
+      {/*<Skeleton className="h-full" />*/}
+        {children}
+        {/*<CardHeader>*/}
+        {/*{children}*/}
+        {/*<CardTitle>Card</CardTitle>*/}
+        {/*<CardDescription>Drag me: {transform?.x || 0}</CardDescription>*/}
+      {/*</CardHeader>*/}
     </Card>
   );
 }

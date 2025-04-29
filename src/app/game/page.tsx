@@ -12,6 +12,16 @@ import {
     useSensors,
 } from "@dnd-kit/core";
 import ActionButtons from "@/components/action-buttons";
+import {TextContent} from "@/components/card-layouts/text-content";
+import {ImageContent} from "@/components/card-layouts/image-content";
+import {VideoContent} from "@/components/card-layouts/video-content";
+
+const layout = "text";
+const contentMap = {
+    text: <TextContent/>,
+    image: <ImageContent/>,
+    video: <VideoContent/>,
+}
 
 const Gamepage = () => {
     const onDragEnd = () => {
@@ -49,7 +59,9 @@ const Gamepage = () => {
             <div className="relative w-full h-full overflow-hidden">
                 <DndContext onDragEnd={onDragEnd} sensors={sensors}>
                     <div className="absolute inset-0 flex items-center justify-center">
-                        <DraggableCard/>
+                        <DraggableCard id={cardId}>
+                            {contentMap[layout]}
+                        </DraggableCard>
                     </div>
                 </DndContext>
             </div>
