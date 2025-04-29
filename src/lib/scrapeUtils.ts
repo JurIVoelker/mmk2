@@ -46,13 +46,12 @@ export const parseArticle = (html: string) => {
     articleDetails[1]
       .querySelector(".detail__rating-text strong")
       ?.innerText?.trim() || "";
-  const explainationText =
+  const explanationText =
     articleDetails[1].innerText?.trim()?.split("\n") || [];
-  const explaination =
-    explainationText[explainationText.length - 1].trim() || "";
+  const explanation = explanationText[explanationText.length - 1].trim() || "";
   return {
     assertion,
     rating,
-    explaination,
+    explanation,
   };
 };

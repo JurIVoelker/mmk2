@@ -87,11 +87,6 @@ export default function ScrapedArticlesTable({
                       selectedRows.length === filteredItems.length &&
                       filteredItems.length > 0
                     }
-                    // @ts-expect-error idk
-                    indeterminate={
-                      selectedRows.length > 0 &&
-                      selectedRows.length < filteredItems.length
-                    }
                     onCheckedChange={handleSelectAll}
                     aria-label="Select all"
                   />

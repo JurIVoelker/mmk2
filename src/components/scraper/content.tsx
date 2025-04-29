@@ -1,6 +1,6 @@
 "use client";
 import { Article as ScrapedArticle } from "@/app/scraper/page";
-import ScrapedArticlesTable from "../scraped-articles-table";
+import ScrapedArticlesTable from "./scraped-articles-table";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { getRequest } from "@/lib/requestUtils";
@@ -13,7 +13,7 @@ interface ScrapePageContentProps {
 type ScrapedArticleDetails = {
   assertion: string;
   rating: string;
-  explaination: string;
+  explanation: string;
 };
 
 export type ScrapedArticleWithDetails = ScrapedArticle & ScrapedArticleDetails;

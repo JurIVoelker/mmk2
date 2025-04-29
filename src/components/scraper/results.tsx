@@ -27,7 +27,7 @@ const ScrapeResults: React.FC<ScrapeResultsProps> = ({ articles }) => {
       {articles.map((article) => (
         <div key={article.id} className="mb-4 p-4 border rounded-md space-y-4">
           <p>{article.assertion}</p>
-          <p>Erklärung: {article.explaination}</p>
+          <p>Erklärung: {article.explanation}</p>
         </div>
       ))}
     </>
