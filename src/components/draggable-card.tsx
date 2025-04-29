@@ -24,7 +24,7 @@ export function DraggableCard() {
   return (
     <Card
       ref={setNodeRef}
-      className={`w-[350] pt-0 h-[80vh] duration-150 max-h-[600px]
+      className={`w-[350] pt-0 h-[70vh] duration-150
         ${!active ? "transition-all" : "transition-colors"}
         ${isConfirmed ? "bg-green-100" : ""} 
         ${isDeclined ? "bg-red-100" : ""}`}
