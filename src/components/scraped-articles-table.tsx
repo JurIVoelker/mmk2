@@ -51,7 +51,6 @@ export default function ScrapedArticlesTable({
   };
 
   const handleSubmit = () => {
-    console.log("Selected rows:", selectedRows);
     const selectedArticles = items.filter((item) =>
       selectedRows.includes(item.id)
     );
