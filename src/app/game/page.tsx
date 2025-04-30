@@ -18,9 +18,9 @@ import {VideoContent} from "@/components/card-layouts/video-content";
 
 const layout = "text";
 const contentMap = {
-    text: <TextContent/>,
-    image: <ImageContent/>,
-    video: <VideoContent/>,
+    text: <TextContent  src="./assets/image/test.jpg"/>,
+    image: <ImageContent src="./assets/image/test.jpg"/>,
+    video: <VideoContent src="./assets/video/test.mp4"/>,
 }
 
 const Gamepage = () => {

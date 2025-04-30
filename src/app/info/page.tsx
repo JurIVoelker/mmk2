@@ -45,11 +45,11 @@ const Infopage = () => {
     const renderContent = () => {
         switch (currentContent) {
             case "image":
-                return <ImageContent />;
+                return <ImageContent src="./assets/image/test.jpg"/>;
             case "video":
-                return <VideoContent />;
+                return <VideoContent src="./assets/video/test.mp4"/>;
             case "newspaper":
-                return <TextContent />;
+                return <TextContent src="./assets/image/test.jpg"/>;
             default:
                 return null;
         }
