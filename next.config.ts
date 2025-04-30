@@ -1,7 +1,13 @@
 import type { NextConfig } from "next";
 
+const scrapingDomain = (process.env.NEXT_PUBLIC_SCRAPING_URL || "")
+  .replace(/https?:\/\//, "")
+  .split("/")[0];
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    domains: [scrapingDomain],
+  },
 };
 
 export default nextConfig;
