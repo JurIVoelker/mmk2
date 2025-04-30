@@ -16,7 +16,6 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-/*TODO: needed later?*/
 function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div

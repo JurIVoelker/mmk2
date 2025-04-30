@@ -16,7 +16,6 @@ export function VideoContent({src}: { src?: string }) {
                             >
                             </video>
                         ) : (
-                            /*TODO: error handling?*/
                             <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500" >
                                 <p>Kein Video verfügbar</p>
                             </div>

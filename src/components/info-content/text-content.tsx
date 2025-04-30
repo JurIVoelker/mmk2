@@ -14,7 +14,6 @@ export function TextContent({src, alt}: { src?: string; alt?: string }) {
                             className="w-full h-full object-cover"
                         />
                     ) : (
-                        /*TODO: error handling?*/
                         <div className="w-full h-full bg-gray-200"/>
                     )}
                 </div>

@@ -3,7 +3,6 @@ import { Info } from "lucide-react";
 
 export default function InfoButton() {
     return (
-        /*TODO: link*/
         <Link href="/info">
             <button
                 className="flex items-center w-auto h-auto cursor-pointer"
