@@ -20,8 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" className="h-full">
+      <body className={`${font.className} antialiased h-full`}>
       <Toaster />
-      <body className={`${font.className} antialiased h-full`}>{children}</body>
+      {children}
+      </body>
     </html>
   );
 }
