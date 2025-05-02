@@ -46,17 +46,34 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ rankings, userScore }) => {
     createdAt: new Date(),
   };
 
-  const rankingsWithUser = [...rankings, userRanking].sort((a, b) => {
+  const scoresWithUser = [...rankings, userRanking].sort((a, b) => {
     if (a.score === b.score) {
       return a.createdAt.getTime() - b.createdAt.getTime();
     }
     return b.score - a.score;
   });
 
+  const rankingPositions: (Ranking & { position: number })[] = [];
+
+  for (let i = 0; i < scoresWithUser.length; i++) {
+    const ranking = scoresWithUser[i];
+    if (i === 0) {
+      rankingPositions.push({ ...ranking, position: 1 });
+      continue;
+    }
+    const prev = rankingPositions[i - 1];
+    if (prev.score === ranking.score) {
+      rankingPositions.push({ ...ranking, position: prev.position });
+    } else {
+      rankingPositions.push({ ...ranking, position: prev.position + 1 });
+    }
+  }
+
   return (
     <div className="space-y-2">
-      {rankingsWithUser.map((ranking, i) => {
-        const position = ranking.id === "user" ? userPosition : i + 1;
+      {rankingPositions.map((ranking, i) => {
+        const position =
+          ranking.id === "user" ? userPosition : ranking.position;
         return (
           <React.Fragment key={ranking.id}>
             {position > rankings.length && position === userPosition && (
@@ -73,7 +90,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ rankings, userScore }) => {
       })}
       {total && (
         <div className=" w-full rounded-md p-3 text-center text-muted-foreground">
-          Insgesamt {total} Spieler
+          Insgesamt {total + 1} Spieler
         </div>
       )}
     </div>
