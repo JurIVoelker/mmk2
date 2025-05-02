@@ -2,13 +2,11 @@
 import { Ranking } from "@prisma/client";
 import Leaderboard from "./leaderboard";
 import { Input } from "./ui/input";
-import { Button, buttonVariants } from "./ui/button";
+import { Button } from "./ui/button";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { postRequest } from "@/lib/requestUtils";
 import { toast } from "sonner";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
 
 interface LeaderboardPageContentProps {
   rankings: Ranking[]; // Replace 'any' with the actual type of your ranking data
@@ -42,7 +40,7 @@ const LeaderboardPageContent: React.FC<LeaderboardPageContentProps> = ({
   };
 
   return (
-    <>
+    <div className="pb-8">
       <h1 className="text-2xl font-medium mb-8 text-center">Score: {score}</h1>
       <h2 className="text-2xl font-medium mb-2 text-center">
         Gebe deinen Namen ein
@@ -63,14 +61,8 @@ const LeaderboardPageContent: React.FC<LeaderboardPageContentProps> = ({
         >
           Nochmal Spielen
         </Button>
-        <Link
-          className={cn("w-full", buttonVariants({ variant: "default" }))}
-          href="/"
-        >
-          Home
-        </Link>
       </div>
-    </>
+    </div>
   );
 };
 
