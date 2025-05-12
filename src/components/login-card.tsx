@@ -41,13 +41,13 @@ const LoginCard = () => {
 
   return (
     <Card className="max-w-md w-[calc(100%-2rem)] min-w-[200px]">
-      <CardHeader>
+      <CardHeader className="px-6 pt-6">
         <CardTitle className="font-bold">Login</CardTitle>
         <CardDescription>
           Gebe deine Zugangsdaten ein um dich einzuloggen.
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pb-6">
         <form
           onSubmit={(e) => {
             e.preventDefault();

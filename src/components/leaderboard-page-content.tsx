@@ -18,7 +18,7 @@ const LeaderboardPageContent: React.FC<LeaderboardPageContentProps> = ({
   const [userName, setUserName] = useState<string>("");
   const [isLoading, setLoading] = useState<boolean>(false);
   const { push } = useRouter();
-  const score = 738; // get from store
+  const score = 200; // get from store
 
   const handlePlayAgain = async () => {
     setLoading(true);
@@ -40,7 +40,7 @@ const LeaderboardPageContent: React.FC<LeaderboardPageContentProps> = ({
   };
 
   return (
-    <>
+    <div className="pb-8">
       <h1 className="text-2xl font-medium mb-8 text-center">Score: {score}</h1>
       <h2 className="text-2xl font-medium mb-2 text-center">
         Gebe deinen Namen ein
@@ -61,9 +61,8 @@ const LeaderboardPageContent: React.FC<LeaderboardPageContentProps> = ({
         >
           Nochmal Spielen
         </Button>
-        <Button className="w-full">Home</Button>
       </div>
-    </>
+    </div>
   );
 };
 
