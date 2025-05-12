@@ -6,6 +6,16 @@ import { Check, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent } from "@/components/ui/card"
+import {ImageContent} from "@/components/card-layouts/image-content";
+import {TextContent} from "@/components/card-layouts/text-content";
+import {VideoContent} from "@/components/card-layouts/video-content";
+
+const layout = "video"
+const contentMap = {
+    text: <TextContent  src="./assets/image/test.jpg"/>,
+    image: <ImageContent src="./assets/image/test.jpg"/>,
+    video: <VideoContent src="./assets/video/test.mp4"/>,
+}
 
 const initialNewsItems = [
     {
@@ -101,9 +111,9 @@ export default function NewsSwiper() {
     }
 
     return (
-        <div className="w-full max-w-md mx-auto">
+        <div className="w-full max-w-xl mx-auto pt-5">
             {isFinished ? (
-                <div className="relative h-[400px] w-full mb-8">
+                <div className="relative h-[400px] w-full">
                     <motion.div
                         drag="x"
                         dragConstraints={{ left: 0, right: 0 }}
@@ -112,18 +122,8 @@ export default function NewsSwiper() {
                         style={{ x }}
                         className="absolute w-full h-full"
                     >
-                        <Card className="w-full h-full overflow-hidden shadow-lg">
-                            <div className="relative h-[200px] bg-muted">
-                                <img
-                                    src={currentItem.image || "/placeholder.svg"}
-                                    alt={currentItem.title}
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
-                            <CardContent className="p-6">
-                                <h2 className="text-xl font-bold mb-2">{currentItem.title}</h2>
-                                <p className="text-muted-foreground">{currentItem.content}</p>
-                            </CardContent>
+                        <Card>
+                            {contentMap[layout]}
                         </Card>
 
                         <div className="absolute inset-0 flex items-center justify-between pointer-events-none px-4">
@@ -141,28 +141,9 @@ export default function NewsSwiper() {
                             </motion.div>
                         </div>
                     </motion.div>
-
-                    <div className="absolute bottom-[-60px] left-0 right-0 flex justify-center gap-12">
-                        <Button
-                            variant="outline"
-                            size="icon"
-                            className="rounded-full bg-red-100 hover:bg-red-200 border-red-200 h-20 w-20"
-                            onClick={() => handleSwipe("left")}
-                        >
-                            <X className="h-full w-full text-red-500" />
-                        </Button>
-                        <Button
-                            variant="outline"
-                            size="icon"
-                            className="rounded-full bg-green-100 hover:bg-green-200 border-green-200 h-20 w-20"
-                            onClick={() => handleSwipe("right")}
-                        >
-                            <Check className="h-full w-full text-green-500" />
-                        </Button>
-                    </div>
                 </div>
             ) : (
-                <div className="text-center py-8 mb-8">
+                <div className="text-center">
                     <h2 className="text-xl font-bold mb-2">No more news items!</h2>
                     <p className="text-muted-foreground mb-4">You&#39;ve categorized all the available news.</p>
                     <Button
@@ -177,8 +158,45 @@ export default function NewsSwiper() {
                     </Button>
                 </div>
             )}
+            {isFinished ? (
+                <div className="flex justify-around">
+                    <Button
+                        variant="outline"
+                        size="icon"
+                        className="rounded-full bg-red-100 hover:bg-red-200 border-red-200 h-20 w-20"
+                        onClick={() => handleSwipe("left")}
+                    >
+                        <X className="h-full w-full text-red-500" />
+                    </Button>
+                    <Button
+                        variant="outline"
+                        size="icon"
+                        className="rounded-full bg-green-100 hover:bg-green-200 border-green-200 h-20 w-20"
+                        onClick={() => handleSwipe("right")}
+                    >
+                        <Check className="h-full w-full text-green-500" />
+                    </Button>
+                </div>) : (
+                <div className="flex justify-around">
+                    <Button
+                        disabled
+                        size="icon"
+                        className="rounded-full bg-gray-100 border-r-gray-200 h-20 w-20"
 
-            <Tabs defaultValue="fake" className="w-full mt-20">
+                    >
+                        <X className="h-full w-full text-red-500" />
+                    </Button>
+                    <Button
+                        disabled
+                        size="icon"
+                        className="rounded-full bg-gray-100 border-r-gray-200 h-20 w-20"
+                        onClick={() => handleSwipe("right")}
+                    >
+                        <Check className="h-full w-full text-green-500" />
+                    </Button>
+                </div>
+            )}
+            <Tabs defaultValue="fake" className="w-full pt-2">
                 <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="fake">Fake News ({fakeNews.length})</TabsTrigger>
                     <TabsTrigger value="real">Real News ({realNews.length})</TabsTrigger>
