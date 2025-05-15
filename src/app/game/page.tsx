@@ -12,8 +12,8 @@ const Gamepage = () => {
     const cardId = 1234;
 
     return (
-        <div className="w-full h-full max-h-[100vh] flex flex-col items-center justify-center overflow-hidden">
-            <div className="w-1/4">
+        <div className="w-full flex flex-col items-center justify-center overflow-scroll">
+            <div className="w-full">
                 <div className="w-full flex flex-row items-center">
                     <span className="text-2xl">#{cardId}</span>
                 </div>

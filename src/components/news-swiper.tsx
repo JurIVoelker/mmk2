@@ -6,16 +6,16 @@ import { Check, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent } from "@/components/ui/card"
-import {ImageContent} from "@/components/card-layouts/image-content";
-import {TextContent} from "@/components/card-layouts/text-content";
-import {VideoContent} from "@/components/card-layouts/video-content";
-import GameActionButtons from "@/components/game-action-buttons";
+import { ImageContent } from "@/components/card-layouts/image-content"
+import { TextContent } from "@/components/card-layouts/text-content"
+import { VideoContent } from "@/components/card-layouts/video-content"
+import GameActionButtons from "@/components/game-action-buttons"
 
 const layout = "video"
 const contentMap = {
-    text: <TextContent  src="./assets/image/test.jpg"/>,
-    image: <ImageContent src="./assets/image/test.jpg"/>,
-    video: <VideoContent src="./assets/video/test.mp4"/>,
+    text: <TextContent src="./assets/image/test.jpg" />,
+    image: <ImageContent src="./assets/image/test.jpg" />,
+    video: <VideoContent src="./assets/video/test.mp4" />,
 }
 
 const initialNewsItems = [
@@ -65,10 +65,10 @@ export default function NewsSwiper() {
     const opacityRight = useTransform(x, xInput, [0, 0, 1])
 
     const currentItem = newsItems[currentIndex]
-    const isFinished = currentIndex < newsItems.length
+    const hasMoreItems = currentIndex < newsItems.length
 
     const handleSwipe = async (direction: "left" | "right") => {
-        if (!isFinished) return
+        if (!hasMoreItems) return
 
         if (direction === "right") {
             setRealNews([...realNews, currentItem])
@@ -113,7 +113,7 @@ export default function NewsSwiper() {
 
     return (
         <div className="w-full max-w-xl mx-auto pt-5">
-            {isFinished ? (
+            {hasMoreItems ? (
                 <div className="relative h-[400px] w-full">
                     <motion.div
                         drag="x"
@@ -123,11 +123,9 @@ export default function NewsSwiper() {
                         style={{ x }}
                         className="absolute w-full h-full"
                     >
-                        <Card>
-                            {contentMap[layout]}
-                        </Card>
+                        <Card>{contentMap[layout]}</Card>
 
-                        <div className="absolute inset-0 flex items-center justify-between pointer-events-none px-4">
+                        <div className="absolute inset-0 flex items-center justify-between pointer-events-auto px-4">
                             <motion.div
                                 className="bg-red-500/80 text-white p-3 rounded-full transition-opacity duration-200"
                                 style={{ opacity: opacityLeft }}
@@ -159,32 +157,25 @@ export default function NewsSwiper() {
                     </Button>
                 </div>
             )}
-            {isFinished ? (
-                <div className="flex justify-around">
+
+            <div className="flex justify-around mt-4">
+                {hasMoreItems ? (
                     <GameActionButtons
                         onClickFake={() => handleSwipe("left")}
                         onClickReal={() => handleSwipe("right")}
-                    ></GameActionButtons>
-                </div>) : (
-                <div className="flex justify-around">
-                    <Button
-                        disabled
-                        size="icon"
-                        className="rounded-full bg-gray-100 border-r-gray-200 h-20 w-20"
+                    />
+                ) : (
+                    <>
+                        <Button disabled size="icon" className="rounded-full bg-gray-100 h-20 w-20">
+                            <X className="h-full w-full text-red-500" />
+                        </Button>
+                        <Button disabled size="icon" className="rounded-full bg-gray-100 h-20 w-20">
+                            <Check className="h-full w-full text-green-500" />
+                        </Button>
+                    </>
+                )}
+            </div>
 
-                    >
-                        <X className="h-full w-full text-red-500" />
-                    </Button>
-                    <Button
-                        disabled
-                        size="icon"
-                        className="rounded-full bg-gray-100 border-r-gray-200 h-20 w-20"
-                        onClick={() => handleSwipe("right")}
-                    >
-                        <Check className="h-full w-full text-green-500" />
-                    </Button>
-                </div>
-            )}
             <Tabs defaultValue="fake" className="w-full pt-2">
                 <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="fake">Fake News ({fakeNews.length})</TabsTrigger>
