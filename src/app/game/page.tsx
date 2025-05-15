@@ -12,7 +12,7 @@ const Gamepage = () => {
     const cardId = 1234;
 
     return (
-        <div className="w-full flex flex-col items-center justify-center overflow-scroll">
+        <div className="w-full flex flex-col items-center justify-center overflow-y-scroll overflow-x-hidden">
             <div className="w-full max-w-md relative">
                 <div className="pt-14 pb-2 text-center">
                     <div className="grid grid-cols-3">
