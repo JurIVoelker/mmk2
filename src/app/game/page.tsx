@@ -12,25 +12,26 @@ const Gamepage = () => {
     const cardId = 1234;
 
     return (
-        <div className="w-full h-full max-h-[100vh] flex flex-col items-center justify-center overflow-hidden">
-            <div className="w-1/4">
-                <div className="w-full flex flex-row items-center">
-                    <span className="text-2xl">#{cardId}</span>
-                </div>
-                <div className="w-full flex flex-col items-center gap-1">
-                    <div className="w-full flex flex-row justify-end">
-                        <InfoButton/>
-                    </div>
-                    <div className="w-full flex flex-row items-center justify-between">
-                        <Lifes lifes={2}/>
-                        <TimeBar elapsed={elapsed} total={total}/>
+        <div className="w-full flex flex-col items-center justify-center overflow-y-scroll overflow-x-hidden">
+            <div className="w-full max-w-md relative">
+                <div className="pt-14 pb-2 text-center">
+                    <div className="grid grid-cols-3">
+                        <div></div>
+                        <span className="text-2xl font-semibold block">#{cardId}</span>
+                        <div className="flex justify-end"><InfoButton /></div>
                     </div>
                 </div>
-                <div className="w-full">
-                    <NewsSwiper/>
+
+                <div className="absolute left-0 right-0 flex justify-between items-center px-4">
+                    <Lifes lifes={2} />
+                    <TimeBar elapsed={elapsed} total={total} />
+                </div>
+                <div className="mt-4">
+                    <NewsSwiper />
                 </div>
             </div>
         </div>
+
     );
 };
 

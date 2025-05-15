@@ -6,7 +6,8 @@ export function VideoContent({ src }: { src?: string}) {
                     {src ? (
                         <video
                             src={src}
-                            controls
+                            autoPlay={true}
+                            loop={true}
                             className="w-full h-full object-cover"
                         >
                         </video>
