@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import {ImageContent} from "@/components/card-layouts/image-content";
 import {TextContent} from "@/components/card-layouts/text-content";
 import {VideoContent} from "@/components/card-layouts/video-content";
+import GameActionButtons from "@/components/game-action-buttons";
 
 const layout = "video"
 const contentMap = {
@@ -160,22 +161,10 @@ export default function NewsSwiper() {
             )}
             {isFinished ? (
                 <div className="flex justify-around">
-                    <Button
-                        variant="outline"
-                        size="icon"
-                        className="rounded-full bg-red-100 hover:bg-red-200 border-red-200 h-20 w-20"
-                        onClick={() => handleSwipe("left")}
-                    >
-                        <X className="h-full w-full text-red-500" />
-                    </Button>
-                    <Button
-                        variant="outline"
-                        size="icon"
-                        className="rounded-full bg-green-100 hover:bg-green-200 border-green-200 h-20 w-20"
-                        onClick={() => handleSwipe("right")}
-                    >
-                        <Check className="h-full w-full text-green-500" />
-                    </Button>
+                    <GameActionButtons
+                        onClickFake={() => handleSwipe("left")}
+                        onClickReal={() => handleSwipe("right")}
+                    ></GameActionButtons>
                 </div>) : (
                 <div className="flex justify-around">
                     <Button
