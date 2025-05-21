@@ -5,7 +5,8 @@ import { motion, type PanInfo, useAnimation, useMotionValue, useTransform } from
 import { Check, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
+// import { CardContent } from "@/components/ui/card"
 import { ImageContent } from "@/components/card-layouts/image-content"
 import { TextContent } from "@/components/card-layouts/text-content"
 import { VideoContent } from "@/components/card-layouts/video-content"
@@ -95,7 +96,7 @@ export default function NewsSwiper() {
     }
 
    /* const renderNewsList = (items: NewsItem[]) => {
-        return items.length > 0 ? (
+        return items.length > 0? (
             <div className="space-y-4">
                 {items.map((item) => (
                     <Card key={item.id} className="overflow-hidden">
