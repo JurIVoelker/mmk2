@@ -4,7 +4,7 @@ import { useState } from "react"
 import { motion, type PanInfo, useAnimation, useMotionValue, useTransform } from "framer-motion"
 import { Check, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent } from "@/components/ui/card"
 import { ImageContent } from "@/components/card-layouts/image-content"
 import { TextContent } from "@/components/card-layouts/text-content"
@@ -94,7 +94,7 @@ export default function NewsSwiper() {
         }
     }
 
-    const renderNewsList = (items: NewsItem[]) => {
+   /* const renderNewsList = (items: NewsItem[]) => {
         return items.length > 0 ? (
             <div className="space-y-4">
                 {items.map((item) => (
@@ -109,7 +109,7 @@ export default function NewsSwiper() {
         ) : (
             <p className="text-center text-muted-foreground py-8">No items yet</p>
         )
-    }
+    }*/
 
     return (
         <div className="w-full max-w-xl mx-auto pt-5">
