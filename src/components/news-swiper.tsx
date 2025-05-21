@@ -166,17 +166,11 @@ export default function NewsSwiper() {
                     />
                 ) : (
                     <>
-                        <Button disabled size="icon" className="rounded-full bg-gray-100 h-20 w-20">
-                            <X className="h-full w-full text-red-500" />
-                        </Button>
-                        <Button disabled size="icon" className="rounded-full bg-gray-100 h-20 w-20">
-                            <Check className="h-full w-full text-green-500" />
-                        </Button>
                     </>
                 )}
             </div>
 
-            <Tabs defaultValue="fake" className="w-full pt-2">
+            {/*<Tabs defaultValue="fake" className="w-full pt-2">
                 <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="fake">Fake News ({fakeNews.length})</TabsTrigger>
                     <TabsTrigger value="real">Real News ({realNews.length})</TabsTrigger>
@@ -187,7 +181,7 @@ export default function NewsSwiper() {
                 <TabsContent value="real" className="mt-4">
                     {renderNewsList(realNews)}
                 </TabsContent>
-            </Tabs>
+            </Tabs>*/}
         </div>
     )
 }
