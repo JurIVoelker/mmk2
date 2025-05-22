@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:migrate": "prisma migrate dev --schema ./src/prisma/dev.prisma --name init",
+    "db:migrate": "prisma migrate dev --schema ./src/prisma/schema.prisma --name init",
     "db:setup": "npx tsx ./src/prisma/scripts/setup.ts && npx prisma migrate deploy --schema ./src/prisma/schema.prisma",
     "db:add-test-data": "npx tsx ./src/prisma/scripts/addTestData.ts",
     "prod:deploy": "npm run db:setup && npm run build"
