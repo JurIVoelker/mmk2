@@ -1,5 +1,5 @@
 "use client";
-import { Ranking } from "@prisma/client";
+import type { Ranking } from "@prisma/client";
 import RankingComponent from "./ranking";
 import React, { useEffect, useState } from "react";
 import { getRequest } from "@/lib/requestUtils";

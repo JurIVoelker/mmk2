@@ -1,5 +1,5 @@
 "use client";
-import { Ranking } from "@prisma/client";
+import type { Ranking } from "@prisma/client";
 import Leaderboard from "./leaderboard";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";

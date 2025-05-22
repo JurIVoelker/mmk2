@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Ranking as RankingType } from "@prisma/client";
+import type { Ranking as RankingType } from "@prisma/client";
 
 interface RankingProps extends React.HTMLAttributes<HTMLDivElement> {
   ranking: RankingType;
