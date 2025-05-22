@@ -60,7 +60,7 @@ const insertAndUpload = async (data: Data) => {
       await minio.putObject(bucket, fileName, buffer);
       await prisma.textNews.create({
         data: {
-          image: "mmk2/" + fileName,
+          image: "https://s3.voelkerlabs.de/mmk2/" + fileName,
           isFake: item.rating === "Falsch" ? true : false,
           explaination: item.explanation,
           content: item.assertion,

@@ -122,7 +122,7 @@ export default function NewsSwiper() {
           >
             {currentItem.type === "text" && (
               <TextContent
-                src={`https://s3.voelkerlabs.de/${currentItem.data.image}`}
+                src={`${currentItem.data.image}`}
                 title={currentItem.data.title}
                 content={currentItem.data.content}
                 category={currentItem.data.category}
