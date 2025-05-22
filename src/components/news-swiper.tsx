@@ -131,7 +131,9 @@ export default function NewsSwiper() {
               />
             )}
             {currentItem.type === "image" && <ImageContent />}
-            {currentItem.type === "video" && <VideoContent />}
+            {currentItem.type === "video" && (
+              <VideoContent src={currentItem.data.video} />
+            )}
           </motion.div>
           <div className="absolute inset-0 flex items-center justify-between pointer-events-auto px-4">
             <motion.div
