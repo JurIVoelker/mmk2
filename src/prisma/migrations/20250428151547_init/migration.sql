@@ -1,0 +1,7 @@
+-- CreateTable
+CREATE TABLE "Ranking" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "score" INTEGER NOT NULL,
+    "name" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

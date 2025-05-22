@@ -8,13 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "db:migrate": "prisma migrate dev --schema ./src/prisma/dev.prisma --name init",
-    "db:setup": "npx tsx ./src/prisma/scripts/setup.ts && npm run db:migrate",
+    "db:setup": "npx tsx ./src/prisma/scripts/setup.ts && npx prisma migrate deploy --schema ./src/prisma/schema.prisma",
     "db:add-test-data": "npx tsx ./src/prisma/scripts/addTestData.ts",
-    "prod:migrate": "prisma migrate dev --schema ./src/prisma/prod.prisma",
-    "prod:init": "prisma migrate reset --schema ./src/prisma/prod.prisma --force && npm run prod:migrate && npm run minio:export-migrations && npm run build",
-    "prod:deploy": "npm run minio:import-migrations && npm run prod:migrate && npm run minio:export-migrations && npm run build",
-    "minio:import-migrations": "npx tsx ./src/prisma/scripts/importMigrations.ts",
-    "minio:export-migrations": "npx tsx ./src/prisma/scripts/exportMigrations.ts"
+    "prod:deploy": "npm run db:setup && npm run build"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

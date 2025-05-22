@@ -47,7 +47,7 @@ bun.lock
 bun.lockb
 
 # Prisma
-src/prisma/migrations
+# src/prisma/migrations
 src/prisma/db
 
 articles.json
