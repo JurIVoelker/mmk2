@@ -9,6 +9,7 @@
     "lint": "next lint",
     "db:migrate": "prisma migrate dev --schema ./src/prisma/schema.prisma --name init",
     "db:setup": "npx tsx ./src/prisma/scripts/setup.ts && npx prisma migrate deploy --schema ./src/prisma/schema.prisma",
+    "db:enter-data": "npx tsx ./src/scripts/enter-data-to-db.ts",
     "db:add-test-data": "npx tsx ./src/prisma/scripts/addTestData.ts",
     "db:generate-client": "npx prisma generate --schema src/prisma/schema.prisma ",
     "prod:deploy": "npm run db:setup && npm run db:generate-client && npm run build"
@@ -25,8 +26,8 @@
     "archiver": "^7.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.9.0",
     "dotenv": "^16.5.0",
+    "framer-motion": "^12.9.0",
     "lucide-react": "^0.487.0",
     "minio": "^8.0.5",
     "next": "15.3.0",
