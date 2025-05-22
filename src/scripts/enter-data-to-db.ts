@@ -19,9 +19,11 @@ const getData = async () => {
       const parsedJSON = JSON.parse(
         await readFile(path.join(inputDir, file), "utf-8")
       );
-      Array.isArray(parsedJSON)
-        ? data.push(...parsedJSON)
-        : data.push(parsedJSON);
+      if (Array.isArray(parsedJSON)) {
+        data.push(...parsedJSON);
+      } else {
+        data.push(parsedJSON);
+      }
     } catch {
       console.error(`Error parsing JSON from file: ${file}`);
     }
@@ -47,9 +49,7 @@ const insertAndUpload = async (data: Data) => {
   for (const item of data) {
     console.log(item.image);
     try {
-      const response = await fetch(
-        "https://correctiv.org/wp-content/uploads/2025/05/dzienus-kanzlerwahl-stimmzettel-foto-faktencheck-e1746799629331.jpg"
-      );
+      const response = await fetch(item.image);
       if (!response.ok) {
         console.error(`Failed to download image: ${item.image}`);
         continue;
@@ -104,6 +104,7 @@ const addProviders = async () => {
 };
 
 const exec = async () => {
+  await prisma.textNews.deleteMany();
   const data = await getData();
   await addProviders();
   await insertAndUpload(data);

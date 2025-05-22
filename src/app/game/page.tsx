@@ -4,35 +4,57 @@ import InfoButton from "@/components/info-button";
 import Lifes from "@/components/lifes";
 import TimeBar from "@/components/time-bar";
 import NewsSwiper from "@/components/news-swiper";
+import { useGameStore } from "@/stores/game-store";
+import { useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
 
 const Gamepage = () => {
+  const [isGameReady, setIsGameReady] = useState(false);
+  const { newGame } = useGameStore();
 
-    const elapsed = 10;
-    const total = 60;
-    const cardId = 1234;
+  useEffect(() => {
+    const startGame = async () => {
+      await newGame();
+      setIsGameReady(true);
+    };
+    startGame();
+  }, [newGame]);
 
+  if (!isGameReady) {
     return (
-        <div className="w-full flex flex-col items-center justify-center overflow-y-scroll overflow-x-hidden">
-            <div className="w-full max-w-md relative">
-                <div className="pt-14 pb-2 text-center">
-                    <div className="grid grid-cols-3">
-                        <div></div>
-                        <span className="text-2xl font-semibold block">#{cardId}</span>
-                        <div className="flex justify-end"><InfoButton /></div>
-                    </div>
-                </div>
+      <div className="w-full h-screen flex items-center justify-center">
+        <Loader2 className="animate-spin" />
+      </div>
+    );
+  }
 
-                <div className="absolute left-0 right-0 flex justify-between items-center px-4">
-                    <Lifes lifes={2} />
-                    <TimeBar elapsed={elapsed} total={total} />
-                </div>
-                <div className="mt-4">
-                    <NewsSwiper />
-                </div>
+  const elapsed = 10;
+  const total = 60;
+  const cardId = 1234;
+
+  return (
+    <div className="w-full flex flex-col items-center justify-center overflow-y-scroll overflow-x-hidden">
+      <div className="w-full max-w-md relative">
+        <div className="pt-14 pb-2 text-center">
+          <div className="grid grid-cols-3">
+            <div></div>
+            <span className="text-2xl font-semibold block">#{cardId}</span>
+            <div className="flex justify-end">
+              <InfoButton />
             </div>
+          </div>
         </div>
 
-    );
+        <div className="absolute left-0 right-0 flex justify-between items-center px-4">
+          <Lifes lifes={2} />
+          <TimeBar elapsed={elapsed} total={total} />
+        </div>
+        <div className="mt-4">
+          <NewsSwiper />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Gamepage;
