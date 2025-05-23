@@ -52,3 +52,5 @@ src/prisma/db
 
 articles.json
 
+
+src/scripts/data-folder
