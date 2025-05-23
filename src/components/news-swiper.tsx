@@ -23,6 +23,7 @@ export default function NewsSwiper() {
     classifyAsFakeNews,
     classifyAsRealNews,
     setCurrentIndex,
+    timeLeft,
   } = useGameStore();
 
   const currentItem = unclassifiedNews[currentIndex];
@@ -43,6 +44,16 @@ export default function NewsSwiper() {
       push("/game-overview");
     }
   }, [newsNotEmpty, push]);
+
+  useEffect(() => {
+    if (timeLeft <= 0) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 100);
+      classifyAsRealNews();
+    }
+  }, [timeLeft, classifyAsRealNews]);
 
   const handleSwipe = async (direction: "left" | "right") => {
     if (direction === "right") {
