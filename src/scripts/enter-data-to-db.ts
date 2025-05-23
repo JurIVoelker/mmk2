@@ -111,3 +111,17 @@ const exec = async () => {
 };
 
 exec();
+
+// await minio.fPutObject(
+//   "mmk2",
+//   "/imageNews/trump.webp",
+//   path.resolve("./src/scripts/trump.webp")
+// );
+// await prisma.imageNews.create({
+//   data: {
+//     image: "https://s3.voelkerlabs.de/mmk2/imageNews/trump.webp",
+//     isFake: true,
+//     explaination: "test",
+//     source: "https://www.bbc.com/news/articles/cdrg8zkz8d0o",
+//   },
+// });

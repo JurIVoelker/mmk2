@@ -130,7 +130,9 @@ export default function NewsSwiper() {
                 className=""
               />
             )}
-            {currentItem.type === "image" && <ImageContent />}
+            {currentItem.type === "image" && (
+              <ImageContent src={currentItem.data.image} />
+            )}
             {currentItem.type === "video" && (
               <VideoContent src={currentItem.data.video} />
             )}

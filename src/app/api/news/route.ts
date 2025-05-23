@@ -2,11 +2,12 @@ import { prisma } from "@/prisma/prisma";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  // TODO Random entries
+  // TODO Random choice of entries
+
   const textNews = (
     await prisma.textNews.findMany({
       orderBy: { id: "asc" },
-      take: 10,
+      take: 2,
     })
   ).map((news) => ({
     type: "text",
@@ -16,12 +17,22 @@ export async function GET() {
   const videoNews = (
     await prisma.videoNews.findMany({
       orderBy: { id: "asc" },
-      take: 10,
+      take: 2,
     })
   ).map((news) => ({
     type: "video",
     data: news,
   }));
 
-  return NextResponse.json([...textNews, ...videoNews]);
+  const imageNews = (
+    await prisma.imageNews.findMany({
+      orderBy: { id: "asc" },
+      take: 2,
+    })
+  ).map((news) => ({
+    type: "image",
+    data: news,
+  }));
+
+  return NextResponse.json([...textNews, ...videoNews, ...imageNews]);
 }
