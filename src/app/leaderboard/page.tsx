@@ -2,7 +2,7 @@ import CustomLayout from "@/components/custom-layout";
 import LeaderboardPageContent from "@/components/leaderboard-page-content";
 import { prisma } from "@/prisma/prisma";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 const LeaderboardPage = async () => {
   const rankings = await prisma.ranking.findMany({

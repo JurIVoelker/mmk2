@@ -12,6 +12,7 @@ export async function POST(req: NextRequest) {
   });
 
   revalidatePath("/leaderboard");
+  revalidatePath("/leaderboard-overview");
 
   return new Response("Ok", {
     status: 200,
