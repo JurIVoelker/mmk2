@@ -4,7 +4,7 @@ import InfoButton from "@/components/info-button";
 import Lifes from "@/components/lifes";
 import TimeBar from "@/components/time-bar";
 import NewsSwiper from "@/components/news-swiper";
-import { useGameStore } from "@/stores/game-store";
+import { News, useGameStore } from "@/stores/game-store";
 import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 
@@ -12,7 +12,7 @@ const Gamepage = () => {
   const [isGameReady, setIsGameReady] = useState(false);
   const { newGame, unclassifiedNews, currentIndex } = useGameStore();
 
-  const currentItem = unclassifiedNews[currentIndex];
+  const currentItem: News | undefined = unclassifiedNews[currentIndex];
 
   useEffect(() => {
     const startGame = async () => {
@@ -36,7 +36,9 @@ const Gamepage = () => {
           <div className="grid grid-cols-3">
             <div></div>
             <span className="text-2xl font-semibold block">
-              #{currentItem.data.id.substring(0, 10)}
+              #
+              {currentItem &&
+                currentItem.data.id.substring(currentItem.data.id.length - 10)}
             </span>
             <div className="flex justify-end">
               <InfoButton />
