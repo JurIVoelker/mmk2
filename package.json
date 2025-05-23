@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "db:migrate": "prisma migrate dev --schema ./src/prisma/schema.prisma --name init",
-    "db:setup": "npx tsx ./src/prisma/scripts/setup.ts && npx prisma migrate deploy --schema ./src/prisma/schema.prisma",
+    "db:setup": "npx tsx ./src/prisma/scripts/setup.ts && npm run db:generate-client && npx prisma migrate deploy --schema ./src/prisma/schema.prisma",
     "db:enter-data": "npx tsx ./src/scripts/enter-data-to-db.ts",
     "db:add-test-data": "npx tsx ./src/prisma/scripts/addTestData.ts",
     "db:generate-client": "npx prisma generate --schema src/prisma/schema.prisma ",
