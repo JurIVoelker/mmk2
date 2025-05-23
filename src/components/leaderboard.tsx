@@ -5,20 +5,22 @@ import React, { useEffect, useState } from "react";
 import { getRequest } from "@/lib/requestUtils";
 import { Skeleton } from "./ui/skeleton";
 import { toast } from "sonner";
+import { useGameStore } from "@/stores/game-store";
 
 interface LeaderboardProps {
   rankings: Ranking[]; // Replace 'any' with the actual type of your ranking data
-  userScore: number; // Optional user score prop
 }
 
-const Leaderboard: React.FC<LeaderboardProps> = ({ rankings, userScore }) => {
+const Leaderboard: React.FC<LeaderboardProps> = ({ rankings }) => {
   const [userPosition, setUserPosition] = useState<number | null>(null);
   const [total, setTotal] = useState<number | null>(null);
+
+  const { score } = useGameStore();
 
   useEffect(() => {
     const fetchUserPosition = async () => {
       const { data, error } = (await getRequest(
-        `/api/ranking/position?score=${userScore}`
+        `/api/ranking/position?score=${score}`
       )) as {
         data?: { position: number; total: number };
         error?: { message: string }[];
@@ -33,7 +35,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ rankings, userScore }) => {
       }
     };
     fetchUserPosition();
-  }, [userScore]);
+  }, [score]);
 
   if (userPosition === null) {
     return <Skeleton className="w-full h-[36.74rem]" />;
@@ -42,7 +44,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ rankings, userScore }) => {
   const userRanking = {
     name: "Du",
     id: "user",
-    score: userScore,
+    score: score,
     createdAt: new Date(),
   };
 

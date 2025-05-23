@@ -2,7 +2,7 @@ import { ImageNews, TextNews, VideoNews } from "@prisma/client";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-export const TIME_LIMIT = 20;
+export const TIME_LIMIT = 20.0;
 
 export type News =
   | {
@@ -33,6 +33,13 @@ type GameStore = {
 
 let intervalId: NodeJS.Timeout | null = null;
 
+const getScore = (timeLeft: number) => {
+  if (timeLeft <= 0) {
+    return 0;
+  }
+  return Math.floor(100 * (timeLeft / TIME_LIMIT));
+};
+
 export const useGameStore = create<GameStore>()(
   persist(
     (set) => ({
@@ -62,6 +69,7 @@ export const useGameStore = create<GameStore>()(
           classifiedAsFakeNews: [],
           classifiedAsRealNews: [],
           timeLeft: TIME_LIMIT,
+          score: 0,
         });
 
         // Clear any existing interval before starting a new one
@@ -72,11 +80,11 @@ export const useGameStore = create<GameStore>()(
         intervalId = setInterval(() => {
           set((state) => {
             if (state.timeLeft > 0 && !state.isPaused) {
-              return { timeLeft: state.timeLeft - 1 };
+              return { timeLeft: state.timeLeft - 0.1 };
             }
             return state;
           });
-        }, 1000);
+        }, 100);
       },
 
       classifyAsFakeNews: () => {
@@ -84,7 +92,9 @@ export const useGameStore = create<GameStore>()(
           const newsItem = state.unclassifiedNews[state.currentIndex];
           const isFake = newsItem?.data?.isFake;
           return {
-            score: isFake ? state.score + 1 : state.score,
+            score: isFake
+              ? state.score + getScore(state.timeLeft)
+              : state.score,
             classifiedAsFakeNews: [...state.classifiedAsFakeNews, newsItem],
             currentIndex: state.currentIndex + 1,
             timeLeft: TIME_LIMIT,
@@ -97,7 +107,9 @@ export const useGameStore = create<GameStore>()(
           const newsItem = state.unclassifiedNews[state.currentIndex];
           const isFake = newsItem?.data?.isFake;
           return {
-            score: isFake ? state.score : state.score + 1,
+            score: isFake
+              ? state.score
+              : state.score + getScore(state.timeLeft),
             classifiedAsRealNews: [...state.classifiedAsRealNews, newsItem],
             currentIndex: state.currentIndex + 1,
             timeLeft: TIME_LIMIT,

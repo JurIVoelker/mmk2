@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { postRequest } from "@/lib/requestUtils";
 import { toast } from "sonner";
+import { useGameStore } from "@/stores/game-store";
 
 interface LeaderboardPageContentProps {
   rankings: Ranking[]; // Replace 'any' with the actual type of your ranking data
@@ -18,7 +19,7 @@ const LeaderboardPageContent: React.FC<LeaderboardPageContentProps> = ({
   const [userName, setUserName] = useState<string>("");
   const [isLoading, setLoading] = useState<boolean>(false);
   const { push } = useRouter();
-  const score = 200; // get from store
+  const { score } = useGameStore();
 
   const handlePlayAgain = async () => {
     setLoading(true);
@@ -51,7 +52,7 @@ const LeaderboardPageContent: React.FC<LeaderboardPageContentProps> = ({
         onChange={(e) => setUserName(e.target.value)}
       />
       <h4 className="mb-4 text-xl font-semibold">Leaderboard</h4>
-      <Leaderboard rankings={rankings} userScore={score} />
+      <Leaderboard rankings={rankings} />
       <div className="space-y-2 mt-8">
         <Button
           className="w-full"
