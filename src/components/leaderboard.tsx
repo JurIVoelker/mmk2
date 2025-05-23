@@ -9,9 +9,13 @@ import { useGameStore } from "@/stores/game-store";
 
 interface LeaderboardProps {
   rankings: Ranking[]; // Replace 'any' with the actual type of your ranking data
+  includesUser?: boolean;
 }
 
-const Leaderboard: React.FC<LeaderboardProps> = ({ rankings }) => {
+const Leaderboard: React.FC<LeaderboardProps> = ({
+  rankings,
+  includesUser = true,
+}) => {
   const [userPosition, setUserPosition] = useState<number | null>(null);
   const [total, setTotal] = useState<number | null>(null);
 
@@ -48,7 +52,9 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ rankings }) => {
     createdAt: new Date(),
   };
 
-  const scoresWithUser = [...rankings, userRanking].sort((a, b) => {
+  const scoresWithUser = (
+    includesUser ? [...rankings, userRanking] : [...rankings]
+  ).sort((a, b) => {
     if (a.score === b.score) {
       return a.createdAt.getTime() - b.createdAt.getTime();
     }

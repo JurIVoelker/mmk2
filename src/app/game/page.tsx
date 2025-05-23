@@ -10,7 +10,7 @@ import { Loader2 } from "lucide-react";
 
 const Gamepage = () => {
   const [isGameReady, setIsGameReady] = useState(false);
-  const { newGame, unclassifiedNews, currentIndex, score } = useGameStore();
+  const { newGame, unclassifiedNews, currentIndex } = useGameStore();
 
   const currentItem: News | undefined = unclassifiedNews[currentIndex];
 
@@ -34,7 +34,7 @@ const Gamepage = () => {
       <div className="w-full max-w-md relative">
         <div className="pt-14 pb-2 text-center">
           <div className="grid grid-cols-3">
-            <div>{score}</div>
+            <div></div>
             <span className="text-2xl font-semibold block">
               #
               {currentItem &&

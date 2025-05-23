@@ -20,7 +20,10 @@ export default function StartPage() {
         </Link>
       </div>
       <div className="absolute bottom-6 w-full flex justify-center gap-16">
-        <Link href="/leaderboard" className="flex flex-col items-center gap-2">
+        <Link
+          href="/leaderboard-overview"
+          className="flex flex-col items-center gap-2"
+        >
           <div className="flex flex-col items-center gap-2">
             <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
               <Trophy size={28} />
