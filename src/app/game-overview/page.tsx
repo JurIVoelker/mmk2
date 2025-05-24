@@ -40,8 +40,10 @@ const GameOverviewPage = () => {
   return (
     <>
       <CustomLayout>
-        <h1 className="text-2xl font-bold mb-2">Spielübersicht</h1>
-        <p className="text-muted mb-10">
+        <h1 className="text-2xl font-bold mb-2 text-center md:text-left">
+          Spielübersicht
+        </h1>
+        <p className="text-muted-foreground mb-10 text-center md:text-left">
           Du hast {amountOfCorrectIdentifications} von {unclassifiedNews.length}{" "}
           Nachrichten richtig identifiziert.
         </p>
