@@ -26,7 +26,7 @@ const GameOverviewCard = ({
     <Card
       className={cn(
         className,
-        "text-sm select-none cursor-pointer",
+        "text-sm md:text-base select-none cursor-pointer",
         animated ? "flip-animation" : ""
       )}
       {...props}
@@ -114,7 +114,7 @@ const GameOverviewCard = ({
           )}
         >
           {news.type === "text" && (
-            <h3 className="text-lg leading-6 font-semibold mb-2">
+            <h3 className="text-base md:text-lg leading-6 font-semibold mb-2">
               {news.data.title}
             </h3>
           )}
