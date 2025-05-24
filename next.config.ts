@@ -6,7 +6,7 @@ const scrapingDomain = (process.env.NEXT_PUBLIC_SCRAPING_URL || "")
 
 const nextConfig: NextConfig = {
   images: {
-    domains: [scrapingDomain],
+    domains: [scrapingDomain, "s3.voelkerlabs.de"],
   },
 };
 
