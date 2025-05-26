@@ -9,7 +9,7 @@ export function ImageContent({src, alt}: { src: string; alt?: string }) {
                     {src ? (
                         <img src={src} alt={alt} className="w-full h-full object-cover"/>
                     ) : (
-                        <div className="w-full h-full bg-gray-200 min-h-[300]"/>
+                        <div className="w-full h-full bg-gray-200 min-h-[300px]"/>
                     )}
                 </div>
             </div>

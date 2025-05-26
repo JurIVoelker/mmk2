@@ -7,7 +7,7 @@ export async function GET() {
   const textNews = (
     await prisma.textNews.findMany({
       orderBy: { id: "asc" },
-      take: 0,
+      take: 2,
     })
   ).map((news) => ({
     type: "text",
@@ -17,7 +17,7 @@ export async function GET() {
   const videoNews = (
     await prisma.videoNews.findMany({
       orderBy: { id: "asc" },
-      take: 1,
+      take: 2,
     })
   ).map((news) => ({
     type: "video",
@@ -27,7 +27,7 @@ export async function GET() {
   const imageNews = (
     await prisma.imageNews.findMany({
       orderBy: { id: "asc" },
-      take: 0,
+      take: 2,
     })
   ).map((news) => ({
     type: "image",

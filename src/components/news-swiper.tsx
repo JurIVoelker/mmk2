@@ -139,7 +139,7 @@ export default function NewsSwiper() {
                                 content={currentItem.data.content}
                                 category={currentItem.data.category}
                                 date={currentItem.data.date}
-                                className=""
+                                className="bg-white"
                             />
                         )}
                         {currentItem.type === "image" && (
