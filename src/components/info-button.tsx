@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Info } from "lucide-react";
 
 export default function InfoButton() {
     return (

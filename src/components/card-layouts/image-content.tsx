@@ -1,6 +1,9 @@
+import MessageProviderHeader from "@/components/message-provider-header";
+
 export function ImageContent({ src, alt }: { src?: string; alt?: string }) {
     return (
-        <div className="flex flex-col h-full w-full justify-between">
+        <div className="flex flex-col w-full bg-white rounded-xl h-full">
+            <MessageProviderHeader/>
             <div className="pt-4 pb-4 px-6">
                 <h2 className="text-xl font-bold">Lorem ipsum dolor sit amet</h2>
             </div>

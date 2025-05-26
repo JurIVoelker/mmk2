@@ -1,5 +1,6 @@
 import {cn} from "@/lib/utils";
 import {format} from "date-fns";
+import MessageProviderHeader from "@/components/message-provider-header";
 
 export function TextContent({
                                 src,
@@ -20,21 +21,7 @@ export function TextContent({
         <div
             className={cn("flex flex-col w-full bg-white rounded-xl h-full", className)}
         >
-            <div className={"flex justify-between items-center py-2"}>
-                <div className={"flex items-center pl-6 gap-4"}>
-                    <img
-                        src="/assets/message-provider-images/echo24.png"
-                        alt="Nachrichtenkanal"
-                        className="w-10 h-10 rounded-full object-cover"
-                    />
-                    <h2 className="text-xl font-bold">Tages.Echo</h2>
-                </div>
-                <img
-                    src="/assets/icons/dots.svg"
-                    alt="Mehr"
-                    className={"pr-6 h-6"}
-                />
-            </div>
+            <MessageProviderHeader/>
             <div className="pl-0 pr-0 px-6 h-[30%]">
                 <div className="w-full h-full overflow-hidden">
                     {src ? (
