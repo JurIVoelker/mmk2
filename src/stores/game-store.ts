@@ -80,7 +80,7 @@ export const useGameStore = create<GameStore>()(
         intervalId = setInterval(() => {
           set((state) => {
             if (state.timeLeft > 0 && !state.isPaused) {
-              return { timeLeft: state.timeLeft - 0.1 };
+              return { timeLeft: state.timeLeft - 0 };
             }
             return state;
           });

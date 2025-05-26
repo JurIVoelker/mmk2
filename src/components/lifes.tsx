@@ -4,9 +4,9 @@ export default function Lifes({lifes}: { lifes: number }) {
     return (
         <div className="flex space-x-2">
             {[...Array(3)].map((_, index) => (
-                <div key={index} className="w-6 h-6">
+                <div key={index}>
                     <Heart
-                        className={`stroke-black ${index < lifes ? "fill-red-500" : "fill-transparent"}`}
+                        className={`stroke-brown-dark w-9 h-9 ${index < lifes ? "fill-brown" : "fill-transparent"}`}
                     />
                 </div>
             ))}

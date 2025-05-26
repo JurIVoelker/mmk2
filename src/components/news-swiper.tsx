@@ -116,7 +116,7 @@ export default function NewsSwiper() {
 
   return (
     <div className="w-full max-w-xl mx-auto pt-5">
-      <div className="relative h-[400px] w-full">
+      <div className="relative h-[600px] w-full">
         <motion.div
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
@@ -129,7 +129,7 @@ export default function NewsSwiper() {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className="h-full w-full"
+            className="rounded-xl h-full w-full border-transparent bg-gradient-to-r from-green-500 via-yellow-300 to-red-500 p-[8px] h-auto"
           >
             {currentItem.type === "text" && (
               <TextContent
@@ -165,7 +165,7 @@ export default function NewsSwiper() {
         </motion.div>
       </div>
 
-      <div className="flex justify-around mt-4">
+      <div className="flex justify-around mt-4 pt-3">
         <GameActionButtons
           onClickFake={() => handleSwipe("left")}
           onClickReal={() => handleSwipe("right")}

@@ -8,7 +8,7 @@ export default function InfoButton() {
                 className="flex items-center w-auto h-auto cursor-pointer"
                 aria-label="Info"
             >
-                <Info size={36} />
+                <img src="/assets/icons/info.svg" alt="Info" className="w-9 h-9"/>
             </button>
         </Link>
     );

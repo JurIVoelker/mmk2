@@ -1,47 +1,62 @@
-import { cn } from "@/lib/utils";
-import { format } from "date-fns";
+import {cn} from "@/lib/utils";
+import {format} from "date-fns";
 
 export function TextContent({
-  src,
-  title,
-  content,
-  date,
-  category,
-  className,
-}: {
-  src: string;
-  title: string;
-  content: string;
-  category: string;
-  date: Date;
-  className?: string;
+                                src,
+                                title,
+                                content,
+                                date,
+                                category,
+                                className,
+                            }: {
+    src: string;
+    title: string;
+    content: string;
+    category: string;
+    date: Date;
+    className?: string;
 }) {
-  return (
-    <div
-      className={cn("flex flex-col h-full w-full justify-between", className)}
-    >
-      <div className="pt-4 pb-4 px-6">
-        <h2 className="text-xl font-bold">{title}</h2>
-      </div>
-      <div>{format(date, "dd.MM.yyyy")}</div>
-      <div>{category}</div>
-
-      <div className="flex-1 pl-0 pr-0 px-6">
-        <div className="w-full h-full bg-gray-200 rounded-[10px] overflow-hidden">
-          {src ? (
-            <img
-              src={src}
-              alt={"News item image"}
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <div className="w-full h-full bg-gray-200" />
-          )}
+    return (
+        <div
+            className={cn("flex flex-col w-full bg-white rounded-xl h-full", className)}
+        >
+            <div className={"flex justify-between items-center py-2"}>
+                <div className={"flex items-center pl-6 gap-4"}>
+                    <img
+                        src="/assets/message-provider-images/echo24.png"
+                        alt="Nachrichtenkanal"
+                        className="w-10 h-10 rounded-full object-cover"
+                    />
+                    <h2 className="text-xl font-bold">Tages.Echo</h2>
+                </div>
+                <img
+                    src="/assets/icons/dots.svg"
+                    alt="Mehr"
+                    className={"pr-6 h-6"}
+                />
+            </div>
+            <div className="pl-0 pr-0 px-6 h-[30%]">
+                <div className="w-full h-full overflow-hidden">
+                    {src ? (
+                        <img
+                            src={src}
+                            alt={"News item image"}
+                            className="w-full h-full object-cover"
+                        />
+                    ) : (
+                        <div className="w-full h-full bg-gray-200"/>
+                    )}
+                </div>
+            </div>
+            <div className={"py-4 px-3 flex flex-col gap-2"}>
+                {/*TODO: font bg*/}
+                <div className={"py-1 px-2 bg-red-500 w-fit rounded-md text-white"}>{category}</div>
+                <h2 className="text-xl font-bold">{title}</h2>
+                <div className={"text-gray-500"}><p>{format(date, "dd.MM.yyyy")}</p></div>
+                <div className="overflow-y-auto">
+                    <p>{content}</p>
+                </div>
+            </div>
         </div>
-      </div>
-      <div className="pt-4 pb-4 px-6 max-h-[70%] overflow-y-auto">
-        <p>{content}</p>
-      </div>
-    </div>
-  );
+    );
 }
