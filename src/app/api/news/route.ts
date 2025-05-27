@@ -1,35 +1,38 @@
 import { prisma } from "@/prisma/prisma";
 import { NextResponse } from "next/server";
 
-export async function GET() {
-  // TODO Random choice of entries
+const NEWS_COUNT = 2;
 
-  const textNews = (
-    await prisma.textNews.findMany({
-      orderBy: { id: "asc" },
-      take: 2,
-    })
-  ).map((news) => ({
+function getRandomItems<T>(arr: T[]): T[] {
+  if (NEWS_COUNT >= arr.length) return arr;
+  const result = [];
+  const used = new Set<number>();
+  while (result.length < NEWS_COUNT) {
+    const idx = Math.floor(Math.random() * arr.length);
+    if (!used.has(idx)) {
+      used.add(idx);
+      result.push(arr[idx]);
+    }
+  }
+  return result;
+}
+
+export async function GET() {
+  const textNewsRaw = await prisma.textNews.findMany();
+  const videoNewsRaw = await prisma.videoNews.findMany();
+  const imageNewsRaw = await prisma.imageNews.findMany();
+
+  const textNews = getRandomItems(textNewsRaw).map((news) => ({
     type: "text",
     data: news,
   }));
 
-  const videoNews = (
-    await prisma.videoNews.findMany({
-      orderBy: { id: "asc" },
-      take: 2,
-    })
-  ).map((news) => ({
+  const videoNews = getRandomItems(videoNewsRaw).map((news) => ({
     type: "video",
     data: news,
   }));
 
-  const imageNews = (
-    await prisma.imageNews.findMany({
-      orderBy: { id: "asc" },
-      take: 2,
-    })
-  ).map((news) => ({
+  const imageNews = getRandomItems(imageNewsRaw).map((news) => ({
     type: "image",
     data: news,
   }));
