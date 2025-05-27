@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { postRequest } from "@/lib/requestUtils";
 import { toast } from "sonner";
 import { useGameStore } from "@/stores/game-store";
+import { NumberTicker } from "./magicui/number-ticker";
 
 interface LeaderboardPageContentProps {
   rankings: Ranking[]; // Replace 'any' with the actual type of your ranking data
@@ -42,7 +43,9 @@ const LeaderboardPageContent: React.FC<LeaderboardPageContentProps> = ({
 
   return (
     <div className="pb-8">
-      <h1 className="text-2xl font-medium mb-8 text-center">Score: {score}</h1>
+      <h1 className="text-2xl font-medium mb-8 text-center">
+        Score: {score && <NumberTicker value={score} />}
+      </h1>
       <h2 className="text-2xl font-medium mb-2 text-center">
         Gebe deinen Namen ein
       </h2>
