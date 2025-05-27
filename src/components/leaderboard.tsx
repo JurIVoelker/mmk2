@@ -6,6 +6,7 @@ import { getRequest } from "@/lib/requestUtils";
 import { Skeleton } from "./ui/skeleton";
 import { toast } from "sonner";
 import { useGameStore } from "@/stores/game-store";
+import { highscoreFireworks } from "@/lib/utils";
 
 interface LeaderboardProps {
   rankings: Ranking[]; // Replace 'any' with the actual type of your ranking data
@@ -36,6 +37,15 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
       } else {
         setUserPosition(data?.position as number);
         setTotal(data?.total as number);
+        if (data?.position && data.position <= 3) {
+          highscoreFireworks(
+            data.position === 1
+              ? "gold"
+              : data.position === 2
+              ? "silver"
+              : "bronze"
+          );
+        }
       }
     };
     fetchUserPosition();
