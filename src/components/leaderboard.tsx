@@ -108,7 +108,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
       })}
       {total && (
         <div className=" w-full rounded-md p-3 text-center text-muted-foreground">
-          Insgesamt {total + 1} Spieler
+          Insgesamt {total + (includesUser ? 1 : 0)} Spieler
         </div>
       )}
     </div>
