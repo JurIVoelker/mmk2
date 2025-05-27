@@ -8,7 +8,7 @@ import {
     useTransform,
 } from "framer-motion";
 import {Check, Loader2, X} from "lucide-react";
-import {TextContent} from "@/components/card-layouts/text-content";
+import {TextContent} from "./info-content/text-content";
 import GameActionButtons from "@/components/game-action-buttons";
 import {useGameStore} from "@/stores/game-store";
 import {ImageContent} from "./info-content/image-content";
@@ -116,8 +116,8 @@ export default function NewsSwiper() {
     }
 
     return (
-        <div className="w-full max-w-xl mx-auto pt-5">
-            <div className="relative h-[600px] w-full">
+        <div className="w-full max-w-xl mx-auto">
+            <div className="relative h-[65vh] w-full">
                 <motion.div
                     drag="x"
                     dragConstraints={{left: 0, right: 0}}
@@ -130,7 +130,7 @@ export default function NewsSwiper() {
                         initial={{scale: 0.9, opacity: 0}}
                         animate={{scale: 1, opacity: 1}}
                         transition={{duration: 0.15, ease: "easeOut"}}
-                        className="rounded-xl h-full w-full border-transparent bg-gradient-to-r from-green-500 via-yellow-300 to-red-500 p-[8px] h-auto"
+                        className="rounded-xl h-full w-full border-transparent bg-gradient-to-r from-green-500 via-yellow-300 to-red-500 p-[8px]"
                     >
                         {currentItem.type === "text" && (
                             <TextContent

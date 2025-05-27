@@ -40,7 +40,7 @@ export function VideoContent({src}: { src?: string }) {
                 </div>
             </div>
             <div className={"absolute bottom-0 flex p-4 justify-between w-full"}>
-                <div className={"w-full"}>
+                <div className={"w-full justify-items-start"}>
                     <h2 className={"text-white text-xl"}>@Tages.Echo</h2>
                     <p className={"text-white text-base"}>#news #brandnew #important</p>
                     <div className={"flex items-center overflow-hidden w-full"}>

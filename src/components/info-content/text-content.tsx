@@ -1,16 +1,33 @@
-export function TextContent({src, alt}: { src?: string; alt?: string }) {
-    return (
-        <div className="flex flex-col h-full w-full rounded-xl border shadow-sm justify-between">
-            <div className="pt-4 pb-4 px-6 text-left">
-                <h2 className="text-xl font-bold">Lorem ipsum dolor sit amet</h2>
-            </div>
+import {cn} from "@/lib/utils";
+import {format} from "date-fns";
+import MessageProviderHeader from "@/components/message-provider-header";
 
-            <div className="pl-0 pr-0 px-6 h-[15vh]">
-                <div className="w-full h-full bg-gray-200 rounded-[10px] overflow-hidden">
+export function TextContent({
+                                src,
+                                title,
+                                content,
+                                date,
+                                category,
+                                className,
+                            }: {
+    src: string;
+    title: string;
+    content: string;
+    category: string;
+    date: Date;
+    className?: string;
+}) {
+    return (
+        <div
+            className={cn("flex flex-col w-full bg-white rounded-xl h-full", className)}
+        >
+            <MessageProviderHeader/>
+            <div className="pl-0 pr-0 px-6 h-[30%]">
+                <div className="w-full h-full overflow-hidden">
                     {src ? (
                         <img
                             src={src}
-                            alt={alt}
+                            alt={"News item image"}
                             className="w-full h-full object-cover"
                         />
                     ) : (
@@ -18,18 +35,16 @@ export function TextContent({src, alt}: { src?: string; alt?: string }) {
                     )}
                 </div>
             </div>
-            <div className="pt-4 pb-4 px-6 overflow-y-auto text-left">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
-                    Suspendisse lectus tortor, dignissim sit amet, adipiscing nec,
-                    ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula
-                    massa, varius a, semper congue, euismod non, mi.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
-                    Suspendisse lectus tortor, dignissim sit amet, adipiscing nec,
-                    ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula
-                    massa, varius a, semper congue, euismod non, mi.
-                </p>
+            <div className={"py-4 px-3 flex flex-col gap-2 items-start"}>
+                {/*TODO: font bg*/}
+                <div className={"py-1 px-2 bg-red-500 w-fit rounded-md text-white"}>{category}</div>
+                <h2 className="text-xl font-bold">{title}</h2>
+                <div className={"text-gray-500"}><p>{format(date, "dd.MM.yyyy")}</p></div>
+                <div className="overflow-y-auto">
+                    <p>{content}</p>
+                </div>
             </div>
         </div>
     );
 }
+
