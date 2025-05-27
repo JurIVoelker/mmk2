@@ -48,11 +48,20 @@ const LeaderboardPageContent: React.FC<LeaderboardPageContentProps> = ({
       <h2 className="text-2xl font-medium mb-2 text-center">
         Gebe deinen Namen ein
       </h2>
-      <Input
-        className="mb-6"
-        value={userName}
-        onChange={(e) => setUserName(e.target.value)}
-      />
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (isLoading || !userName) return;
+          handlePlayAgain();
+        }}
+      >
+        <Input
+          className="mb-6"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+        />
+      </form>
+
       <h4 className="mb-4 text-xl font-semibold">Leaderboard</h4>
       <Leaderboard rankings={rankings} />
       <div className="space-y-2 mt-8">
