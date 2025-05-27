@@ -13,9 +13,9 @@ export const highscoreFireworks = (color: "bronze" | "silver" | "gold") => {
 
   // Define color palettes for each medal
   const colorMap: Record<typeof color, string[]> = {
-    bronze: ["#cd7f32", "#b87333", "#a97142"],
-    silver: ["#c0c0c0", "#d9d9d9", "#b0b0b0"],
-    gold: ["#ffd700", "#fff8dc", "#ffec8b"],
+    bronze: ["#a86b2c", "#8c5a26", "#7a4d20"],
+    silver: ["#8c8c8c", "#b0b0b0", "#6e6e6e"],
+    gold: ["#bfa100", "#b3a86c", "#a68c1a"],
   };
 
   const randomInRange = (min: number, max: number) =>
