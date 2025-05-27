@@ -38,7 +38,6 @@ const LeaderboardPageContent: React.FC<LeaderboardPageContentProps> = ({
       }
     }
     push("/");
-    setLoading(false);
   };
 
   return (

@@ -37,7 +37,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
       } else {
         setUserPosition(data?.position as number);
         setTotal(data?.total as number);
-        if (data?.position && data.position <= 3) {
+        if (data?.position && data.position <= 3 && includesUser) {
           highscoreFireworks(
             data.position === 1
               ? "gold"
@@ -49,7 +49,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
       }
     };
     fetchUserPosition();
-  }, [score]);
+  }, [score, includesUser]);
 
   if (userPosition === null) {
     return <Skeleton className="w-full h-[36.74rem]" />;
