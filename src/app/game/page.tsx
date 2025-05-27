@@ -22,6 +22,23 @@ const Gamepage = () => {
     startGame();
   }, [newGame]);
 
+  useEffect(() => {
+    const nextItem =
+      unclassifiedNews.length - 1 > currentIndex + 1
+        ? unclassifiedNews[currentIndex + 1]
+        : undefined;
+    if (nextItem?.type === "image" || nextItem?.type === "text") {
+      const img = new Image();
+      img.src = nextItem.data.image;
+    } else if (nextItem?.type === "video") {
+      const video = document.createElement("video");
+      video.preload = "auto";
+      video.src = nextItem.data.video;
+      video.load();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentItem]);
+
   if (!isGameReady) {
     return (
       <div className="w-full h-screen flex items-center justify-center">
