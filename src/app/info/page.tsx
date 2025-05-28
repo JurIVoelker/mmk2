@@ -1,9 +1,9 @@
 "use client";
 
 import {useState} from "react";
-import {ImageContent} from "@/components/info-content/image-content";
-import {VideoContent} from "@/components/info-content/video-content";
-import {TextContent} from "@/components/info-content/text-content";
+import {ImageContent} from "@/components/cards-content/image-content";
+import {VideoContent} from "@/components/cards-content/video-content";
+import {TextContent} from "@/components/cards-content/text-content";
 import InfoActionButtons from "@/components/info-action-buttons";
 import CustomLayout from "@/components/custom-layout";
 

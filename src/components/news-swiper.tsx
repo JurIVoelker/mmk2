@@ -8,11 +8,11 @@ import {
     useTransform,
 } from "framer-motion";
 import {Check, Loader2, X} from "lucide-react";
-import {TextContent} from "./info-content/text-content";
+import {TextContent} from "@/components/cards-content/text-content";
 import GameActionButtons from "@/components/game-action-buttons";
 import {useGameStore} from "@/stores/game-store";
-import {ImageContent} from "./info-content/image-content";
-import {VideoContent} from "./info-content/video-content";
+import {ImageContent} from "@/components/cards-content/image-content";
+import {VideoContent} from "@/components/cards-content/video-content";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import SpeechBubble from "@/components/speech-bubble";
