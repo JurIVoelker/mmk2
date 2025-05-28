@@ -49,7 +49,8 @@ const Infopage = () => {
             case "video":
                 return <VideoContent src="./assets/video/test.mp4"/>;
             case "newspaper":
-                return <TextContent src="./assets/image/test.jpg" content={"Test"} date={new Date()} category={"Test"} title={"Test"}/>;
+                return <TextContent src="./assets/image/test.jpg" content={"Test"} date={new Date()} category={"Test"}
+                                    title={"Test"}/>;
             default:
                 return null;
         }
@@ -64,8 +65,10 @@ const Infopage = () => {
                         <h2 className="text-xl font-bold">{labelMap[currentContent]}</h2>
                     </div>
                     <div className="flex flex-col gap-4 overflow-y-auto ">
-                        <div className={"border border-black rounded-md h-[65vh]"}>
-                            {renderContent()}
+                        <div className={"p-1"}>
+                            <div className={"border border-black rounded-md h-[65vh]"}>
+                                {renderContent()}
+                            </div>
                         </div>
                         <div className="pt-4 pb-4 text-left">
                             <p>

@@ -1,5 +1,3 @@
-import { ArrowLeft, ArrowRight } from "lucide-react";
-
 type ContentType = "image" | "video" | "newspaper";
 export default function InfoActionButtons({
                                               currentContent,
