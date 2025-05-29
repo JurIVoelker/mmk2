@@ -5,6 +5,28 @@ import {ImageContent} from "@/components/cards-content/image-content";
 import {VideoContent} from "@/components/cards-content/video-content";
 import {TextContent} from "@/components/cards-content/text-content";
 import CustomLayout from "@/components/custom-layout";
+import InfoContent from "@/components/info-content";
+import {cn} from "@/lib/utils";
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/ui/carousel"
+import {CarouselSlideContent} from "@/components/carousel-slide-content";
+
+
+type ContentType = "image" | "video" | "newspaper";
+
+const Infopage = () => {
+  return (
+    <CustomLayout>
+      <InfoContent />
+    </CustomLayout>
+  );
+};
+
 import {cn} from "@/lib/utils";
 import {
     Carousel,
@@ -125,5 +147,8 @@ const Infopage = () => {
         </CustomLayout>
     );
 };
+
+export default Infopage;
+
 
 export default Infopage;

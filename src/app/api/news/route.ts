@@ -1,7 +1,7 @@
 import { prisma } from "@/prisma/prisma";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-const NEWS_COUNT = 2;
+const NEWS_COUNT = 30;
 
 function getRandomItems<T>(arr: T[]): T[] {
   if (NEWS_COUNT >= arr.length) return arr;
@@ -17,25 +17,32 @@ function getRandomItems<T>(arr: T[]): T[] {
   return result;
 }
 
-export async function GET() {
-  const textNewsRaw = await prisma.textNews.findMany();
-  const videoNewsRaw = await prisma.videoNews.findMany();
-  const imageNewsRaw = await prisma.imageNews.findMany();
+export async function GET(request: NextRequest) {
+  const { searchParams } = request.nextUrl;
+  const newsType = searchParams.get("newsType") || "text";
 
-  const textNews = getRandomItems(textNewsRaw).map((news) => ({
-    type: "text",
-    data: news,
-  }));
-
-  const videoNews = getRandomItems(videoNewsRaw).map((news) => ({
-    type: "video",
-    data: news,
-  }));
-
-  const imageNews = getRandomItems(imageNewsRaw).map((news) => ({
-    type: "image",
-    data: news,
-  }));
-
-  return NextResponse.json([...textNews, ...videoNews, ...imageNews]);
+  if (newsType === "text") {
+    const textNewsRaw = await prisma.textNews.findMany();
+    const textNews = getRandomItems(textNewsRaw).map((news) => ({
+      type: "text",
+      data: news,
+    }));
+    return NextResponse.json(textNews);
+  } else if (newsType === "video") {
+    const videoNewsRaw = await prisma.videoNews.findMany();
+    const videoNews = getRandomItems(videoNewsRaw).map((news) => ({
+      type: "video",
+      data: news,
+    }));
+    return NextResponse.json(videoNews);
+  } else if (newsType === "image") {
+    const imageNewsRaw = await prisma.imageNews.findMany();
+    const imageNews = getRandomItems(imageNewsRaw).map((news) => ({
+      type: "image",
+      data: news,
+    }));
+    return NextResponse.json(imageNews);
+  } else {
+    return NextResponse.json({ error: "Invalid news type" }, { status: 400 });
+  }
 }

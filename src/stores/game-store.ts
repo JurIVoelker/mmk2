@@ -18,6 +18,7 @@ type GameStore = {
   classifiedAsRealNews: News[];
 
   score: number;
+  lifes: number;
 
   timeLeft: number;
   isPaused: boolean;
@@ -29,6 +30,7 @@ type GameStore = {
   newGame: () => Promise<void>;
   classifyAsFakeNews: () => void;
   classifyAsRealNews: () => void;
+  failNews: () => void;
 };
 
 let intervalId: NodeJS.Timeout | null = null;
@@ -51,6 +53,8 @@ export const useGameStore = create<GameStore>()(
       score: 0,
       timeLeft: TIME_LIMIT,
       isPaused: false,
+
+      lifes: 3,
 
       pause: (isPaused: boolean) => {
         set({ isPaused });
@@ -86,6 +90,8 @@ export const useGameStore = create<GameStore>()(
           classifiedAsRealNews: [],
           timeLeft: TIME_LIMIT,
           score: 0,
+          lifes: 3,
+          isPaused: false,
         });
 
         if (firstNewsItem?.type === "image" || firstNewsItem?.type === "text") {
@@ -103,7 +109,9 @@ export const useGameStore = create<GameStore>()(
         set((state) => {
           const newsItem = state.unclassifiedNews[state.currentIndex];
           const isFake = newsItem?.data?.isFake;
+          const lifes = isFake ? state.lifes : state.lifes - 1;
           return {
+            lifes,
             score: isFake
               ? state.score + getScore(state.timeLeft)
               : state.score,
@@ -118,13 +126,25 @@ export const useGameStore = create<GameStore>()(
         set((state) => {
           const newsItem = state.unclassifiedNews[state.currentIndex];
           const isFake = newsItem?.data?.isFake;
+          const lifes = isFake ? state.lifes - 1 : state.lifes;
           return {
+            lifes,
             score: isFake
               ? state.score
               : state.score + getScore(state.timeLeft),
             classifiedAsRealNews: [...state.classifiedAsRealNews, newsItem],
             currentIndex: state.currentIndex + 1,
             timeLeft: TIME_LIMIT,
+          };
+        });
+      },
+
+      failNews: () => {
+        set((state) => {
+          return {
+            currentIndex: state.currentIndex + 1,
+            timeLeft: TIME_LIMIT,
+            lifes: state.lifes - 1,
           };
         });
       },
