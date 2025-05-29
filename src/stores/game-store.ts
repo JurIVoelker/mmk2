@@ -30,6 +30,7 @@ type GameStore = {
   newGame: () => Promise<void>;
   classifyAsFakeNews: () => void;
   classifyAsRealNews: () => void;
+  failNews: () => void;
 };
 
 let intervalId: NodeJS.Timeout | null = null;
@@ -134,6 +135,16 @@ export const useGameStore = create<GameStore>()(
             classifiedAsRealNews: [...state.classifiedAsRealNews, newsItem],
             currentIndex: state.currentIndex + 1,
             timeLeft: TIME_LIMIT,
+          };
+        });
+      },
+
+      failNews: () => {
+        set((state) => {
+          return {
+            currentIndex: state.currentIndex + 1,
+            timeLeft: TIME_LIMIT,
+            lifes: state.lifes - 1,
           };
         });
       },
