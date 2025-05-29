@@ -4,14 +4,16 @@ import InfoButton from "@/components/info-button";
 import Lifes from "@/components/lifes";
 import TimeBar from "@/components/time-bar";
 import NewsSwiper from "@/components/news-swiper";
-import {useGameStore} from "@/stores/game-store";
-import {useEffect, useState} from "react";
-import {Loader2} from "lucide-react";
+import { News, useGameStore } from "@/stores/game-store";
+import { useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
 import CustomLayout from "@/components/custom-layout";
 
 const Gamepage = () => {
-    const [isGameReady, setIsGameReady] = useState(false);
-    const {newGame} = useGameStore();
+  const [isGameReady, setIsGameReady] = useState(false);
+  const { newGame, unclassifiedNews, currentIndex } = useGameStore();
+
+  const currentItem: News | undefined = unclassifiedNews[currentIndex];
 
     useEffect(() => {
         const startGame = async () => {
@@ -20,6 +22,23 @@ const Gamepage = () => {
         };
         startGame();
     }, [newGame]);
+
+  useEffect(() => {
+    const nextItem =
+      unclassifiedNews.length - 1 > currentIndex + 1
+        ? unclassifiedNews[currentIndex + 1]
+        : undefined;
+    if (nextItem?.type === "image" || nextItem?.type === "text") {
+      const img = new Image();
+      img.src = nextItem.data.image;
+    } else if (nextItem?.type === "video") {
+      const video = document.createElement("video");
+      video.preload = "auto";
+      video.src = nextItem.data.video;
+      video.load();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentItem]);
 
     if (!isGameReady) {
         return (

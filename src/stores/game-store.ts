@@ -63,14 +63,7 @@ export const useGameStore = create<GameStore>()(
       newGame: async () => {
         const news = await fetch("/api/news");
         const data = await news.json();
-        set({
-          unclassifiedNews: data,
-          currentIndex: 0,
-          classifiedAsFakeNews: [],
-          classifiedAsRealNews: [],
-          timeLeft: TIME_LIMIT,
-          score: 0,
-        });
+        const firstNewsItem = data[0];
 
         // Clear any existing interval before starting a new one
         if (intervalId) {
@@ -85,6 +78,25 @@ export const useGameStore = create<GameStore>()(
             return state;
           });
         }, 100);
+
+        set({
+          unclassifiedNews: data,
+          currentIndex: 0,
+          classifiedAsFakeNews: [],
+          classifiedAsRealNews: [],
+          timeLeft: TIME_LIMIT,
+          score: 0,
+        });
+
+        if (firstNewsItem?.type === "image" || firstNewsItem?.type === "text") {
+          // Preload first news item image
+          await new Promise<void>((resolve) => {
+            const img = new Image();
+            img.src = firstNewsItem.data.image;
+            img.onload = () => resolve();
+            img.onerror = () => resolve();
+          });
+        }
       },
 
       classifyAsFakeNews: () => {

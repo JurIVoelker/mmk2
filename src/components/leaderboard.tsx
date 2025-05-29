@@ -6,6 +6,7 @@ import { getRequest } from "@/lib/requestUtils";
 import { Skeleton } from "./ui/skeleton";
 import { toast } from "sonner";
 import { useGameStore } from "@/stores/game-store";
+import { highscoreFireworks } from "@/lib/utils";
 
 interface LeaderboardProps {
   rankings: Ranking[]; // Replace 'any' with the actual type of your ranking data
@@ -36,10 +37,19 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
       } else {
         setUserPosition(data?.position as number);
         setTotal(data?.total as number);
+        if (data?.position && data.position <= 3 && includesUser) {
+          highscoreFireworks(
+            data.position === 1
+              ? "gold"
+              : data.position === 2
+              ? "silver"
+              : "bronze"
+          );
+        }
       }
     };
     fetchUserPosition();
-  }, [score]);
+  }, [score, includesUser]);
 
   if (userPosition === null) {
     return <Skeleton className="w-full h-[36.74rem]" />;
@@ -98,7 +108,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
       })}
       {total && (
         <div className=" w-full rounded-md p-3 text-center text-muted-foreground">
-          Insgesamt {total + 1} Spieler
+          Insgesamt {total + (includesUser ? 1 : 0)} Spieler
         </div>
       )}
     </div>

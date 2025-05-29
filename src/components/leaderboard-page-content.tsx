@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { postRequest } from "@/lib/requestUtils";
 import { toast } from "sonner";
 import { useGameStore } from "@/stores/game-store";
+import { NumberTicker } from "./magicui/number-ticker";
 
 interface LeaderboardPageContentProps {
   rankings: Ranking[]; // Replace 'any' with the actual type of your ranking data
@@ -37,20 +38,30 @@ const LeaderboardPageContent: React.FC<LeaderboardPageContentProps> = ({
       }
     }
     push("/");
-    setLoading(false);
   };
 
   return (
     <div className="pb-8">
-      <h1 className="text-2xl font-medium mb-8 text-center">Score: {score}</h1>
+      <h1 className="text-2xl font-medium mb-8 text-center">
+        Score: {score && <NumberTicker value={score} />}
+      </h1>
       <h2 className="text-2xl font-medium mb-2 text-center">
         Gebe deinen Namen ein
       </h2>
-      <Input
-        className="mb-6"
-        value={userName}
-        onChange={(e) => setUserName(e.target.value)}
-      />
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (isLoading || !userName) return;
+          handlePlayAgain();
+        }}
+      >
+        <Input
+          className="mb-6"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+        />
+      </form>
+
       <h4 className="mb-4 text-xl font-semibold">Leaderboard</h4>
       <Leaderboard rankings={rankings} />
       <div className="space-y-2 mt-8">
