@@ -12,8 +12,7 @@ import { useState } from "react";
 
 const GameOverviewPage = () => {
   const [activeTab, setActiveTab] = useState("fake");
-  const { classifiedAsFakeNews, classifiedAsRealNews, unclassifiedNews } =
-    useGameStore();
+  const { classifiedAsFakeNews, classifiedAsRealNews } = useGameStore();
 
   const amountOfCorrectIdentifications =
     classifiedAsFakeNews.filter((item) => item.data.isFake).length +
@@ -44,8 +43,8 @@ const GameOverviewPage = () => {
           Spielübersicht
         </h1>
         <p className="text-muted-foreground mb-10 text-center md:text-left">
-          Du hast {amountOfCorrectIdentifications} von {unclassifiedNews.length}{" "}
-          Nachrichten richtig identifiziert.
+          Du hast {amountOfCorrectIdentifications} Nachrichten richtig
+          identifiziert.
         </p>
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="grid w-full grid-cols-2">
