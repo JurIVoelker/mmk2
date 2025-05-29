@@ -7,6 +7,7 @@ import NewsSwiper from "@/components/news-swiper";
 import { News, useGameStore } from "@/stores/game-store";
 import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
+import CustomLayout from "@/components/custom-layout";
 
 const Gamepage = () => {
   const [isGameReady, setIsGameReady] = useState(false);
@@ -14,13 +15,13 @@ const Gamepage = () => {
 
   const currentItem: News | undefined = unclassifiedNews[currentIndex];
 
-  useEffect(() => {
-    const startGame = async () => {
-      await newGame();
-      setIsGameReady(true);
-    };
-    startGame();
-  }, [newGame]);
+    useEffect(() => {
+        const startGame = async () => {
+            await newGame();
+            setIsGameReady(true);
+        };
+        startGame();
+    }, [newGame]);
 
   useEffect(() => {
     const nextItem =
@@ -39,40 +40,33 @@ const Gamepage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentItem]);
 
-  if (!isGameReady) {
+    if (!isGameReady) {
+        return (
+            <CustomLayout>
+                <div className="w-full h-screen flex items-center justify-center">
+                    <Loader2 className="animate-spin"/>
+                </div>
+            </CustomLayout>
+        );
+    }
     return (
-      <div className="w-full h-screen flex items-center justify-center">
-        <Loader2 className="animate-spin" />
-      </div>
-    );
-  }
-  return (
-    <div className="w-full flex flex-col items-center justify-center overflow-y-scroll overflow-x-hidden">
-      <div className="w-full max-w-md relative">
-        <div className="pt-14 pb-2 text-center">
-          <div className="grid grid-cols-3">
-            <div></div>
-            <span className="text-2xl font-semibold block">
-              #
-              {currentItem &&
-                currentItem.data.id.substring(currentItem.data.id.length - 10)}
-            </span>
-            <div className="flex justify-end">
-              <InfoButton />
+        <CustomLayout>
+            <div className="w-full flex flex-col items-center h-full">
+                <div className="w-full max-w-md relative h-full flex flex-col justify-center">
+                    <div className="pb-2 text-center">
+                        <div className="flex justify-between">
+                            <Lifes lifes={2}/>
+                            <InfoButton/>
+                        </div>
+                    </div>
+                    <TimeBar/>
+                    <div className="mt-4">
+                        <NewsSwiper/>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-
-        <div className="absolute left-0 right-0 flex justify-between items-center px-4">
-          <Lifes lifes={2} />
-          <TimeBar />
-        </div>
-        <div className="mt-4">
-          <NewsSwiper />
-        </div>
-      </div>
-    </div>
-  );
+        </CustomLayout>
+    );
 };
 
 export default Gamepage;

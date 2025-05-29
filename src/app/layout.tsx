@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 
-const font = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
+const font = Roboto({
+    variable: "--font-roboto",
+    subsets: ["latin"],
+    weight: ["400", "500", "700"],
 });
 
 export const metadata: Metadata = {
