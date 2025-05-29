@@ -130,7 +130,7 @@ export default function NewsSwiper() {
                         initial={{scale: 0.9, opacity: 0}}
                         animate={{scale: 1, opacity: 1}}
                         transition={{duration: 0.15, ease: "easeOut"}}
-                        className="rounded-xl h-full w-full border-transparent bg-gradient-to-r from-green-500 via-yellow-300 to-red-500 p-[8px]"
+                        className="rounded-xl h-full w-full border-transparent bg-gradient-to-r from-red-500 via-yellow-300 to-green-500 p-[8px]"
                     >
                         {currentItem.type === "text" && (
                             <TextContent
@@ -149,7 +149,7 @@ export default function NewsSwiper() {
                             <VideoContent src={currentItem.data.video}/>
                         )}
                     </motion.div>
-                    <div className="absolute inset-0 flex items-center justify-between pointer-events-auto px-4">
+                    <div className="absolute inset-0 flex items-center justify-between pointer-events-auto px-20">
                         <motion.div
                             className="bg-red-500/80 text-white p-3 rounded-full transition-opacity duration-200"
                             style={{opacity: opacityLeft}}
@@ -165,7 +165,7 @@ export default function NewsSwiper() {
                     </div>
                 </motion.div>
             </div>
-            <SpeechBubble text="You’re a wizard HarryI’m a what?" />
+            <SpeechBubble text="You’re a wizard Harry! I’m a what?" />
             <div className="flex justify-around ">
                 <GameActionButtons
                     onClickFake={() => handleSwipe("left")}
