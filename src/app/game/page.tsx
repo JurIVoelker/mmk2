@@ -4,16 +4,14 @@ import InfoButton from "@/components/info-button";
 import Lifes from "@/components/lifes";
 import TimeBar from "@/components/time-bar";
 import NewsSwiper from "@/components/news-swiper";
-import {News, useGameStore} from "@/stores/game-store";
+import {useGameStore} from "@/stores/game-store";
 import {useEffect, useState} from "react";
 import {Loader2} from "lucide-react";
 import CustomLayout from "@/components/custom-layout";
 
 const Gamepage = () => {
     const [isGameReady, setIsGameReady] = useState(false);
-    const {newGame, unclassifiedNews, currentIndex} = useGameStore();
-
-    const currentItem: News | undefined = unclassifiedNews[currentIndex];
+    const {newGame} = useGameStore();
 
     useEffect(() => {
         const startGame = async () => {
