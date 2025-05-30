@@ -195,7 +195,7 @@ function CarouselPrevious({
         <button
             data-slot="carousel-previous"
             className={cn(
-                "cursor-pointer rounded-full flex items-center justify-center",
+                "cursor-pointer rounded-full flex items-center justify-center transition-transform hover:-translate-x-1",
                 className
             )}
             disabled={!canScrollPrev}
@@ -228,7 +228,7 @@ function CarouselNext({
         <button
             data-slot="carousel-next"
             className={cn(
-                "cursor-pointer flex items-center justify-center",
+                "cursor-pointer flex items-center justify-center transition-transform hover:translate-x-1",
                 className
             )}
             disabled={!canScrollNext}

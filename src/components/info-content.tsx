@@ -1,6 +1,6 @@
 "use client";
 
-import {useState} from "react";
+import React, {useState} from "react";
 import {ImageContent} from "@/components/cards-content/image-content";
 import {VideoContent} from "@/components/cards-content/video-content";
 import {TextContent} from "@/components/cards-content/text-content";
@@ -13,8 +13,6 @@ import {
 } from "@/components/ui/carousel"
 import {CarouselSlideContent} from "@/components/carousel-slide-content";
 import {cn} from "@/lib/utils";
-import {ChevronLeft} from "lucide-react";
-import {Button} from "./ui/button";
 
 type ContentType = "image" | "video" | "newspaper";
 
@@ -65,12 +63,11 @@ const InfoContent = ({onClose}: { onClose?: () => void }) => {
                   }}
         >
             <div className="flex flex-col w-full h-full text-center justify-between relative">
-                {/*TODO*/}
-                <div className="absolute top-0 z-20 bg-white flex items-center px-4 py-2">
+                <div className="absolute top-0 z-20 bg-white flex items-center p-4">
                     {onClose && (
-                        <Button onClick={onClose} className="w-9">
-                            <ChevronLeft/>
-                        </Button>
+                        <button onClick={onClose} className="transition-transform cursor-pointer hover:-translate-x-1">
+                            <img src="/assets/icons/arrow-left.svg" alt="Zurück" className="w-6 h-6"/>
+                        </button>
                     )}
                 </div>
                 <CarouselContent>
