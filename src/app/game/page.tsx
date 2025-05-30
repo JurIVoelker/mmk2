@@ -77,7 +77,7 @@ const Gamepage = () => {
       )}
       <div className="w-full flex flex-col items-center h-full">
         <div className="w-full max-w-md relative h-full flex flex-col justify-center">
-          <div className="pb-2 text-center">
+          <div className="text-center">
             <div className="flex justify-between">
               <Lifes lifes={lifes} />
               <InfoButton />
