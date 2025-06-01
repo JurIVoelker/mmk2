@@ -19,35 +19,35 @@ model Ranking {
 }
 
 model NewsProvider {
-  id        String     @id @default(cuid())
-  createdAt DateTime   @default(now())
+  id        String      @id @default(cuid())
+  createdAt DateTime    @default(now())
   name      String
   image     String
-  TextNews  TextNews[]
+  imageNews ImageNews[]
 }
 
 model TextNews {
-  id           String       @id @default(cuid())
-  createdAt    DateTime     @default(now())
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
   date         DateTime
   title        String
   content      String
-  category     String       @default("Anderes")
+  category     String   @default("Anderes")
   explaination String?
   image        String
   source       String?
   isFake       Boolean
-  provider     NewsProvider @relation(fields: [providerId], references: [id])
-  providerId   String
 }
 
 model ImageNews {
-  id           String   @id @default(cuid())
-  createdAt    DateTime @default(now())
+  id           String        @id @default(cuid())
+  createdAt    DateTime      @default(now())
   image        String
   explaination String?
   isFake       Boolean
   source       String?
+  provider     NewsProvider? @relation(fields: [providerId], references: [id])
+  providerId   String?
 }
 
 model VideoNews {
