@@ -9,7 +9,7 @@ export default function GameActionButtons({ onClickFake, onClickReal }: GameActi
             <div className="flex flex-row items-center justify-between gap-4">
                 <button
                     onClick={onClickFake}
-                    className="cursor-pointer w-12 h-12 flex items-center justify-center"
+                    className="cursor-pointer w-12 h-12 flex items-center justify-center rounded-full transition-colors hover:bg-red-700/20"
                     aria-label="Fake"
                 >
                     <img
@@ -25,7 +25,7 @@ export default function GameActionButtons({ onClickFake, onClickReal }: GameActi
                 <span className="text-green-700 text-2xl">Real</span>
                 <button
                     onClick={onClickReal}
-                    className="cursor-pointer w-12 h-12 flex items-center justify-center"
+                    className="cursor-pointer w-12 h-12 flex items-center justify-center rounded-full transition-colors hover:bg-green-700/20"
                     aria-label="Real"
                 >
                     <img
