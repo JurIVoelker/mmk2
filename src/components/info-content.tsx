@@ -69,11 +69,11 @@ const InfoContent = ({ onClose }: { onClose?: () => void }) => {
       }}
     >
       <div className="flex flex-col w-full h-full text-center justify-between relative">
-        <div className="absolute top-0 z-20 bg-white flex items-center p-4">
+        <div className="absolute top-0 z-20 flex items-center p-2">
           {onClose && (
             <button
               onClick={onClose}
-              className="transition-transform cursor-pointer hover:-translate-x-1"
+              className="transition-transform cursor-pointer hover:-translate-x-1 bg-white  rounded-full p-2 mx-2"
             >
               <img
                 src="/assets/icons/arrow-left.svg"
