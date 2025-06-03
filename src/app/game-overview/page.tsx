@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const GameOverviewPage = () => {
-  const [activeTab, setActiveTab] = useState("fake");
+  const [activeTab, setActiveTab] = useState("all");
   const { classifiedAsFakeNews, classifiedAsRealNews } = useGameStore();
 
   const amountOfCorrectIdentifications =
@@ -19,8 +19,7 @@ const GameOverviewPage = () => {
     classifiedAsRealNews.filter((item) => !item.data.isFake).length;
 
   const renderNewsList = (items: News[], classifiedAsFake: boolean) => {
-    return items.length > 0 ? (
-      <div className="space-y-4">
+    return <div className="space-y-4">
         {items.map((item) => (
           <GameOverviewCard
             key={item.data.id}
@@ -31,10 +30,7 @@ const GameOverviewPage = () => {
             }
           />
         ))}
-      </div>
-    ) : (
-      <p className="text-center text-muted-foreground py-8">No items yet</p>
-    );
+    </div>
   };
   return (
     <>
@@ -47,20 +43,17 @@ const GameOverviewPage = () => {
           identifiziert.
         </p>
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="fake">
-              Fake News ({classifiedAsFakeNews.length})
-            </TabsTrigger>
-            <TabsTrigger value="real">
-              Echte News ({classifiedAsRealNews.length})
+          <TabsList className="grid w-full grid-cols-1">
+            <TabsTrigger value="all">
+              News ({classifiedAsFakeNews.length + classifiedAsRealNews.length})
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="fake" className="mt-4">
-            {renderNewsList(classifiedAsFakeNews, true)}
-          </TabsContent>
-          <TabsContent value="real" className="mt-4">
-            {renderNewsList(classifiedAsRealNews, false)}
-          </TabsContent>
+          <div className="max-h-[400px] overflow-y-scroll">
+            <TabsContent value="all" className="mt-4">
+              {renderNewsList(classifiedAsFakeNews,true)}
+              {renderNewsList(classifiedAsRealNews, false)}
+            </TabsContent>
+          </div>
         </Tabs>
         <Link
           href="/leaderboard"
