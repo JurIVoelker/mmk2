@@ -75,19 +75,13 @@ const Gamepage = () => {
           </div>
         </div>
       )}
-      <div className="w-full flex flex-col items-center h-full">
-        <div className="w-full max-w-md relative h-full flex flex-col justify-center">
-          <div className="text-center">
-            <div className="flex justify-between">
-              <Lifes lifes={lifes} />
-              <InfoButton />
-            </div>
-          </div>
-          <TimeBar />
-          <div className="mt-4">
-            <NewsSwiper />
-          </div>
+      <div className="flex flex-col h-full">
+        <div className="flex justify-between items-center">
+          <Lifes lifes={lifes} />
+          <InfoButton />
         </div>
+        <TimeBar />
+        <NewsSwiper className="mt-4" />
       </div>
     </CustomLayout>
   );

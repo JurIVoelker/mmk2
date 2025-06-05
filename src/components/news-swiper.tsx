@@ -15,9 +15,9 @@ import { ImageContent } from "@/components/cards-content/image-content";
 import { VideoContent } from "@/components/cards-content/video-content";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import SpeechBubble from "@/components/speech-bubble";
+import { cn } from "@/lib/utils";
 
-export default function NewsSwiper() {
+export default function NewsSwiper({ className }: { className?: string }) {
   const {
     unclassifiedNews,
     currentIndex,
@@ -106,7 +106,12 @@ export default function NewsSwiper() {
 
   if (!newsNotEmpty) {
     return (
-      <div className="w-full h-screen flex items-center justify-center">
+      <div
+        className={cn(
+          "w-full h-screen flex items-center justify-center",
+          className
+        )}
+      >
         <Loader2 className="animate-spin" />
       </div>
     );
@@ -117,15 +122,21 @@ export default function NewsSwiper() {
   }
 
   return (
-    <div className="w-full max-w-xl mx-auto">
-      <div className="relative h-[65vh] w-full">
+    <>
+      <div
+        className={cn(
+          "relative h-full w-full overflow-y-scroll flex flex-col justify-center items-center overflow-x-hidden",
+          className
+        )}
+        style={{ scrollbarWidth: "none" }}
+      >
         <motion.div
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           onDragEnd={handleDragEnd}
           animate={controls}
           style={{ x }}
-          className="absolute w-full h-full"
+          className="absolute w-full h-fit"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
@@ -150,7 +161,7 @@ export default function NewsSwiper() {
               <VideoContent src={currentItem.data.video} />
             )}
           </motion.div>
-          <div className="absolute inset-0 flex items-center justify-between pointer-events-auto px-20">
+          <div className="absolute inset-0 flex items-center justify-between pointer-events-auto">
             <motion.div
               className="bg-red-500/80 text-white p-3 rounded-full transition-opacity duration-200"
               style={{ opacity: opacityLeft }}
@@ -166,13 +177,13 @@ export default function NewsSwiper() {
           </div>
         </motion.div>
       </div>
-      <SpeechBubble text="You’re a wizard Harry! I’m a what?" />
-      <div className="flex justify-around ">
+      {/* <SpeechBubble text="You’re a wizard Harry! I’m a what?" /> */}
+      <div className="flex justify-around mt-4">
         <GameActionButtons
           onClickFake={() => handleSwipe("left")}
           onClickReal={() => handleSwipe("right")}
         />
       </div>
-    </div>
+    </>
   );
 }

@@ -1,11 +1,16 @@
+import { cn } from "@/lib/utils";
+import React from "react";
+
 interface LayoutProps {
   children?: React.ReactNode;
+  className?: string;
 }
-
-const CustomLayout: React.FC<LayoutProps> = ({ children }) => {
+const CustomLayout: React.FC<LayoutProps> = ({ children, className }) => {
   return (
-    <div className="min-h-screen h-full overflow-x-hidden">
-      <div className="max-w-md mx-auto min-h-screen p-8 h-full">{children}</div>
+    <div className={cn("h-full overflow-x-hidden")}>
+      <div className={cn("max-w-md mx-auto p-4 h-full", className)}>
+        {children}
+      </div>
     </div>
   );
 };
