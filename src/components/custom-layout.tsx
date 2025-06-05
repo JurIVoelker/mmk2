@@ -4,8 +4,8 @@ interface LayoutProps {
 
 const CustomLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="max-w-md mx-auto p-8 min-h-screen h-full overflow-hidden">
-      {children}
+    <div className="min-h-screen h-full overflow-x-hidden">
+      <div className="max-w-md mx-auto min-h-screen p-8 h-full">{children}</div>
     </div>
   );
 };
