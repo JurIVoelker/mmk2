@@ -181,7 +181,7 @@ const ImageNewsItem = ({
             <Edit />
           </Button>
 
-          <div className="size-30 overflow-hidden rounded-md">
+          <div className="size-30 overflow-hidden rounded-md shrink-0">
             <img
               src={image || "/placeholder.svg"}
               alt="News image"

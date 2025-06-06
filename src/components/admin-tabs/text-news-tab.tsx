@@ -103,7 +103,7 @@ const NewsItem = ({
       {isEditing ? (
         <div className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="pr-9">
+            <div>
               <label className="text-sm font-medium mb-1 block">Date</label>
               <Input
                 type="date"
@@ -235,7 +235,7 @@ const NewsItem = ({
             <Edit />
           </Button>
           {image && (
-            <div className="aspect-video size-30 overflow-hidden rounded-md">
+            <div className="aspect-video size-30 overflow-hidden rounded-md shrink-0">
               <img
                 src={image || "/placeholder.svg"}
                 alt={title}
@@ -243,7 +243,7 @@ const NewsItem = ({
               />
             </div>
           )}
-          <div>
+          <div className="pr-11">
             <h3 className="font-bold mb-1">{title}</h3>
             <div className="text-sm line-clamp-3 text-muted-foreground mb-2">
               {content}
