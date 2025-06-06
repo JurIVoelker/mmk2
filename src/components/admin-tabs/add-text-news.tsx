@@ -24,7 +24,7 @@ const AddTextNews = ({ providers }: { providers: NewsProvider[] }) => {
         date: new Date().toISOString(),
         title: "",
         category: "",
-        image: "",
+        image: "https://s3.voelkerlabs.de/mmk2/textNews/.png",
       },
     };
 
@@ -40,7 +40,10 @@ const AddTextNews = ({ providers }: { providers: NewsProvider[] }) => {
   };
 
   return (
-    <Card className="p-4 flex justify-center items-center mt-6" onClick={onAdd}>
+    <Card
+      className="p-4 flex justify-center items-center mt-6 cursor-pointer"
+      onClick={onAdd}
+    >
       {isLoading ? <Loader2 className="animate-spin" /> : <PlusIcon />}
     </Card>
   );

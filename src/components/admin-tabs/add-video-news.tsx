@@ -4,8 +4,9 @@ import { Loader2, PlusIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { postRequest } from "@/lib/requestUtils";
 import { useState } from "react";
+import { NewsProvider } from "@prisma/client";
 
-const AddVideoNews = () => {
+const AddVideoNews = ({ providers }: { providers: NewsProvider[] }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { refresh } = useRouter();
   const onAdd = async () => {
@@ -16,7 +17,8 @@ const AddVideoNews = () => {
         explaination: "",
         isFake: false,
         source: "",
-        video: "",
+        video: "https://s3.voelkerlabs.de/mmk2/videoNews/.png",
+        providerId: providers[Math.floor(Math.random() * providers.length)]?.id, // Randomly select a provider
       },
     };
 
@@ -34,7 +36,10 @@ const AddVideoNews = () => {
   };
 
   return (
-    <Card className="p-4 flex justify-center items-center mt-6" onClick={onAdd}>
+    <Card
+      className="p-4 flex justify-center items-center mt-6 cursor-pointer"
+      onClick={onAdd}
+    >
       {isLoading ? <Loader2 className="animate-spin" /> : <PlusIcon />}
     </Card>
   );

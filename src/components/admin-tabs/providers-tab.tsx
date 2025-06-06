@@ -90,7 +90,7 @@ const ProviderItem = ({ provider }: { provider: NewsProvider }) => {
                 className="w-10 h-10 object-cover rounded"
               />
             )}
-            <p className="inline">Name: {name}</p>
+            <p className="inline">{name}</p>
           </div>
           <Button
             onClick={() => setIsEditing(true)}

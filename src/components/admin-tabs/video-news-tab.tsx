@@ -1,6 +1,6 @@
 "use client";
 import { Card } from "../ui/card";
-import type { VideoNews } from "@prisma/client";
+import type { NewsProvider, VideoNews } from "@prisma/client";
 import { Input } from "../ui/input";
 import { useState } from "react";
 import { Button } from "../ui/button";
@@ -10,13 +10,30 @@ import { Switch } from "../ui/switch";
 import { Label } from "../ui/label";
 
 import { putRequest } from "@/lib/requestUtils";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
-const VideoNewsTab = ({ videoNews }: { videoNews: VideoNews[] }) => {
+const VideoNewsTab = ({
+  videoNews,
+  providers,
+}: {
+  videoNews: VideoNews[];
+  providers: NewsProvider[];
+}) => {
   return (
     <div className="space-y-4 pt-4">
       {videoNews && videoNews.length > 0 ? (
         videoNews.map((item) => (
-          <VideoNewsItem key={item.id} videoNewsItem={item} />
+          <VideoNewsItem
+            key={item.id}
+            videoNewsItem={item}
+            providers={providers}
+          />
         ))
       ) : (
         <p className="text-muted-foreground">No video news items available.</p>
@@ -27,7 +44,13 @@ const VideoNewsTab = ({ videoNews }: { videoNews: VideoNews[] }) => {
 
 export default VideoNewsTab;
 
-const VideoNewsItem = ({ videoNewsItem }: { videoNewsItem: VideoNews }) => {
+const VideoNewsItem = ({
+  videoNewsItem,
+  providers,
+}: {
+  videoNewsItem: VideoNews;
+  providers: NewsProvider[];
+}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -35,6 +58,7 @@ const VideoNewsItem = ({ videoNewsItem }: { videoNewsItem: VideoNews }) => {
   const [explanation, setExplanation] = useState(
     videoNewsItem.explaination || ""
   );
+  const [providerId, setProviderId] = useState(videoNewsItem.providerId);
   const [isFake, setIsFake] = useState(videoNewsItem.isFake);
   const [source, setSource] = useState(videoNewsItem.source || "");
 
@@ -48,6 +72,7 @@ const VideoNewsItem = ({ videoNewsItem }: { videoNewsItem: VideoNews }) => {
         explaination: explanation,
         isFake,
         source,
+        providerId,
       },
     };
 
@@ -61,10 +86,6 @@ const VideoNewsItem = ({ videoNewsItem }: { videoNewsItem: VideoNews }) => {
       setIsEditing(false);
     }
     setIsLoading(false);
-  };
-
-  const formatDate = (date: Date) => {
-    return new Date(date).toLocaleDateString();
   };
 
   return (
@@ -114,6 +135,23 @@ const VideoNewsItem = ({ videoNewsItem }: { videoNewsItem: VideoNews }) => {
             <Label htmlFor="fake-switch">Is Fake</Label>
           </div>
 
+          <Select
+            value={providerId || undefined}
+            onValueChange={setProviderId}
+            disabled={isLoading}
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select provider" />
+            </SelectTrigger>
+            <SelectContent>
+              {providers?.map((provider) => (
+                <SelectItem key={provider.id} value={provider.id}>
+                  {provider.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+
           <div className="flex justify-end">
             <Button
               onClick={onSave}
@@ -130,16 +168,8 @@ const VideoNewsItem = ({ videoNewsItem }: { videoNewsItem: VideoNews }) => {
           </div>
         </div>
       ) : (
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div className="flex flex-col">
-              <h3 className="font-semibold text-lg">
-                Video News {isFake ? "(Fake)" : ""}
-              </h3>
-              <div className="text-sm text-muted-foreground">
-                Created: {formatDate(videoNewsItem.createdAt)}
-              </div>
-            </div>
+        <div className="space-y-4 relative flex gap-4">
+          <div className="flex items-center justify-end absolute top-0 right-0 z-10">
             <Button
               onClick={() => setIsEditing(true)}
               size="icon"
@@ -148,38 +178,34 @@ const VideoNewsItem = ({ videoNewsItem }: { videoNewsItem: VideoNews }) => {
               <Edit />
             </Button>
           </div>
-
-          <div className="aspect-video size-60 overflow-hidden rounded-md">
-            <video
-              src={video}
-              controls
-              className="object-cover"
-              poster="/placeholder.svg?height=480&width=640"
-            >
+          <div className="size-30 overflow-hidden rounded-md bg-gray-200 shrink-0">
+            <video src={video} controls className="object-cover">
               Your browser does not support the video tag.
             </video>
           </div>
 
-          {explanation && (
-            <div>
-              <p className="text-sm font-medium">Explanation:</p>
-              <p className="text-sm text-muted-foreground">{explanation}</p>
-            </div>
-          )}
+          <div>
+            {explanation && (
+              <div className="mb-2">
+                <p className="text-sm font-medium mb-1">Explanation:</p>
+                <p className="text-sm text-muted-foreground">{explanation}</p>
+              </div>
+            )}
 
-          {source && (
-            <div className="text-xs text-muted-foreground">
-              Source: {source}
-            </div>
-          )}
+            {source && (
+              <div className="text-xs text-muted-foreground">
+                Source: {source}
+              </div>
+            )}
 
-          <div className="flex items-center space-x-2">
-            <div
-              className={`text-sm ${
-                isFake ? "text-red-500" : "text-green-500"
-              } font-medium`}
-            >
-              {isFake ? "Fake Video" : "Authentic Video"}
+            <div className="flex items-center space-x-2">
+              <div
+                className={`text-sm ${
+                  isFake ? "text-red-500" : "text-green-500"
+                } font-medium`}
+              >
+                {isFake ? "Fake" : "Real"}
+              </div>
             </div>
           </div>
         </div>

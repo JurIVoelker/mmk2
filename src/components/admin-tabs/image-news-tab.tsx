@@ -87,10 +87,6 @@ const ImageNewsItem = ({
     setIsLoading(false);
   };
 
-  const formatDate = (date: Date) => {
-    return new Date(date).toLocaleDateString();
-  };
-
   return (
     <Card className="p-4 rounded-md">
       {isEditing ? (
@@ -175,26 +171,17 @@ const ImageNewsItem = ({
           </div>
         </div>
       ) : (
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div className="flex flex-col">
-              <h3 className="font-semibold text-lg">
-                Image News {isFake ? "(Fake)" : ""}
-              </h3>
-              <div className="text-sm text-muted-foreground">
-                Created: {formatDate(imageNewsItem.createdAt)}
-              </div>
-            </div>
-            <Button
-              onClick={() => setIsEditing(true)}
-              size="icon"
-              variant="ghost"
-            >
-              <Edit />
-            </Button>
-          </div>
+        <div className="space-y-4 relative flex gap-4">
+          <Button
+            onClick={() => setIsEditing(true)}
+            size="icon"
+            variant="ghost"
+            className="absolute top-0 right-0 z-10"
+          >
+            <Edit />
+          </Button>
 
-          <div className="aspect-video size-30 overflow-hidden rounded-md">
+          <div className="size-30 overflow-hidden rounded-md">
             <img
               src={image || "/placeholder.svg"}
               alt="News image"
@@ -202,26 +189,28 @@ const ImageNewsItem = ({
             />
           </div>
 
-          {explanation && (
-            <div>
-              <p className="text-sm font-medium">Explanation:</p>
-              <p className="text-sm text-muted-foreground">{explanation}</p>
-            </div>
-          )}
+          <div>
+            {explanation && (
+              <div className="mb-2">
+                <p className="text-sm font-medium">Explanation:</p>
+                <p className="text-sm text-muted-foreground">{explanation}</p>
+              </div>
+            )}
 
-          {source && (
-            <div className="text-xs text-muted-foreground">
-              Source: {source}
-            </div>
-          )}
+            {source && (
+              <div className="text-xs text-muted-foreground">
+                Source: {source}
+              </div>
+            )}
 
-          <div className="flex items-center space-x-2">
-            <div
-              className={`text-sm ${
-                isFake ? "text-red-500" : "text-green-500"
-              } font-medium`}
-            >
-              {isFake ? "Fake Image" : "Authentic Image"}
+            <div className="flex items-center space-x-2">
+              <div
+                className={`text-sm ${
+                  isFake ? "text-red-500" : "text-green-500"
+                } font-medium`}
+              >
+                {isFake ? "Fake" : "Real"}
+              </div>
             </div>
           </div>
         </div>
