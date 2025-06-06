@@ -9,6 +9,8 @@ import VideoNewsTab from "@/components/admin-tabs/video-news-tab";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { prisma } from "@/prisma/prisma";
 
+export const dynamic = "force-dynamic";
+
 const AdminPage = async () => {
   const providers = await prisma.newsProvider.findMany();
   const imageNews = (await prisma.imageNews.findMany()).sort((a, b) =>
