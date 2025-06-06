@@ -184,7 +184,7 @@ const VideoNewsItem = ({
             </video>
           </div>
 
-          <div>
+          <div className="pr-9">
             {explanation && (
               <div className="mb-2">
                 <p className="text-sm font-medium mb-1">Explanation:</p>

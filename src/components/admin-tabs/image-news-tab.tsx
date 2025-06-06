@@ -189,7 +189,7 @@ const ImageNewsItem = ({
             />
           </div>
 
-          <div>
+          <div className="pr-9">
             {explanation && (
               <div className="mb-2">
                 <p className="text-sm font-medium">Explanation:</p>
