@@ -91,7 +91,7 @@ export const useGameStore = create<GameStore>()(
           timeLeft: TIME_LIMIT,
           score: 0,
           lifes: 3,
-          isPaused: true,
+          isPaused: false,
         });
 
         if (firstNewsItem?.type === "image" || firstNewsItem?.type === "text") {
