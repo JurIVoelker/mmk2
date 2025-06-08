@@ -1,4 +1,4 @@
-import { ImageNews, TextNews, VideoNews } from "@prisma/client";
+import { ImageNews, NewsProvider, TextNews, VideoNews } from "@prisma/client";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -7,10 +7,10 @@ export const TIME_LIMIT = 20.0;
 export type News =
   | {
       type: "text";
-      data: TextNews;
+      data: TextNews & { provider: NewsProvider };
     }
-  | { type: "image"; data: ImageNews }
-  | { type: "video"; data: VideoNews };
+  | { type: "image"; data: ImageNews & { provider: NewsProvider } }
+  | { type: "video"; data: VideoNews & { provider: NewsProvider } };
 
 type GameStore = {
   unclassifiedNews: News[];

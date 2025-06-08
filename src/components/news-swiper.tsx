@@ -145,7 +145,8 @@ export default function NewsSwiper({ className }: { className?: string }) {
           >
             {currentItem.type === "text" && (
               <TextContent
-                src={`${currentItem.data.image}`}
+                provider={currentItem.data.provider}
+                src={currentItem.data.image}
                 title={currentItem.data.title}
                 content={currentItem.data.content}
                 category={currentItem.data.category}

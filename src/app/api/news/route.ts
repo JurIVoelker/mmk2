@@ -22,21 +22,33 @@ export async function GET(request: NextRequest) {
   const newsType = searchParams.get("newsType") || "text";
 
   if (newsType === "text") {
-    const textNewsRaw = await prisma.textNews.findMany();
+    const textNewsRaw = await prisma.textNews.findMany({
+      include: {
+        provider: true,
+      },
+    });
     const textNews = getRandomItems(textNewsRaw).map((news) => ({
       type: "text",
       data: news,
     }));
     return NextResponse.json(textNews);
   } else if (newsType === "video") {
-    const videoNewsRaw = await prisma.videoNews.findMany();
+    const videoNewsRaw = await prisma.videoNews.findMany({
+      include: {
+        provider: true,
+      },
+    });
     const videoNews = getRandomItems(videoNewsRaw).map((news) => ({
       type: "video",
       data: news,
     }));
     return NextResponse.json(videoNews);
   } else if (newsType === "image") {
-    const imageNewsRaw = await prisma.imageNews.findMany();
+    const imageNewsRaw = await prisma.imageNews.findMany({
+      include: {
+        provider: true,
+      },
+    });
     const imageNews = getRandomItems(imageNewsRaw).map((news) => ({
       type: "image",
       data: news,
