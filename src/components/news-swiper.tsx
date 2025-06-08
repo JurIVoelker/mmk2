@@ -125,10 +125,9 @@ export default function NewsSwiper({ className }: { className?: string }) {
     <>
       <div
         className={cn(
-          "relative h-full w-full overflow-y-scroll flex flex-col justify-center items-center overflow-x-hidden",
+          "relative w-full min-h-screen flex flex-col justify-center items-center pt-[72px] pb-[64px]",
           className
         )}
-        style={{ scrollbarWidth: "none" }}
       >
         <motion.div
           drag="x"
@@ -136,13 +135,13 @@ export default function NewsSwiper({ className }: { className?: string }) {
           onDragEnd={handleDragEnd}
           animate={controls}
           style={{ x }}
-          className="absolute w-full h-fit"
+          className="w-full"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className="rounded-xl h-full w-full border-transparent bg-gradient-to-r from-red-500 via-yellow-300 to-green-500 p-[8px]"
+            className="rounded-2xl h-full w-full border-transparent bg-gradient-to-r from-red-500 via-yellow-300 to-green-500 p-[8px]"
           >
             {currentItem.type === "text" && (
               <TextContent
@@ -178,7 +177,7 @@ export default function NewsSwiper({ className }: { className?: string }) {
         </motion.div>
       </div>
       {/* <SpeechBubble text="You’re a wizard Harry! I’m a what?" /> */}
-      <div className="flex justify-around mt-4">
+      <div className="flex justify-between mt-4 fixed bottom-0 bg-white pb-2 game-content-width ml-4">
         <GameActionButtons
           onClickFake={() => handleSwipe("left")}
           onClickReal={() => handleSwipe("right")}

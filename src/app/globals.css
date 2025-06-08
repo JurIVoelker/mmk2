@@ -134,6 +134,11 @@
     both;
 }
 
+.game-content-width {
+  width: calc(100% - 32px);
+  max-width: 416px;
+}
+
 @keyframes flip-vertical-left {
   0% {
     -webkit-transform: rotateY(0);
