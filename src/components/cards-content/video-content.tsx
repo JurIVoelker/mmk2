@@ -1,4 +1,8 @@
-export function VideoContent({src}: { src?: string }) {
+export function VideoContent({src, likes, comments}: {
+    src?: string,
+    likes: string;
+    comments: string;
+}) {
     return (
         <div className="flex flex-col h-full w-full justify-between relative">
             <div className={"absolute flex flex-col right-4 gap-4 items-center bottom-[20%]"}>
@@ -20,7 +24,7 @@ export function VideoContent({src}: { src?: string }) {
                         alt="Like"
                         className="w-10 h-9"
                     />
-                    <p className={"text-white text-xs"}>328.7K</p>
+                    <p className={"text-white text-xs"}>{likes}K</p>
                 </div>
                 <div className={"justify-items-center"}>
                     <img
@@ -28,7 +32,7 @@ export function VideoContent({src}: { src?: string }) {
                         alt="Kommentare"
                         className="w-10 h-9"
                     />
-                    <p className={"text-white text-xs"}>578</p>
+                    <p className={"text-white text-xs"}>{comments}</p>
                 </div>
                 <div className={"justify-items-center"}>
                     <img
