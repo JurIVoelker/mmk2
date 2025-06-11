@@ -22,7 +22,7 @@ export function ImageContent({src, alt, likes, comments}: {
                 <div className={"flex gap-4"}>
                     <div className={"flex items-center gap-1"}>
                         <img src="/assets/icons/heart.svg" alt="Like" className={"h-8"}/>
-                        <h2 className="text-xl font-bold">{likes}T</h2>
+                        <h2 className="text-xl font-bold">{likes}</h2>
                     </div>
                     <div className={"flex items-center gap-1"}>
                         <img
