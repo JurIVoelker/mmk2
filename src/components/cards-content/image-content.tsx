@@ -1,14 +1,16 @@
 import MessageProviderHeader from "@/components/message-provider-header";
+import { NewsProvider } from "@prisma/client";
 
-export function ImageContent({src, alt, likes, comments}: {
+export function ImageContent({src, alt, likes, comments, provider}: {
     src: string;
     alt?: string;
     likes: string;
     comments: string
+    provider: NewsProvider;
 }) {
     return (
         <div className="flex flex-col w-full bg-white rounded-xl h-full">
-            <MessageProviderHeader/>
+            <MessageProviderHeader provider={provider}/>
             <div className="flex-1 pl-0 pr-0 px-6">
                 <div className="w-full h-full bg-gray-200 overflow-hidden">
                     {src ? (

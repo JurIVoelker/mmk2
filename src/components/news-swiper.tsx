@@ -158,12 +158,14 @@ export default function NewsSwiper({className}: { className?: string }) {
                             <ImageContent src={currentItem.data.image}
                                           likes={currentItem.stats?.likes ?? "0"}
                                           comments={currentItem.stats?.comments ?? "0"}
+                                          provider={currentItem.data.provider}
                             />
                         )}
                         {currentItem.type === "video" && (
                             <VideoContent src={currentItem.data.video}
                                           likes={currentItem.stats?.likes ?? "0"}
                                           comments={currentItem.stats?.comments ?? "0"}
+                                          provider={currentItem.data.provider}
                             />
                         )}
                     </motion.div>

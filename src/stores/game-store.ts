@@ -1,7 +1,7 @@
 import {ImageNews, NewsProvider, TextNews, VideoNews} from "@prisma/client";
 import {create} from "zustand";
 import {persist} from "zustand/middleware";
-import {generateNumbers} from "@/lib/generateNumbers";
+import {generateRandomLikesAndComments} from "@/lib/generateRandomLikesAndComments";
 
 export const TIME_LIMIT = 20.0;
 
@@ -72,7 +72,7 @@ export const useGameStore = create<GameStore>()(
 
                 const enrichedData = data.map((item: News) => ({
                     ...item,
-                    stats: generateNumbers(),
+                    stats: generateRandomLikesAndComments(),
                 }));
 
                 // Clear any existing interval before starting a new one
