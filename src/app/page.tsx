@@ -1,12 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import InfoButton from "@/components/info-button";
 import CustomLayout from "@/components/custom-layout";
+import { useGameStore } from "@/stores/game-store";
 
 export default function StartPage() {
+  const { isControlled, setIsControlled } = useGameStore();
+
   return (
     <CustomLayout className="flex flex-col">
       <div className="flex flex-col gap-4 items-center justify-center absolute top-0 bottom-0 h-fit self-center">
@@ -19,6 +22,9 @@ export default function StartPage() {
         >
           Starten
         </Link>
+        <Button onClick={() => setIsControlled(!isControlled)}>
+          Spiel Kontrolliert? {isControlled ? "Ja" : "Nein"}
+        </Button>
       </div>
       <div className="w-full flex justify-center gap-16 h-full items-end">
         <Link

@@ -43,3 +43,7 @@ export const highscoreFireworks = (color: "bronze" | "silver" | "gold") => {
     });
   }, 250);
 };
+
+export type ControlEvent = "left" | "right";
+
+export const events: ControlEvent[] = [];
