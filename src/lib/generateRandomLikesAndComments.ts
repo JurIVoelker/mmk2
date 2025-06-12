@@ -1,4 +1,4 @@
-export function generateNumbers(
+export function generateRandomLikesAndComments(
     likeMin: number = 5000,
     likeMax: number = 250000,
     commentMin: number = 10,
