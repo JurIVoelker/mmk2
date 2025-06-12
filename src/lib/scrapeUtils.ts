@@ -49,9 +49,11 @@ export const parseArticle = (html: string) => {
   const explanationText =
     articleDetails[1].innerText?.trim()?.split("\n") || [];
   const explanation = explanationText[explanationText.length - 1].trim() || "";
+  const textContent = articleDetails[2].text.trim() || "";
   return {
     assertion,
     rating,
     explanation,
+    textContent,
   };
 };
