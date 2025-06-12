@@ -44,7 +44,7 @@ export default function StartPage() {
             <span className="text-sm">Info</span>
           </div>
         </div>
-        <Link href="/" className="flex flex-col items-center gap-2">
+        <Link href="/impressum" className="flex flex-col items-center gap-2">
           <div className="flex flex-col items-center gap-2">
             <div className="w-16 h-16 bg-brown-light rounded-full flex items-center justify-center hover:bg-brown-light/60">
               <img
