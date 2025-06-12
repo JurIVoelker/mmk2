@@ -23,7 +23,7 @@ export default function Impressum() {
                 <div className="sticky top-0 bg-white z-10 pt-4 pb-4 gap-1 flex items-center justify-center">
                     <h2 className="text-xl font-bold">Impressum</h2>
                 </div>
-                <div className="overflow-y-scroll py-4 px-2">
+                <div className="overflow-y-scroll py-8 px-2">
                     <h3 className="font-semibold text-lg">Angaben gemäß § 5 TMG</h3>
                     <p><strong>Max Mustermann</strong></p>
                     <p>Mustermann GmbH</p>

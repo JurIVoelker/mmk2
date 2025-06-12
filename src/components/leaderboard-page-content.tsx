@@ -66,7 +66,7 @@ const LeaderboardPageContent: React.FC<LeaderboardPageContentProps> = ({
       <Leaderboard rankings={rankings} />
       <div className="space-y-2 mt-8">
         <Button
-          className="w-full"
+          className="w-full cursor-pointer"
           onClick={handlePlayAgain}
           disabled={isLoading}
           isLoading={isLoading}
