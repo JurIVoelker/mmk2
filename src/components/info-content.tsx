@@ -92,9 +92,15 @@ const InfoContent = ({ onClose }: { onClose?: () => void }) => {
                 }
                 content={
                   type === "image" ? (
-                    <ImageContent src="./assets/image/test.jpg" />
+                    <ImageContent src="./assets/image/test.jpg"
+                                  likes="100"
+                                  comments="25"
+                    />
                   ) : type === "video" ? (
-                    <VideoContent src="./assets/video/test.mp4" />
+                    <VideoContent src="./assets/video/test.mp4"
+                                  likes="100"
+                                  comments="25"
+                    />
                   ) : (
                     <TextContent
                       src="./assets/image/test.jpg"
