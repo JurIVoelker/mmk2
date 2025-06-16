@@ -30,7 +30,7 @@ export default function InfoButton({
       </button>
       {isInfoOverlayOpen && (
         <div className="absolute top-0 right-0 w-full z-30 bg-white h-screen justify-items-center">
-          <div className="max-w-md px-8 min-h-screen h-full overflow-unset">
+          <div className="max-w-md px-8 min-h-screen h-full overflow-unset bg-white">
             <InfoContent
               onClose={() => {
                 setIsInfoOverlayOpen(false);

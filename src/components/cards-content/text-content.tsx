@@ -20,6 +20,11 @@ export function TextContent({
   date: Date;
   className?: string;
 }) {
+  const displayedContent =
+      content.length > 400
+          ? content.slice(0, 400) + "…"
+          : content;
+
   return (
     <div
       className={cn(
@@ -51,7 +56,7 @@ export function TextContent({
           <p>{format(date, "dd.MM.yyyy")}</p>
         </div>
         <div className="overflow-y-auto">
-          <p>{content}</p>
+          <p className={"h-full"}>{displayedContent}</p>
         </div>
       </div>
     </div>
