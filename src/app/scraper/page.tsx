@@ -27,7 +27,7 @@ const Scraper = async () => {
   const data = await getArticleOverviewHTML(url);
   const articles = parseArticleOverview(data);
   return (
-    <CustomLayout>
+    <CustomLayout className="max-w-7xl">
       <ScrapePageContent articles={articles} />
     </CustomLayout>
   );

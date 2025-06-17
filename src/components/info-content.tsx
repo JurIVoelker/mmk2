@@ -54,6 +54,13 @@ const InfoContent = ({ onClose }: { onClose?: () => void }) => {
       "Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
   };
 
+  const infoContentProvider = {
+    id: "0",
+    name: "TagesEcho",
+    image: "/assets/message-provider-images/tagesecho.png",
+    createdAt: new Date(),
+  };
+
   return (
     <Carousel
       opts={{ loop: true }}
@@ -92,9 +99,17 @@ const InfoContent = ({ onClose }: { onClose?: () => void }) => {
                 }
                 content={
                   type === "image" ? (
-                    <ImageContent src="./assets/image/test.jpg" />
+                    <ImageContent src="./assets/image/test.jpg"
+                                  likes="100"
+                                  comments="25"
+                                  provider={infoContentProvider}
+                    />
                   ) : type === "video" ? (
-                    <VideoContent src="./assets/video/test.mp4" />
+                    <VideoContent src="./assets/video/test.mp4"
+                                  likes="100"
+                                  comments="25"
+                                  provider={infoContentProvider}
+                    />
                   ) : (
                     <TextContent
                       src="./assets/image/test.jpg"

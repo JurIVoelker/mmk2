@@ -1,9 +1,16 @@
 import MessageProviderHeader from "@/components/message-provider-header";
+import { NewsProvider } from "@prisma/client";
 
-export function ImageContent({src, alt}: { src: string; alt?: string }) {
+export function ImageContent({src, alt, likes, comments, provider}: {
+    src: string;
+    alt?: string;
+    likes: string;
+    comments: string
+    provider: NewsProvider;
+}) {
     return (
         <div className="flex flex-col w-full bg-white rounded-xl h-full">
-            <MessageProviderHeader/>
+            <MessageProviderHeader provider={provider}/>
             <div className="flex-1 pl-0 pr-0 px-6">
                 <div className="w-full h-full bg-gray-200 overflow-hidden">
                     {src ? (
@@ -16,12 +23,8 @@ export function ImageContent({src, alt}: { src: string; alt?: string }) {
             <div className={"flex p-2 justify-between"}>
                 <div className={"flex gap-4"}>
                     <div className={"flex items-center gap-1"}>
-                        <img
-                            src="/assets/icons/heart.svg"
-                            alt="Like"
-                            className={"h-8"}
-                        />
-                        <h2 className="text-xl font-bold">1.5T</h2>
+                        <img src="/assets/icons/heart.svg" alt="Like" className={"h-8"}/>
+                        <h2 className="text-xl font-bold">{likes}</h2>
                     </div>
                     <div className={"flex items-center gap-1"}>
                         <img
@@ -29,13 +32,9 @@ export function ImageContent({src, alt}: { src: string; alt?: string }) {
                             alt="Kommentar"
                             className={"h-8"}
                         />
-                        <h2 className="text-xl font-bold">837</h2>
+                        <h2 className="text-xl font-bold">{comments}</h2>
                     </div>
-                    <img
-                        src="/assets/icons/share.svg"
-                        alt="Teilen"
-                        className={"h-8"}
-                    />
+                    <img src="/assets/icons/share.svg" alt="Teilen" className={"h-8"}/>
                 </div>
                 <img
                     src="/assets/icons/bookmark.svg"

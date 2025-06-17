@@ -66,30 +66,26 @@ const Gamepage = () => {
   }
 
   return (
-    <CustomLayout>
-      {isGameOver && (
-        <div className="z-20 h-screen w-screen bg-black/60 absolute top-0 left-0 flex items-center justify-center text-black animate-fade-in">
-          <div className="bg-gray-100/60 p-6 rounded-lg backdrop-blur-sm animate-scale-in">
-            <h1 className="text-2xl mb-4">Game Over</h1>
-            <Lifes lifes={0} className="shake-top" />
-          </div>
-        </div>
-      )}
-      <div className="w-full flex flex-col items-center h-full">
-        <div className="w-full max-w-md relative h-full flex flex-col justify-center">
-          <div className="text-center">
-            <div className="flex justify-between">
-              <Lifes lifes={lifes} />
-              <InfoButton />
+    <div className="h-full w-full overflow-x-hidden">
+      <div className="h-full mx-auto max-w-md">
+        {isGameOver && (
+          <div className="z-20 h-screen w-screen bg-black/60 absolute top-0 left-0 flex items-center justify-center text-black animate-fade-in">
+            <div className="bg-gray-100/60 p-6 rounded-lg backdrop-blur-sm animate-scale-in">
+              <h1 className="text-2xl mb-4">Game Over</h1>
+              <Lifes lifes={0} className="shake-top" />
             </div>
           </div>
-          <TimeBar />
-          <div className="mt-4">
-            <NewsSwiper />
+        )}
+        <div className="fixed bg-white z-50 top-0 game-content-width ml-4 rounded-b-md">
+          <div className="flex justify-between w-full items-center ml-4 game-content-width z-10 bg-white">
+            <Lifes lifes={lifes} />
+            <InfoButton />
           </div>
+          <TimeBar />
         </div>
+        <NewsSwiper className="game-content-width ml-4 z-0" />
       </div>
-    </CustomLayout>
+    </div>
   );
 };
 
