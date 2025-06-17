@@ -9,18 +9,32 @@ import { News, useGameStore } from "@/stores/game-store";
 import { TabsContent } from "@radix-ui/react-tabs";
 import Link from "next/link";
 import { useState } from "react";
+import GameOverviewNewsCard from "@/components/game-overview-news-card";
 
 const GameOverviewPage = () => {
-  const [activeTab, setActiveTab] = useState("fake");
+  const [activeTab, setActiveTab] = useState("all");
   const { classifiedAsFakeNews, classifiedAsRealNews } = useGameStore();
+  const classifiedNews = [...classifiedAsRealNews, ...classifiedAsFakeNews ];
+  const fakeNews = [...classifiedNews.filter((item) => item.data.isFake)]
+  const realNews = [...classifiedNews.filter((item) => !item.data.isFake)]
 
   const amountOfCorrectIdentifications =
     classifiedAsFakeNews.filter((item) => item.data.isFake).length +
     classifiedAsRealNews.filter((item) => !item.data.isFake).length;
 
-  const renderNewsList = (items: News[], classifiedAsFake: boolean) => {
-    return items.length > 0 ? (
-      <div className="space-y-4">
+  const renderNewsList = (items: News[]) => {
+    return <div className="space-y-4">
+      {items.map((item) => (
+          <GameOverviewNewsCard
+          key={item.data.id}
+          news={item}>
+          </GameOverviewNewsCard>
+      ))}
+    </div>
+  }
+
+  const renderClassifiedNewsList = (items: News[], classifiedAsFake: boolean) => {
+    return <div className="space-y-4">
         {items.map((item) => (
           <GameOverviewCard
             key={item.data.id}
@@ -31,10 +45,7 @@ const GameOverviewPage = () => {
             }
           />
         ))}
-      </div>
-    ) : (
-      <p className="text-center text-muted-foreground py-8">No items yet</p>
-    );
+    </div>
   };
   return (
     <>
@@ -47,20 +58,30 @@ const GameOverviewPage = () => {
           identifiziert.
         </p>
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-2">
+          <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="fake">
-              Fake News ({classifiedAsFakeNews.length})
+              Fake ({fakeNews.length})
+            </TabsTrigger>
+            <TabsTrigger value="all">
+              News ({classifiedAsFakeNews.length + classifiedAsRealNews.length})
             </TabsTrigger>
             <TabsTrigger value="real">
-              Echte News ({classifiedAsRealNews.length})
+              Real ({realNews.length})
             </TabsTrigger>
+
           </TabsList>
-          <TabsContent value="fake" className="mt-4">
-            {renderNewsList(classifiedAsFakeNews, true)}
-          </TabsContent>
-          <TabsContent value="real" className="mt-4">
-            {renderNewsList(classifiedAsRealNews, false)}
-          </TabsContent>
+          <div className="max-h-[400px] overflow-y-scroll">
+            <TabsContent value="all" className="mt-4">
+              {renderClassifiedNewsList(classifiedAsFakeNews,true)}
+              {renderClassifiedNewsList(classifiedAsRealNews, false)}
+            </TabsContent>
+            <TabsContent value="fake" className="mt-4">
+              {renderNewsList(fakeNews)}
+            </TabsContent>
+            <TabsContent value="real" className="mt-4">
+              {renderNewsList(realNews)}
+            </TabsContent>
+          </div>
         </Tabs>
         <Link
           href="/leaderboard"
