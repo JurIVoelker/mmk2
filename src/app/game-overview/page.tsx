@@ -34,7 +34,6 @@ const GameOverviewPage = () => {
   }
 
   const renderClassifiedNewsList = (items: News[], classifiedAsFake: boolean) => {
-    console.log(items);
     return <div className="space-y-4">
         {items.map((item) => (
           <GameOverviewCard
