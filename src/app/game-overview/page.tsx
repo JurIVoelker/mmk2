@@ -65,7 +65,7 @@ const GameOverviewPage = () => {
             <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-col flex-grow min-h-0">
               <TabsList className="grid w-full grid-cols-3">
                 <TabsTrigger value="fake">Fake ({fakeNews.length})</TabsTrigger>
-                <TabsTrigger value="all">News ({classifiedNews.length})</TabsTrigger>
+                <TabsTrigger value="all">Alle ({classifiedNews.length})</TabsTrigger>
                 <TabsTrigger value="real">Real ({realNews.length})</TabsTrigger>
               </TabsList>
 
@@ -73,6 +73,7 @@ const GameOverviewPage = () => {
               <div className="flex-grow overflow-y-auto mt-4 min-h-0">
                 <TabsContent value="all">
                   {renderClassifiedNewsList(classifiedAsFakeNews, true)}
+                  <div className="pb-5"></div>
                   {renderClassifiedNewsList(classifiedAsRealNews, false)}
                 </TabsContent>
                 <TabsContent value="fake">{renderNewsList(fakeNews)}</TabsContent>
