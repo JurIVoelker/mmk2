@@ -48,52 +48,54 @@ const GameOverviewPage = () => {
     </div>
   };
   return (
-    <>
-      <CustomLayout>
-        <h1 className="text-2xl font-bold mb-2 text-center md:text-left">
-          Spielübersicht
-        </h1>
-        <p className="text-muted-foreground mb-10 text-center md:text-left">
-          Du hast {amountOfCorrectIdentifications} Nachrichten richtig
-          identifiziert.
-        </p>
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="fake">
-              Fake ({fakeNews.length})
-            </TabsTrigger>
-            <TabsTrigger value="all">
-              News ({classifiedAsFakeNews.length + classifiedAsRealNews.length})
-            </TabsTrigger>
-            <TabsTrigger value="real">
-              Real ({realNews.length})
-            </TabsTrigger>
-
-          </TabsList>
-          <div className="max-h-[400px] overflow-y-scroll">
-            <TabsContent value="all" className="mt-4">
-              {renderClassifiedNewsList(classifiedAsFakeNews,true)}
-              {renderClassifiedNewsList(classifiedAsRealNews, false)}
-            </TabsContent>
-            <TabsContent value="fake" className="mt-4">
-              {renderNewsList(fakeNews)}
-            </TabsContent>
-            <TabsContent value="real" className="mt-4">
-              {renderNewsList(realNews)}
-            </TabsContent>
+      <div className="h-screen flex flex-col">
+        <CustomLayout className="flex flex-col flex-grow min-h-0">
+          {/* Header */}
+          <div>
+            <h1 className="text-2xl font-bold mb-2 text-center md:text-left">
+              Spielübersicht
+            </h1>
+            <p className="text-muted-foreground mb-4 text-center md:text-left">
+              Du hast {amountOfCorrectIdentifications} Nachrichten richtig identifiziert.
+            </p>
           </div>
-        </Tabs>
-        <Link
-          href="/leaderboard"
-          className={cn(
-            buttonVariants({ variant: "default" }),
-            "mt-6 w-full mb-8"
-          )}
-        >
-          Weiter zum Leaderboard
-        </Link>
-      </CustomLayout>
-    </>
+
+          {/* Tabs mit scrollbarem Content */}
+          <div className="flex flex-col flex-grow min-h-0">
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-col flex-grow min-h-0">
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger value="fake">Fake ({fakeNews.length})</TabsTrigger>
+                <TabsTrigger value="all">News ({classifiedNews.length})</TabsTrigger>
+                <TabsTrigger value="real">Real ({realNews.length})</TabsTrigger>
+              </TabsList>
+
+              {/* Nur dieser Bereich ist scrollbar */}
+              <div className="flex-grow overflow-y-auto mt-4 min-h-0">
+                <TabsContent value="all">
+                  {renderClassifiedNewsList(classifiedAsFakeNews, true)}
+                  {renderClassifiedNewsList(classifiedAsRealNews, false)}
+                </TabsContent>
+                <TabsContent value="fake">{renderNewsList(fakeNews)}</TabsContent>
+                <TabsContent value="real">{renderNewsList(realNews)}</TabsContent>
+              </div>
+            </Tabs>
+          </div>
+
+          {/* Fester Button am unteren Rand */}
+          <div className="mt-4">
+            <Link
+                href="/leaderboard"
+                className={cn(
+                    buttonVariants({ variant: "default" }),
+                    "w-full mb-4"
+                )}
+            >
+              Weiter zum Leaderboard
+            </Link>
+          </div>
+        </CustomLayout>
+      </div>
+
   );
 };
 
