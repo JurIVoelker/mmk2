@@ -24,37 +24,37 @@ export default function Impressum() {
                     <h2 className="text-xl font-bold">Impressum</h2>
                 </div>
                 <div className="overflow-y-scroll py-8 px-2">
-                    <h3 className="font-semibold text-lg">Angaben gemäß § 5 TMG</h3>
-                    <p><strong>Max Mustermann</strong></p>
-                    <p>Mustermann GmbH</p>
-                    <p>Beispielstraße 123</p>
-                    <p>12345 Musterstadt</p>
+                    <p className="font-semibold">Jana K&auml;stel</p>
+                    <p>UX/UI DEsigner</p>
+                    <p>Molkestra&szlig;e 30</p>
+                    <p>76133 Karlsruhe</p>
 
-                    <h3 className="font-semibold text-lg">Vertreten durch:</h3>
-                    <p>Max Mustermann (Geschäftsführer)</p>
+                    <h2 className="font-semibold text-lg pt-4">Kontakt</h2>
+                    <p>Telefon: 0721/7723</p>
+                    <p>Telefax: 123-4</p>
+                    <p>E-Mail: kaja1020@h-ka.de</p>
 
-                    <h3 className="font-semibold text-lg">Kontakt</h3>
-                    <p>Telefon: +49 123 456789</p>
-                    <p>Fax: +49 123 456780</p>
-                    <p>E-Mail: <a href="mailto:info@mustermann.de">info@mustermann.de</a></p>
+                    <h2 className="font-semibold text-lg pt-4">Berufsbezeichnung und berufsrechtliche Regelungen</h2>
+                    <p>Berufsbezeichnung:</p>
+                    <p>Softwareentwickler</p>
+                    <p>Verliehen in:</p>
+                    <p>Deutschland</p>
 
-                    <h3 className="font-semibold text-lg">Handelsregister</h3>
-                    <p>Amtsgericht Musterstadt, HRB 12345</p>
+                    <h2 className="font-semibold text-lg pt-4">Redaktionell verantwortlich</h2>
+                    <p>Alle Aktuellen Informationen, welche verwendet werden geh&ouml;ren Rechtlich und Inhaltlich den
+                        Nachrichtenkan&auml;len, welche diese Inhalte im Internet ver&ouml;ffentlicht haben.</p>
 
-                    <h3 className="font-semibold text-lg">Umsatzsteuer-Identifikationsnummer</h3>
-                    <p>DE123456789</p>
+                    <h2 className="font-semibold text-lg pt-4">EU-Streitschlichtung</h2>
+                    <p>Die Europ&auml;ische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a
+                        href="https://ec.europa.eu/consumers/odr/" target="_blank"
+                        rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a>.<br/> Unsere E-Mail-Adresse
+                        finden Sie oben im Impressum.</p>
 
-                    <h3 className="font-semibold text-lg">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
-                    <p>Max Mustermann</p>
+                    <h2 className="font-semibold text-lg pt-4">Verbraucher&shy;streit&shy;beilegung/Universal&shy;schlichtungs&shy;stelle</h2>
+                    <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
+                        Verbraucherschlichtungsstelle teilzunehmen.</p>
 
-                    <h3 className="font-semibold text-lg">Haftungsausschluss</h3>
-                    <p>Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Dennoch übernehmen wir keine Haftung für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte. Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf dieser Seite nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
-
-                    <h3 className="font-semibold text-lg">Externe Links</h3>
-                    <p>Unsere Website enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
-
-                    <h3 className="font-semibold text-lg">Copyright</h3>
-                    <p>Die auf dieser Website veröffentlichten Inhalte unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.</p>
+                    <p>Quelle: <a href="https://www.e-recht24.de">e-recht24.de</a></p>
                 </div>
             </div>
         </CustomLayout>
