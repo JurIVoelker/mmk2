@@ -93,15 +93,6 @@ const GameOverviewPage = () => {
             >
               Weiter zum Leaderboard
             </Link>
-            <Link
-                href="/game"
-                className={cn(
-                    buttonVariants({ variant: "default" }),
-                    "w-full mb-4"
-                )}
-            >
-              Nochmal spielen
-            </Link>
           </div>
         </CustomLayout>
       </div>
