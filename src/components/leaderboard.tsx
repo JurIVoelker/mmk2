@@ -96,7 +96,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
           <React.Fragment key={ranking.id}>
             {position > rankings.length && position === userPosition && (
               <div
-                className=" w-full h-13 bg-slate-100 rounded-md p-3 text-center"
+                className="w-full h-13 bg-slate-100 rounded-md p-3 text-center"
                 key={"divider-" + i}
               >
                 ...

@@ -84,18 +84,18 @@ const Gamepage = () => {
 
     return (
         <div className="h-full w-full overflow-x-hidden">
-            <div className={`z-10 absolute inset-0 bg-brown pointer-events-none transition-opacity duration-800 w-full ${flash ? "opacity-50" : "opacity-0"}`}/>
+            <div className={`z-30 absolute inset-0 bg-brown pointer-events-none transition-opacity duration-800 w-full ${flash ? "opacity-50" : "opacity-0"}`}/>
             <div className="h-full mx-auto max-w-md">
                 {isGameOver && (
                     <div
-                        className="z-20 h-screen w-screen bg-black/60 absolute top-0 left-0 flex items-center justify-center text-black animate-fade-in">
+                        className="z-40 h-screen w-screen bg-black/60 absolute top-0 left-0 flex items-center justify-center text-black animate-fade-in">
                         <div className="bg-gray-100/60 p-6 rounded-lg backdrop-blur-sm animate-scale-in">
                             <h1 className="text-2xl mb-4">Game Over</h1>
                             <Lifes lifes={0} className="shake-top"/>
                         </div>
                     </div>
                 )}
-                <div className="fixed z-20 top-0 game-content-width ml-4 rounded-b-md">
+                <div className="fixed z-20 top-0 game-content-width ml-4 rounded-b-md bg-white">
                     <div className="flex justify-between w-full items-center ml-4 game-content-width z-10">
                         <Lifes lifes={lifes} lostIndex={lostIndex}/>
                         <InfoButton/>
