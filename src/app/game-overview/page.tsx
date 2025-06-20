@@ -63,10 +63,10 @@ const GameOverviewPage = () => {
           {/* Tabs mit scrollbarem Content */}
           <div className="flex flex-col flex-grow min-h-0">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-col flex-grow min-h-0">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="fake">Fake ({fakeNews.length})</TabsTrigger>
-                <TabsTrigger value="all">Alle ({classifiedNews.length})</TabsTrigger>
-                <TabsTrigger value="real">Real ({realNews.length})</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-3 gap-1">
+                <TabsTrigger value="fake" className={"bg-brown-light"}>Fake ({fakeNews.length})</TabsTrigger>
+                <TabsTrigger value="all" className={"bg-brown-light"}>Alle ({classifiedNews.length})</TabsTrigger>
+                <TabsTrigger value="real" className={"bg-brown-light"}>Real ({realNews.length})</TabsTrigger>
               </TabsList>
 
               {/* Nur dieser Bereich ist scrollbar */}
@@ -92,6 +92,15 @@ const GameOverviewPage = () => {
                 )}
             >
               Weiter zum Leaderboard
+            </Link>
+            <Link
+                href="/game"
+                className={cn(
+                    buttonVariants({ variant: "default" }),
+                    "w-full mb-4"
+                )}
+            >
+              Nochmal spielen
             </Link>
           </div>
         </CustomLayout>

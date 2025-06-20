@@ -44,6 +44,7 @@
     --color-brown-light: var(--brown-light);
     --color-brown: var(--brown);
     --color-brown-dark: var(--brown-dark);
+    --color-brown-lighter: var(--brown-lighter);
 }
 
 :root {
@@ -82,6 +83,7 @@
     --brown-light: #e5d1c1;
     --brown: #be8e65;
     --brown-dark: #713f22;
+    --brown-lighter: #f2e8e0;
 }
 
 .dark {
