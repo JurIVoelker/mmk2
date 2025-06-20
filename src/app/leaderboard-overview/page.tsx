@@ -1,9 +1,6 @@
 import CustomLayout from "@/components/custom-layout";
 import Leaderboard from "@/components/leaderboard";
-import {buttonVariants} from "@/components/ui/button";
-import {cn} from "@/lib/utils";
 import {prisma} from "@/prisma/prisma";
-import {ArrowLeft} from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
