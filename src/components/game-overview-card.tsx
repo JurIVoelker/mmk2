@@ -118,7 +118,11 @@ const GameOverviewCard = ({
               {news.data.title}
             </h3>
           )}
-          {news.data.explaination}
+          <div>
+            {news.data.explaination?.split("\n").map((text, index) => (
+              <div key={index}>{text}</div>
+            ))}
+          </div>
         </CardContent>
       )}
     </Card>
