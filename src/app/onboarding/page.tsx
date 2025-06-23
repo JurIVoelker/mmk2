@@ -1,18 +1,12 @@
 "use client"
 
-import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
-const Onboarding = () => {
+import Onboarding from "@/components/onboarding";
+
+const OnboardingPage = () => {
     return <>
-        <Link
-            href="/game"
-              className={cn(buttonVariants({ variant: "default" }))}
-              >
-            Starten
-        </Link>
+        <Onboarding></Onboarding>
     </>
 }
 
-export default Onboarding;
+export default OnboardingPage;
