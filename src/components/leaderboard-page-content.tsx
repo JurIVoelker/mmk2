@@ -42,29 +42,26 @@ const LeaderboardPageContent: React.FC<LeaderboardPageContentProps> = ({
 
   return (
     <div className="pb-8">
-      <h1 className="text-2xl font-medium mb-8 text-center">
-        Score: {score && <NumberTicker value={score} />}
+      <h1 className="text-2xl font-medium mb-4 text-center">
+        Dein Score: {score && <NumberTicker value={score} className={"bg-brown-light text-brown-dark rounded-md p-1 text-3xl ml-2 font-extrabold"} />}
       </h1>
-      <h2 className="text-2xl font-medium mb-2 text-center">
-        Gebe deinen Namen ein
-      </h2>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (isLoading || !userName) return;
-          handlePlayAgain();
-        }}
-      >
-        <Input
-          className="mb-6"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-        />
-      </form>
-
-      <h4 className="mb-4 text-xl font-semibold">Leaderboard</h4>
+      <h4 className="mb-4 text-2xl text-center">Leaderboard</h4>
       <Leaderboard rankings={rankings} />
       <div className="space-y-2 mt-8">
+          <form
+              onSubmit={(e) => {
+                  e.preventDefault();
+                  if (isLoading || !userName) return;
+                  handlePlayAgain();
+              }}
+          >
+              <Input
+                  className="mb-6 placeholder:text-lg h-full p-4"
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
+                  placeholder="Gib deinen Namen ein"
+              />
+          </form>
         <Button
           className="w-full cursor-pointer"
           onClick={handlePlayAgain}

@@ -19,12 +19,13 @@ const Ranking: React.FC<RankingProps> = ({
       ? "bg-gray-300"
       : position === 3
       ? "bg-[#c19c76]"
-      : "bg-slate-200";
+      : "bg-brown-light";
 
   return (
     <div
       className={cn(
-        "bg-slate-100 p-3 rounded-md flex items-center gap-4 justify-between",
+        "bg-white outline-3 p-3 rounded-md flex items-center gap-4 justify-between",
+        ranking.id === "user" ? "outline-brown" :  "outline-brown-light",
         className
       )}
       {...props}
@@ -33,7 +34,7 @@ const Ranking: React.FC<RankingProps> = ({
         <div
           className={`size-7 ${medalColor} rounded-full shrink-0 flex justify-center items-center font-medium`}
         >
-          {position}
+          <p className={"text-brown-dark font-bold"}>{position}</p>
         </div>
         {ranking.name}
       </div>
