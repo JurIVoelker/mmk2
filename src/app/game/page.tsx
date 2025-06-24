@@ -7,7 +7,7 @@ import NewsSwiper from "@/components/news-swiper";
 import {News, useGameStore} from "@/stores/game-store";
 import {Loader2} from "lucide-react";
 import CustomLayout from "@/components/custom-layout";
-import {useRouter} from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
 import {useEffect, useState, useRef} from "react";
 
 const Gamepage = () => {
@@ -36,13 +36,15 @@ const Gamepage = () => {
 
     const currentItem: News | undefined = unclassifiedNews[currentIndex];
 
+    const searchParams = useSearchParams();
     useEffect(() => {
         const startGame = async () => {
-            await newGame();
+            const newsType = searchParams.get("newsType") ?? "text";
+            await newGame(newsType);
             setIsGameReady(true);
         };
         startGame();
-    }, [newGame]);
+    }, [newGame, searchParams]);
 
     const isGameOver = lifes <= 0 && isGameReady;
 

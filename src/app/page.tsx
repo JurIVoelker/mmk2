@@ -14,7 +14,7 @@ export default function StartPage() {
           <p>Logo</p>
         </div>
         <Link
-          href="/game"
+          href="/onboarding"
           className={cn(buttonVariants({ variant: "default" }))}
         >
           Starten
