@@ -20,7 +20,6 @@ function getRandomItems<T>(arr: T[]): T[] {
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
   const newsType = searchParams.get("newsType") || "text";
-
   if (newsType === "text") {
     const textNewsRaw = await prisma.textNews.findMany({
       include: {

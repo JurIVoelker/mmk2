@@ -28,7 +28,7 @@ type GameStore = {
     currentIndex: number;
     setCurrentIndex: (index: number) => void;
 
-    newGame: () => Promise<void>;
+    newGame: (newsType: string) => Promise<void>;
     classifyAsFakeNews: () => void;
     classifyAsRealNews: () => void;
     failNews: () => void;
@@ -65,8 +65,8 @@ export const useGameStore = create<GameStore>()(
                 set({currentIndex: index});
             },
 
-            newGame: async () => {
-                const news = await fetch("/api/news");
+            newGame: async (newsType: string) => {
+                const news = await fetch(`/api/news?newsType=${newsType}`);
                 const data = await news.json();
                 const firstNewsItem = data[0];
 
