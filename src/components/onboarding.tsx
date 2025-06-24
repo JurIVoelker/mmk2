@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import CustomLayout from "@/components/custom-layout";
 
 export default function Onboarding() {
-    const [step, setStep] = useState<"intro" | "selection">("intro");
+    const [step, setStep] = useState<"hello" | "onBoarding" |"selection">("hello");
     const [mode, setMode] = useState<"text" | "image" | "video" | null>(null);
     const router = useRouter();
 
@@ -18,22 +18,21 @@ export default function Onboarding() {
 
     return (
         <CustomLayout className="w-full h-screen flex flex-col items-center justify-center">
-            {step === "intro" && (
-                <motion.div
-                    key="intro"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="text-center max-w-xl"
+            {step === "hello" && (
+                <div
                 >
-                    <h1 className="text-2xl font-semibold mb-4">Willkommen zum Spiel!</h1>
-                    <Button variant="default" size="default" onClick={() => setStep("selection")}>
-                        Weiter
-                    </Button>
-
-                </motion.div>
+                    <video
+                        className="p-2 h-full w-full"
+                        src="/assets/asisstant/Hello.mp4"
+                        autoPlay
+                        loop
+                        onClick={() => setStep("selection")}
+                    ></video>
+                </div>
             )}
-
+            {step === "onBoarding" && (
+                <></>
+            )}
             {step === "selection" && (
                 <motion.div
                     key="selection"
