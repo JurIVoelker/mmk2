@@ -41,7 +41,7 @@ export default function Onboarding() {
                     className="flex flex-col items-center gap-4"
                 >
                     <h2 className="text-xl font-semibold mb-2">Wähle deinen Spielmodus:</h2>
-                    <div className="flex gap-1">
+                    <div className="flex flex-col gap-2">
                         <button
                             className={cn(buttonVariants({ variant: mode === "text" ? "default" : "outline" }),
                                 "w-36 h-12"
