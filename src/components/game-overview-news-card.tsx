@@ -24,7 +24,7 @@ const GameOverviewNewsCard = ({
             className={cn(
                 className,
                 "text-sm md:text-base select-none",
-                news.type === "text" && "cursor-pointer",
+                news.type === "text" && "cursor-pointer", // Nur als "pointer" bei text
                 news.type === "text" && animated ? "flip-animation" : ""
             )}
             {...props}
