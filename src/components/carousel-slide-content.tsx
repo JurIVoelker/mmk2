@@ -3,7 +3,7 @@ import React from "react";
 type Props = {
   title: string;
   content: React.ReactNode;
-  text: string;
+  text: React.ReactNode;
 };
 
 export function CarouselSlideContent({ title, content, text }: Props) {
