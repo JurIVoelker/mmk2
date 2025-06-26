@@ -143,25 +143,11 @@ const InfoContent = ({onClose}: { onClose?: () => void }) => {
                                 }
                                 content={
                                     type === "image" ? (
-                                        <ImageContent src="./assets/image/test.jpg"
-                                                      likes="100"
-                                                      comments="25"
-                                                      provider={infoContentProvider}
-                                        />
+                                        <img src="./assets/info-content/instagram-content.jpg" />
                                     ) : type === "video" ? (
-                                        <VideoContent src="./assets/video/test.mp4"
-                                                      likes="100"
-                                                      comments="25"
-                                                      provider={infoContentProvider}
-                                        />
+                                        <img src="./assets/info-content/tiktok-content.jpg" />
                                     ) : (
-                                        <TextContent
-                                            src="./assets/image/test.jpg"
-                                            content="Test"
-                                            date={new Date()}
-                                            category="Test"
-                                            title="Test"
-                                        />
+                                        <img src="./assets/info-content/newspaper-content.jpg" />
                                     )
                                 }
                                 text={textMap[type]}
