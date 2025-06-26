@@ -4,9 +4,12 @@ import { cn } from "@/lib/utils";
 import { TIME_LIMIT, useGameStore } from "@/stores/game-store";
 
 export default function TimeBar({ className }: { className?: string }) {
-  const { timeLeft } = useGameStore();
+  const { timeLeft, unclassifiedNews, currentIndex } = useGameStore();
 
-  const percent = Math.min(100, Math.max(0, (timeLeft / TIME_LIMIT) * 100));
+  const currentNews = unclassifiedNews[currentIndex];
+  const limit       = currentNews?.timeLimit ?? TIME_LIMIT;
+
+  const percent = Math.min(100, Math.max(0, (timeLeft / limit) * 100));
 
   return (
     <div

@@ -9,9 +9,17 @@ export type News =
     | {
     type: "text";
     data: TextNews & { provider: NewsProvider };
+    timeLimit?: number;
 }
-    | { type: "image"; data: ImageNews & { provider: NewsProvider }; stats?: { likes: string; comments: string };  }
-    | { type: "video"; data: VideoNews & { provider: NewsProvider }; stats?: { likes: string; comments: string };  };
+    | { type: "image";
+    data: ImageNews & { provider: NewsProvider };
+    stats?: { likes: string; comments: string };
+    timeLimit?: number;  }
+    | { type: "video";
+    data: VideoNews & { provider: NewsProvider };
+    stats?: { likes: string; comments: string };
+    timeLimit?: number;
+};
 
 type GameStore = {
     unclassifiedNews: News[];
@@ -70,10 +78,20 @@ export const useGameStore = create<GameStore>()(
                 const data = await news.json();
                 const firstNewsItem = data[0];
 
-                const enrichedData = data.map((item: News) => ({
-                    ...item,
-                    stats: generateRandomLikesAndComments(),
-                }));
+                const enrichedData = data.map((item: News) => {
+                    const stats = generateRandomLikesAndComments();
+
+                    let timeLimit = TIME_LIMIT;
+                    if (item.type === "text") timeLimit = 25;
+                    if (item.type === "image") timeLimit = 10;
+                    if (item.type === "video") timeLimit = 30;
+
+                    return {
+                        ...item,
+                        stats,
+                        timeLimit,
+                    };
+                });
 
                 // Clear any existing interval before starting a new one
                 if (intervalId) {
@@ -83,7 +101,7 @@ export const useGameStore = create<GameStore>()(
                 intervalId = setInterval(() => {
                     set((state) => {
                         if (state.timeLeft > 0 && !state.isPaused) {
-                            return {timeLeft: state.timeLeft - 0.1};
+                            return { timeLeft: Math.max(state.timeLeft - 0.1, 0) };
                         }
                         return state;
                     });
@@ -94,11 +112,13 @@ export const useGameStore = create<GameStore>()(
                     currentIndex: 0,
                     classifiedAsFakeNews: [],
                     classifiedAsRealNews: [],
-                    timeLeft: TIME_LIMIT,
+                    timeLeft: enrichedData[0]?.timeLimit ?? TIME_LIMIT,
                     score: 0,
                     lifes: 3,
                     isPaused: false,
                 });
+
+                console.log("Initial timeLeft:", useGameStore.getState().timeLeft);
 
                 if (firstNewsItem?.type === "image" || firstNewsItem?.type === "text") {
                     // Preload first news item image
@@ -123,7 +143,7 @@ export const useGameStore = create<GameStore>()(
                             : state.score,
                         classifiedAsFakeNews: [...state.classifiedAsFakeNews, newsItem],
                         currentIndex: state.currentIndex + 1,
-                        timeLeft: TIME_LIMIT,
+                        timeLeft: state.unclassifiedNews[state.currentIndex + 1]?.timeLimit ?? TIME_LIMIT,
                     };
                 });
             },
@@ -140,7 +160,7 @@ export const useGameStore = create<GameStore>()(
                             : state.score + getScore(state.timeLeft),
                         classifiedAsRealNews: [...state.classifiedAsRealNews, newsItem],
                         currentIndex: state.currentIndex + 1,
-                        timeLeft: TIME_LIMIT,
+                        timeLeft: state.unclassifiedNews[state.currentIndex + 1]?.timeLimit ?? TIME_LIMIT
                     };
                 });
             },
@@ -149,7 +169,7 @@ export const useGameStore = create<GameStore>()(
                 set((state) => {
                     return {
                         currentIndex: state.currentIndex + 1,
-                        timeLeft: TIME_LIMIT,
+                        timeLeft: state.unclassifiedNews[state.currentIndex + 1]?.timeLimit ?? TIME_LIMIT,
                         lifes: state.lifes - 1,
                     };
                 });
