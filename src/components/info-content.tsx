@@ -1,9 +1,7 @@
 "use client";
 
 import React, {useState} from "react";
-import {ImageContent} from "@/components/cards-content/image-content";
 import {VideoContent} from "@/components/cards-content/video-content";
-import {TextContent} from "@/components/cards-content/text-content";
 import {
     Carousel,
     CarouselContent,

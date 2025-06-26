@@ -1,5 +1,4 @@
 import {NewsProvider} from "@prisma/client";
-import infoContent from "@/components/info-content";
 import {cn} from "@/lib/utils";
 
 export function VideoContent({src, likes, comments, provider, infoContent}: {

@@ -19,8 +19,8 @@ export function CarouselSlideContent({ title, content, text }: Props) {
             {content}
           </div>
         </div>
-        <div className="pt-4 pb-4 text-left select-none">
-          <p>{text}</p>
+        <div className="pb-4 text-left select-none">
+          {text}
         </div>
       </div>
     </div>
