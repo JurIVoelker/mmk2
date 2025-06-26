@@ -145,7 +145,12 @@ const InfoContent = ({onClose}: { onClose?: () => void }) => {
                                     type === "image" ? (
                                         <img src="./assets/info-content/instagram-content.jpg" />
                                     ) : type === "video" ? (
-                                        <img src="./assets/info-content/tiktok-content.jpg" />
+                                        <VideoContent src="./assets/info-content/tiktok-content.mp4"
+                                                      likes="100"
+                                                      comments="25"
+                                                      provider={infoContentProvider}
+                                                      infoContent={true}
+                                        />
                                     ) : (
                                         <img src="./assets/info-content/newspaper-content.jpg" />
                                     )

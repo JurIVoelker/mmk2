@@ -15,7 +15,7 @@ export function CarouselSlideContent({ title, content, text }: Props) {
       </div>
       <div className="flex flex-col gap-4">
         <div className="p-1">
-          <div className="border border-black rounded-md h-[65vh]">
+          <div className="h-[65vh]">
             {content}
           </div>
         </div>
