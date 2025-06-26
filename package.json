@@ -12,7 +12,10 @@
     "db:enter-data": "npx tsx ./src/scripts/enter-data-to-db.ts",
     "db:add-test-data": "npx tsx ./src/prisma/scripts/addTestData.ts",
     "db:generate-client": "npx prisma generate --schema src/prisma/schema.prisma ",
-    "prod:deploy": "npm run db:setup && npm run db:generate-client && npm run build"
+    "prod:deploy": "npm run db:setup && npm run db:generate-client && npm run build",
+    "test-script": "npx tsx ./scripts/test.ts",
+    "enter-data": "npx tsx ./scripts/enter-data.ts",
+    "upload-data": "npx tsx ./scripts/upload-data.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
