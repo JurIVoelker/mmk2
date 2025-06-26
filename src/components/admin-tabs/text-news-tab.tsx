@@ -17,6 +17,7 @@ import {
 import { Switch } from "../ui/switch";
 import { Label } from "../ui/label";
 import { putRequest } from "@/lib/requestUtils";
+import { DeleteNewsButton } from "./confirm-delete-dialog";
 
 const TextNewsTab = ({
   newsItems,
@@ -209,7 +210,8 @@ const NewsItem = ({
             </Select>
           </div>
 
-          <div className="flex justify-end">
+          <div className="flex justify-end gap-4 items-center">
+            <DeleteNewsButton id={newsItem.id} type={"text"} />
             <Button
               onClick={onSave}
               disabled={isLoading}

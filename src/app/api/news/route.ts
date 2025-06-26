@@ -117,3 +117,34 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+export async function DELETE(request: NextRequest) {
+  const { searchParams } = request.nextUrl;
+  const id = searchParams.get("id");
+  const type = searchParams.get("type");
+
+  if (!id || !type) {
+    return NextResponse.json({ error: "Missing id or type" }, { status: 400 });
+  }
+
+  try {
+    if (type === "text") {
+      await prisma.textNews.delete({ where: { id } });
+      return NextResponse.json({ message: "Text news deleted successfully" });
+    } else if (type === "video") {
+      await prisma.videoNews.delete({ where: { id } });
+      return NextResponse.json({ message: "Video news deleted successfully" });
+    } else if (type === "image") {
+      await prisma.imageNews.delete({ where: { id } });
+      return NextResponse.json({ message: "Image news deleted successfully" });
+    } else {
+      return NextResponse.json({ error: "Invalid news type" }, { status: 400 });
+    }
+  } catch (error) {
+    console.error("Error deleting news:", error);
+    return NextResponse.json(
+      { error: "Failed to delete news" },
+      { status: 500 }
+    );
+  }
+}

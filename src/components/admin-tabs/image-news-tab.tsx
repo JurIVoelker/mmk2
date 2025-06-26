@@ -16,6 +16,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import { putRequest } from "@/lib/requestUtils";
+import { DeleteNewsButton } from "./confirm-delete-dialog";
 
 const ImageNewsTab = ({
   imageNews,
@@ -155,7 +156,8 @@ const ImageNewsItem = ({
               </SelectContent>
             </Select>
           </div>
-          <div className="flex justify-end">
+          <div className="flex justify-end gap-4 items-center">
+            <DeleteNewsButton id={imageNewsItem.id} type={"image"} />
             <Button
               onClick={onSave}
               disabled={isLoading}

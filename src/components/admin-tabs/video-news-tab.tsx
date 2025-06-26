@@ -17,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { DeleteNewsButton } from "./confirm-delete-dialog";
 
 const VideoNewsTab = ({
   videoNews,
@@ -152,7 +153,8 @@ const VideoNewsItem = ({
             </SelectContent>
           </Select>
 
-          <div className="flex justify-end">
+          <div className="flex justify-end gap-4 items-center">
+            <DeleteNewsButton id={videoNewsItem.id} type={"video"} />
             <Button
               onClick={onSave}
               disabled={isLoading}
