@@ -78,10 +78,11 @@ export function VideoContent({src, likes, comments, provider, infoContent}: {
             <div className="w-full h-full rounded-xl overflow-hidden">
                 <video
                     src={src}
-                    autoPlay
+                    autoPlay={!infoContent}
                     loop
                     playsInline
                     className="w-full h-full object-cover"
+                    controls={infoContent}
                 />
             </div>
         </div>
