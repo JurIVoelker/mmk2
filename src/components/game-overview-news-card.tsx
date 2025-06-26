@@ -44,7 +44,10 @@ const GameOverviewNewsCard = ({
         >
             {/* Vorderseite */}
             {!isFlipped && (
-                <>
+                <div
+                    className={cn(
+                        !isFlipped && animated === "backward" && "rotate-y-[-180deg]"
+                    )}>
                     {news.type === "text" && (
                         <div className="flex items-center justify-between gap-4 pr-4">
                             <img
@@ -73,7 +76,7 @@ const GameOverviewNewsCard = ({
                             controls
                         />
                     )}
-                </>
+                </div>
             )}
 
             {/* Rückseite: Nur bei text */}
