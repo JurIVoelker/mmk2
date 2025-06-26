@@ -4,6 +4,13 @@ import {persist} from "zustand/middleware";
 import {generateRandomLikesAndComments} from "@/lib/generateRandomLikesAndComments";
 
 export const timeLimitDefault = 20.0;
+export const timeLimitText = 25;
+export const timeLimitImage = 10;
+export const videoTimeConfig = {
+    MIN: 10,
+    MAX: 30,
+    BUFFER: 5,
+} as const;
 
 export type News =
     | {
@@ -61,6 +68,11 @@ async function getVideoDuration(url: string): Promise<number> {
         video.addEventListener("loadedmetadata", () => {
             resolve(video.duration);
         });
+
+        video.addEventListener("error", () => {
+            console.error(`Failed to load video from URL: ${url}`);
+            resolve(0);
+        });
     });
 };
 
@@ -95,11 +107,11 @@ export const useGameStore = create<GameStore>()(
                     data.map(async (item: News) => {
                         const stats = generateRandomLikesAndComments();
                         let timeLimit = timeLimitDefault;
-                        if (item.type === "text") timeLimit = 25;
-                        if (item.type === "image") timeLimit = 10;
+                        if (item.type === "text") timeLimit = timeLimitText;
+                        if (item.type === "image") timeLimit = timeLimitImage;
                         if (item.type === "video") {
                             const duration = await getVideoDuration(item.data.video);
-                            timeLimit = Math.min(Math.max(duration, 10), 30) + 5;
+                            timeLimit = Math.min(Math.max(duration, videoTimeConfig.MIN), videoTimeConfig.MAX) + videoTimeConfig.BUFFER;
                         }
 
                         return {...item, stats, timeLimit};
