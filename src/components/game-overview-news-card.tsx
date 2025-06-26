@@ -46,7 +46,6 @@ const GameOverviewNewsCard = ({
             {!isFlipped && (
                 <div
                     className={cn(
-                        "flex items-center justify-between gap-4 pr-4",
                         !isFlipped && animated === "backward" && "rotate-y-[-180deg]"
                     )}>
                     {news.type === "text" && (
