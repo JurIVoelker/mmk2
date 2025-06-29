@@ -3,15 +3,33 @@ import {create} from "zustand";
 import {persist} from "zustand/middleware";
 import {generateRandomLikesAndComments} from "@/lib/generateRandomLikesAndComments";
 
-export const TIME_LIMIT = 20.0;
+export const timeLimitDefault = 20.0;
+export const timeLimitText = 25;
+export const timeLimitImage = 10;
+export const videoTimeConfig = {
+    MIN: 10,
+    MAX: 30,
+    BUFFER: 5,
+} as const;
 
 export type News =
     | {
     type: "text";
     data: TextNews & { provider: NewsProvider };
+    timeLimit?: number;
 }
-    | { type: "image"; data: ImageNews & { provider: NewsProvider }; stats?: { likes: string; comments: string };  }
-    | { type: "video"; data: VideoNews & { provider: NewsProvider }; stats?: { likes: string; comments: string };  };
+    | {
+    type: "image";
+    data: ImageNews & { provider: NewsProvider };
+    stats?: { likes: string; comments: string };
+    timeLimit?: number;
+}
+    | {
+    type: "video";
+    data: VideoNews & { provider: NewsProvider };
+    stats?: { likes: string; comments: string };
+    timeLimit?: number;
+};
 
 type GameStore = {
     unclassifiedNews: News[];
@@ -40,7 +58,22 @@ const getScore = (timeLeft: number) => {
     if (timeLeft <= 0) {
         return 0;
     }
-    return Math.floor(100 * (timeLeft / TIME_LIMIT));
+    return Math.floor(100 * (timeLeft / timeLimitDefault));
+};
+
+async function getVideoDuration(url: string): Promise<number> {
+    return new Promise((resolve) => {
+        const video = document.createElement("video");
+        video.src = url;
+        video.addEventListener("loadedmetadata", () => {
+            resolve(video.duration);
+        });
+
+        video.addEventListener("error", () => {
+            console.error(`Failed to load video from URL: ${url}`);
+            resolve(0);
+        });
+    });
 };
 
 export const useGameStore = create<GameStore>()(
@@ -52,7 +85,7 @@ export const useGameStore = create<GameStore>()(
 
             currentIndex: 0,
             score: 0,
-            timeLeft: TIME_LIMIT,
+            timeLeft: timeLimitDefault,
             isPaused: false,
 
             lifes: 3,
@@ -70,10 +103,21 @@ export const useGameStore = create<GameStore>()(
                 const data = await news.json();
                 const firstNewsItem = data[0];
 
-                const enrichedData = data.map((item: News) => ({
-                    ...item,
-                    stats: generateRandomLikesAndComments(),
-                }));
+                const enrichedData = await Promise.all(
+                    data.map(async (item: News) => {
+                        const stats = generateRandomLikesAndComments();
+                        let timeLimit = timeLimitDefault;
+                        if (item.type === "text") timeLimit = timeLimitText;
+                        if (item.type === "image") timeLimit = timeLimitImage;
+                        if (item.type === "video") {
+                            const duration = await getVideoDuration(item.data.video);
+                            timeLimit = Math.min(Math.max(duration, videoTimeConfig.MIN), videoTimeConfig.MAX) + videoTimeConfig.BUFFER;
+                        }
+
+                        return {...item, stats, timeLimit};
+                    })
+                );
+
 
                 // Clear any existing interval before starting a new one
                 if (intervalId) {
@@ -83,7 +127,7 @@ export const useGameStore = create<GameStore>()(
                 intervalId = setInterval(() => {
                     set((state) => {
                         if (state.timeLeft > 0 && !state.isPaused) {
-                            return {timeLeft: state.timeLeft - 0.1};
+                            return {timeLeft: Math.max(state.timeLeft - 0.1, 0)};
                         }
                         return state;
                     });
@@ -94,7 +138,7 @@ export const useGameStore = create<GameStore>()(
                     currentIndex: 0,
                     classifiedAsFakeNews: [],
                     classifiedAsRealNews: [],
-                    timeLeft: TIME_LIMIT,
+                    timeLeft: enrichedData[0]?.timeLimit ?? timeLimitDefault,
                     score: 0,
                     lifes: 3,
                     isPaused: false,
@@ -123,7 +167,7 @@ export const useGameStore = create<GameStore>()(
                             : state.score,
                         classifiedAsFakeNews: [...state.classifiedAsFakeNews, newsItem],
                         currentIndex: state.currentIndex + 1,
-                        timeLeft: TIME_LIMIT,
+                        timeLeft: state.unclassifiedNews[state.currentIndex + 1]?.timeLimit ?? timeLimitDefault,
                     };
                 });
             },
@@ -140,7 +184,7 @@ export const useGameStore = create<GameStore>()(
                             : state.score + getScore(state.timeLeft),
                         classifiedAsRealNews: [...state.classifiedAsRealNews, newsItem],
                         currentIndex: state.currentIndex + 1,
-                        timeLeft: TIME_LIMIT,
+                        timeLeft: state.unclassifiedNews[state.currentIndex + 1]?.timeLimit ?? timeLimitDefault
                     };
                 });
             },
@@ -149,7 +193,7 @@ export const useGameStore = create<GameStore>()(
                 set((state) => {
                     return {
                         currentIndex: state.currentIndex + 1,
-                        timeLeft: TIME_LIMIT,
+                        timeLeft: state.unclassifiedNews[state.currentIndex + 1]?.timeLimit ?? timeLimitDefault,
                         lifes: state.lifes - 1,
                     };
                 });

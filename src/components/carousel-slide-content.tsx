@@ -3,7 +3,7 @@ import React from "react";
 type Props = {
   title: string;
   content: React.ReactNode;
-  text: string;
+  text: React.ReactNode;
 };
 
 export function CarouselSlideContent({ title, content, text }: Props) {
@@ -15,12 +15,12 @@ export function CarouselSlideContent({ title, content, text }: Props) {
       </div>
       <div className="flex flex-col gap-4">
         <div className="p-1">
-          <div className="border border-black rounded-md h-[65vh]">
+          <div>
             {content}
           </div>
         </div>
-        <div className="pt-4 pb-4 text-left select-none">
-          <p>{text}</p>
+        <div className="pb-4 text-left select-none">
+          {text}
         </div>
       </div>
     </div>
