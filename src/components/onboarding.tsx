@@ -13,6 +13,10 @@ type Step =
     | "pope"
     | "pope2"
     | "sip"
+    | "skipped"
+    | "text"
+    | "image"
+    | "video"
     | "selection";
 type Mode = "text" | "image" | "video" | null;
 
@@ -118,10 +122,61 @@ export default function Onboarding() {
                         onSkip={() => setStep("selection")}
                     />
                 );
-            case "selection":
+                case "selection":
+                    return (  <motion.div
+                            key="selection"
+                            initial={{opacity: 0}}
+                            animate={{opacity: 1}}
+                            className="flex flex-col items-center gap-4"
+                        >
+                            <div className="flex flex-col gap-2">
+                                <button
+                                    className={cn(
+                                        buttonVariants({
+                                            variant: mode === "text" ? "default" : "outline",
+                                        }),
+                                        "w-36 h-12"
+                                    )}
+                                    onClick={() => setStep("text")}
+                                >
+                                    Online Zeitung
+                                </button>
+                                <button
+                                    className={cn(
+                                        buttonVariants({
+                                            variant: mode === "image" ? "default" : "outline",
+                                        }),
+                                        "w-36 h-12"
+                                    )}
+                                    onClick={() => setStep("image")}
+                                >
+                                    Instagram
+                                </button>
+                                <button
+                                    className={cn(
+                                        buttonVariants({
+                                            variant: mode === "video" ? "default" : "outline",
+                                        }),
+                                        "w-36 h-12"
+                                    )}
+                                    onClick={() => setStep("video")}
+                                >
+                                    Tik Tok
+                                </button>
+                            </div>
+                            <SpeechBubble text="Wähle den Nachrichtenkanal aus, mit dem du am meisten Vertraut bist."/>
+                            <video
+                                className="p-2 h-1/2 w-1/2 self-end"
+                                src="/assets/asisstant/sip.mp4"
+                                autoPlay
+                                loop
+                            ></video>
+                        </motion.div>
+                    );
+            case "skipped":
                 return (
                     <motion.div
-                        key="selection"
+                        key="skipped"
                         initial={{opacity: 0}}
                         animate={{opacity: 1}}
                         className="flex flex-col items-center gap-4"
@@ -177,6 +232,10 @@ export default function Onboarding() {
                         ></video>
                     </motion.div>
                 );
+                case "text":
+                    return (<motion.div>
+                        hahahah
+                    </motion.div>)
             default:
                 return null;
         }
