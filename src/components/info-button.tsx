@@ -7,15 +7,16 @@ import { useGameStore } from "@/stores/game-store";
 import { cn } from "@/lib/utils";
 
 export default function InfoButton({
-  disableHover = false,
+  disableHover = false,className
 }: {
   disableHover?: boolean;
+    className?: string;
 }) {
   const [isInfoOverlayOpen, setIsInfoOverlayOpen] = useState(false);
   const { pause } = useGameStore();
 
   return (
-    <>
+    <div className={`${className}`}>
       <button
         onClick={() => {
           setIsInfoOverlayOpen(true);
@@ -40,6 +41,6 @@ export default function InfoButton({
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
