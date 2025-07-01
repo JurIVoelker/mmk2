@@ -72,7 +72,7 @@ export default function Onboarding() {
 
     const date = new Date();
 
-    const [step, setStep] = useState<Step>("hello");
+    const [step, setStep] = useState<Step>("talk");
     const [mode, setMode] = useState<Mode>(null);
     const router = useRouter();
 
@@ -84,14 +84,6 @@ export default function Onboarding() {
 
     function renderStepContent() {
         switch (step) {
-            case "hello":
-                return (
-                    <StepContent
-                        videoSrc="/assets/asisstant/wave.mp4"
-                        onVideoClick={() => setStep("talk")}
-                        onSkip={() => setStep("skipped")}
-                    />
-                );
             case "talk":
                 return (
                     <StepContent
@@ -177,7 +169,7 @@ export default function Onboarding() {
                                 )}
                                 onClick={() => setMode("video")}
                             >
-                                Tik Tok
+                                TikTok
                             </button>
                         </div>
                         <Button
