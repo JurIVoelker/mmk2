@@ -9,7 +9,7 @@ export function VideoContent({src, likes, comments, provider, infoContent}: {
     infoContent?: boolean;
 }) {
     return (
-        <div className="flex flex-col h-full w-full justify-between relative">
+        <div className="flex flex-col h-full w-full relative min-h-[60vh] bg-black items-center justify-center rounded-xl">
             <div className={"absolute flex flex-col right-4 items-center bottom-[20%]"}>
                 <div className={"relative pb-4"}>
                     <img
@@ -75,7 +75,7 @@ export function VideoContent({src, likes, comments, provider, infoContent}: {
                     className="w-14 h-14"
                 />
             </div>
-            <div className="w-full h-full rounded-xl overflow-hidden min-h[50vh] flex items-center justify-center bg-black">
+            <div className="w-full h-full rounded-xl overflow-hidden">
                 <video
                     src={src}
                     autoPlay={!infoContent}

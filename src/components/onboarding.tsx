@@ -68,7 +68,10 @@ export default function Onboarding() {
                         </button>
                     </div>
                     <Button
-                        className="mt-6 px-4 py-2 rounded disabled:opacity-50"
+                        className={cn(
+                            buttonVariants({ variant: "default" }),
+                            "mt-6 disabled:opacity-50"
+                        )}
                         onClick={handleStart}
                         disabled={!mode}
                     >
