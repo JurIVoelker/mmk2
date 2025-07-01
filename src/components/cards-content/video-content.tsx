@@ -75,7 +75,7 @@ export function VideoContent({src, likes, comments, provider, infoContent}: {
                     className="w-14 h-14"
                 />
             </div>
-            <div className="w-full h-full rounded-xl overflow-hidden">
+            <div className="w-full h-full rounded-xl overflow-hidden min-h[50vh] flex items-center justify-center bg-black">
                 <video
                     src={src}
                     autoPlay={!infoContent}
