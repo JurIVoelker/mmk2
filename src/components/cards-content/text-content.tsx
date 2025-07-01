@@ -28,7 +28,7 @@ export function TextContent({
   return (
     <div
       className={cn(
-        "flex flex-col w-full bg-white rounded-xl h-full",
+        "flex flex-col w-full bg-white rounded-xl",
         className
       )}
     >

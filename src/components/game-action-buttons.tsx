@@ -1,14 +1,16 @@
 type GameActionButtonsProps = {
   onClickFake: () => void | Promise<void>;
   onClickReal: () => void | Promise<void>;
+  className?: string;
 };
 
 export default function GameActionButtons({
+                                            className,
   onClickFake,
   onClickReal,
 }: GameActionButtonsProps) {
   return (
-    <div className="w-full flex flex-row justify-between">
+    <div className={`w-full flex flex-row justify-between ${className}`}>
       <div className="flex flex-row items-center justify-between gap-4">
         <button
           onClick={onClickFake}

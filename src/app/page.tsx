@@ -9,10 +9,17 @@ import CustomLayout from "@/components/custom-layout";
 export default function StartPage() {
   return (
     <CustomLayout className="flex flex-col">
-      <div className="flex flex-col gap-4 items-center justify-center absolute top-0 bottom-0 h-fit self-center">
-        <div className="flex items-center justify-center bg-gray-200 aspect-square w-[120px] rounded-lg">
-          <p>Logo</p>
-        </div>
+      <img src="/assets/Header/Header.png" alt="Tea-nder" className="top-0"></img>
+      <div className="rounded-lg pt-10">
+        <video
+            src="/assets/asisstant/Hello.mp4"
+            className="w-full h-full object-contain rounded-lg "
+            autoPlay
+            loop
+            muted
+        />
+      </div>
+      <div className="flex flex-col gap-4 items-center justify-center pt-30 self-center">
         <Link
           href="/onboarding"
           className={cn(buttonVariants({ variant: "default" }))}
