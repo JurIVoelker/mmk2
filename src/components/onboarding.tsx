@@ -76,7 +76,6 @@ function StepContent({
 export default function Onboarding() {
 
     const date = new Date();
-
     const [step, setStep] = useState<Step>("talk");
     const [mode, setMode] = useState<Mode>(null);
     const router = useRouter();
