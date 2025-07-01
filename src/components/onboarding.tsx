@@ -1,10 +1,14 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import {motion} from "framer-motion";
 import {cn} from "@/lib/utils";
 import {Button, buttonVariants} from "@/components/ui/button";
 import {useRouter} from "next/navigation";
 import CustomLayout from "@/components/custom-layout";
 import SpeechBubble from "./speech-bubble";
+import Lifes from "@/components/lifes";
+import InfoButton from "@/components/info-button";
+import TimeBar from "@/components/time-bar";
+import NewsSwiper from "@/components/news-swiper";
 
 type Step =
     | "hello"
@@ -74,7 +78,7 @@ export default function Onboarding() {
                     <StepContent
                         videoSrc="/assets/asisstant/wave.mp4"
                         onVideoClick={() => setStep("talk")}
-                        onSkip={() => setStep("selection")}
+                        onSkip={() => setStep("skipped")}
                     />
                 );
             case "talk":
@@ -83,7 +87,7 @@ export default function Onboarding() {
                         videoSrc="/assets/asisstant/talk.mp4"
                         onVideoClick={() => setStep("talk2")}
                         speechText="Hallo! Wie geht es Ihnen?"
-                        onSkip={() => setStep("selection")}
+                        onSkip={() => setStep("skipped")}
                     />
                 );
             case "talk2":
@@ -92,7 +96,7 @@ export default function Onboarding() {
                         videoSrc="/assets/asisstant/talk.mp4"
                         onVideoClick={() => setStep("sip")}
                         speechText="Setzten Sie sich doch. Ich würde mich gerne mit Ihnen über die neusten Nachrichten, bei einer Tasse Tee, unterhalten."
-                        onSkip={() => setStep("selection")}
+                        onSkip={() => setStep("skipped")}
                     />
                 );
             case "sip":
@@ -101,7 +105,7 @@ export default function Onboarding() {
                         videoSrc="/assets/asisstant/sip.mp4"
                         onVideoClick={() => setStep("pope")}
                         speechText="Haben Sie es schon gehört?!"
-                        onSkip={() => setStep("selection")}
+                        onSkip={() => setStep("skipped")}
                     />
                 );
             case "pope":
@@ -110,7 +114,7 @@ export default function Onboarding() {
                         videoSrc="/assets/asisstant/talk.mp4"
                         onVideoClick={() => setStep("pope2")}
                         speechText="Präsident Trump will Papst werden. Unglaublich oder?!"
-                        onSkip={() => setStep("selection")}
+                        onSkip={() => setStep("skipped")}
                     />
                 );
             case "pope2":
@@ -119,7 +123,7 @@ export default function Onboarding() {
                         videoSrc="/assets/asisstant/talk.mp4"
                         onVideoClick={() => setStep("selection")}
                         speechText="Nein?! Über welchen Kanal beziehen Sie denn Ihre Nachrichten?"
-                        onSkip={() => setStep("selection")}
+                        onSkip={() => setStep("skipped")}
                     />
                 );
                 case "selection":
@@ -233,8 +237,16 @@ export default function Onboarding() {
                     </motion.div>
                 );
                 case "text":
-                    return (<motion.div>
-                        hahahah
+                    return (<motion.div className= "h-full w-full overflow-x-hidden">
+                            <div className="flex justify-between w-full items-center game-content-width z-0 relative">
+                                <Lifes lifes={3} className="border-4 border-red-500 rounded animate-pulse" />
+                                <InfoButton></InfoButton>
+                                <div className="absolute left-50 z-20">
+                                    <SpeechBubble text="Hier wird Ihr Leben angezeigt, welches sich bei Fehlern verringert."></SpeechBubble>
+                                </div>
+                            </div>
+                        <TimeBar></TimeBar>
+                        <NewsSwiper></NewsSwiper>
                     </motion.div>)
             default:
                 return null;
