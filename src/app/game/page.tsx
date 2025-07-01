@@ -29,10 +29,21 @@ const Gamepage = () => {
       if (lifes > 0) {
         setFlash(true);
         setTimeout(() => setFlash(false), 800);
+        const audio = new Audio("/assets/sounds/error.mp3");
+        audio.volume = 0.5;
+        audio.play();
+      } else {
+        const audio = new Audio("/assets/sounds/win.mp3");
+        audio.volume = 0.4;
+        audio.play();
       }
+    } else if (isGameReady && currentIndex > 0) {
+      const audio = new Audio("/assets/sounds/swipe.mp3");
+      audio.volume = 0.5;
+      audio.play();
     }
     prevLifes.current = lifes;
-  }, [lifes, isGameReady]);
+  }, [lifes, isGameReady, currentIndex]);
 
   const currentItem: News | undefined = unclassifiedNews[currentIndex];
 

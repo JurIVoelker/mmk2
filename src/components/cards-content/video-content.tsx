@@ -9,7 +9,7 @@ export function VideoContent({src, likes, comments, provider, infoContent}: {
     infoContent?: boolean;
 }) {
     return (
-        <div className="flex flex-col h-full w-full justify-between relative">
+        <div className="flex flex-col h-full w-full relative min-h-[70vh] bg-black items-center justify-center rounded-xl">
             <div className={"absolute flex flex-col right-4 items-center bottom-[20%]"}>
                 <div className={"relative pb-4"}>
                     <img
