@@ -44,7 +44,9 @@ function StepContent({
                          onVideoClick,
                          speechText,
                          onSkip,
-                     }: StepContentProps) {
+                        showFinger,
+                     }: StepContentProps & { showFinger?: boolean })
+{
     return (
         <div className="flex flex-col">
             <Button
@@ -56,13 +58,16 @@ function StepContent({
             >
                 SKIP
             </Button>
-            <video
-                className="p-2 h-full w-full"
-                src={videoSrc}
-                autoPlay
-                loop
-                onClick={onVideoClick}
-            ></video>
+            <div className="relative flex ">
+                {showFinger &&<img height="48" width="48" alt="touchFingerIcon" src="/assets/onboarding/double-tap_11441390.png" className="right-1 self-center animate-pulse absolute z-10"/>}
+                <video
+                    className="p-2 h-full w-full"
+                    src={videoSrc}
+                    autoPlay
+                    loop
+                    onClick={onVideoClick}
+                ></video>
+            </div>
             {speechText && <SpeechBubble text={speechText}/>}
         </div>
     );
@@ -91,6 +96,7 @@ export default function Onboarding() {
                         onVideoClick={() => setStep("talk2")}
                         speechText="Hallo! Wie geht es Ihnen?"
                         onSkip={() => setStep("skipped")}
+                        showFinger={true}
                     />
                 );
             case "talk2":
@@ -100,6 +106,7 @@ export default function Onboarding() {
                         onVideoClick={() => setStep("sip")}
                         speechText="Setzten Sie sich doch. Ich würde mich gerne mit Ihnen über die neusten Nachrichten, bei einer Tasse Tee, unterhalten."
                         onSkip={() => setStep("skipped")}
+                        showFinger={true}
                     />
                 );
             case "sip":
