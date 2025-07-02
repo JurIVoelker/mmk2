@@ -5,11 +5,14 @@ const { minio, bucket } = getMinioClient();
 const filePath = path.resolve(__dirname, "../db/database.db");
 const objectName = "database.db";
 
-// @ts-expect-error Errorclear in type definitions, but works fine
-minio.fPutObject(bucket, objectName, filePath, (err) => {
-  if (err) {
-    console.error("Error uploading file:", err);
-  } else {
-    console.log(`File uploaded successfully to ${bucket}/${objectName}`);
-  }
-});
+minio
+  .fPutObject(bucket, objectName, filePath)
+  .then(() => {
+    console.log(`File ${objectName} uploaded successfully to bucket ${bucket}`);
+  })
+  .catch((error) => {
+    console.error(
+      `Error uploading file ${objectName} to bucket ${bucket}:`,
+      error
+    );
+  });
