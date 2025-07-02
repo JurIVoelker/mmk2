@@ -24,7 +24,7 @@ const AdminPage = async () => {
   );
 
   return (
-    <div className="max-w-6xl mx-auto p-8 min-h-screen h-full">
+    <div className="max-w-6xl mx-auto p-8 min-h-[100svh] h-full">
       <h1 className="text-2xl font-bold mb-8">Admin Page</h1>
       <Tabs defaultValue="providers">
         <TabsList className="bg-background h-auto -space-x-px p-0 shadow-xs rtl:space-x-reverse">

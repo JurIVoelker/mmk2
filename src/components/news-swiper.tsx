@@ -108,7 +108,7 @@ export default function NewsSwiper({ className }: { className?: string }) {
     return (
       <div
         className={cn(
-          "w-full h-screen flex items-center justify-center",
+          "w-full h-[100svh] flex items-center justify-center",
           className
         )}
       >
@@ -125,7 +125,7 @@ export default function NewsSwiper({ className }: { className?: string }) {
     <>
       <div
         className={cn(
-          "relative w-full min-h-screen flex flex-col justify-center items-center pt-[72px] pb-[64px]",
+          "relative w-full min-h-[100svh] flex flex-col justify-center items-center pt-[72px] pb-[64px]",
           className
         )}
       >

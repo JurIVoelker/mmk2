@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 const EnvironmentVariableError = () => {
   return (
-    <div className="flex h-screen flex-col gap-4 p-4 items-center justify-center">
+    <div className="flex h-[100svh] flex-col gap-4 p-4 items-center justify-center">
       <Card className="max-w-2xl">
         <CardHeader>
           <CardTitle className="text-lg font-semibold">Fehler</CardTitle>

@@ -88,7 +88,7 @@ const Gamepage = () => {
   if (!isGameReady) {
     return (
       <CustomLayout>
-        <div className="w-full h-screen flex items-center justify-center">
+        <div className="w-full h-[100svh] flex items-center justify-center">
           <Loader2 className="animate-spin" />
         </div>
       </CustomLayout>
@@ -104,7 +104,7 @@ const Gamepage = () => {
       />
       <div className="h-full mx-auto max-w-md">
         {isGameOver && (
-          <div className="z-40 h-screen w-screen bg-black/60 absolute top-0 left-0 flex items-center justify-center text-black animate-fade-in">
+          <div className="z-40 h-[100svh] w-screen bg-black/60 absolute top-0 left-0 flex items-center justify-center text-black animate-fade-in">
             <div className="bg-gray-100/60 p-6 rounded-lg backdrop-blur-sm animate-scale-in">
               <h1 className="text-2xl mb-4">Game Over</h1>
               <Lifes lifes={0} className="shake-top" />

@@ -7,10 +7,11 @@ import { useGameStore } from "@/stores/game-store";
 import { cn } from "@/lib/utils";
 
 export default function InfoButton({
-  disableHover = false,className
+  disableHover = false,
+  className,
 }: {
   disableHover?: boolean;
-    className?: string;
+  className?: string;
 }) {
   const [isInfoOverlayOpen, setIsInfoOverlayOpen] = useState(false);
   const { pause } = useGameStore();
@@ -30,8 +31,8 @@ export default function InfoButton({
         <InfoIcon className="size-8 text-brown-dark" />
       </button>
       {isInfoOverlayOpen && (
-        <div className="absolute top-0 right-0 w-full z-30 bg-white h-screen justify-items-center">
-          <div className="max-w-md px-8 min-h-screen h-full overflow-unset bg-white">
+        <div className="absolute top-0 right-0 w-full z-30 bg-white h-[100svh] justify-items-center">
+          <div className="max-w-md px-8 min-h-[100svh] h-full overflow-unset bg-white">
             <InfoContent
               onClose={() => {
                 setIsInfoOverlayOpen(false);
