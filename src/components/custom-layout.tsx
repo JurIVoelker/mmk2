@@ -7,8 +7,8 @@ interface LayoutProps {
 }
 const CustomLayout: React.FC<LayoutProps> = ({ children, className }) => {
   return (
-    <div className={cn("h-full")}>
-      <div className={cn("max-w-md mx-auto p-4 h-full", className)}>
+    <div className={cn("h-[100svh]")}>
+      <div className={cn("max-w-md mx-auto p-4 h-[100svh]", className)}>
         {children}
       </div>
     </div>

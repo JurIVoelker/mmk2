@@ -8,26 +8,26 @@ import CustomLayout from "@/components/custom-layout";
 
 export default function StartPage() {
   return (
-    <CustomLayout className="flex flex-col">
-      <img src="/assets/Header/Header.png" alt="Tea-nder" className="top-0"></img>
-      <div className="rounded-lg pt-10">
+    <CustomLayout className="flex flex-col justify-between gap-4">
+      <img src="/assets/Header/Header.png" alt="Tea-nder" className="top-0" />
+      <div className="space-y-4 flex flex-col items-center justify-center">
         <video
-            src="/assets/asisstant/Hello.mp4"
-            className="w-full h-full object-contain rounded-lg "
-            autoPlay
-            loop
-            muted
+          src="/assets/asisstant/Hello.mp4"
+          className="object-contain rounded-lg grow size-100"
+          autoPlay
+          loop
+          muted
         />
+        <div className="flex flex-col items-center justify-center self-center">
+          <Link
+            href="/onboarding"
+            className={cn(buttonVariants({ variant: "default" }))}
+          >
+            Starten
+          </Link>
+        </div>
       </div>
-      <div className="flex flex-col gap-4 items-center justify-center pt-30 self-center">
-        <Link
-          href="/onboarding"
-          className={cn(buttonVariants({ variant: "default" }))}
-        >
-          Starten
-        </Link>
-      </div>
-      <div className="w-full flex justify-center gap-16 h-full items-end">
+      <div className="w-full flex justify-center gap-16 pt-4 items-end grow-0">
         <Link
           href="/leaderboard-overview"
           className="flex flex-col items-center gap-2"
