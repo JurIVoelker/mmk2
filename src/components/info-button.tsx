@@ -31,7 +31,7 @@ export default function InfoButton({
         <InfoIcon className="size-8 text-brown-dark" />
       </button>
       {isInfoOverlayOpen && (
-        <div className="absolute top-0 right-0 w-full z-30 bg-white h-[100svh] justify-items-center">
+        <div className="absolute top-0 right-0 w-full z-30 bg-white h-[100svh] flex justify-center">
           <div className="max-w-md px-8 min-h-[100svh] h-full overflow-unset bg-white">
             <InfoContent
               onClose={() => {
