@@ -58,93 +58,102 @@ export async function GET(request: NextRequest) {
   }
 }
 
-export async function PUT(request: NextRequest) {
-  const body = await request.json();
-  const { id, type, data } = body;
-  try {
-    if (type === "text") {
-      const updatedNews = await prisma.textNews.update({
-        where: { id },
-        data,
-      });
-      return NextResponse.json({ type: "text", data: updatedNews });
-    } else if (type === "video") {
-      const updatedNews = await prisma.videoNews.update({
-        where: { id },
-        data,
-      });
-      return NextResponse.json({ type: "video", data: updatedNews });
-    } else if (type === "image") {
-      const updatedNews = await prisma.imageNews.update({
-        where: { id },
-        data,
-      });
-      return NextResponse.json({ type: "image", data: updatedNews });
-    } else {
-      return NextResponse.json({ error: "Invalid news type" }, { status: 400 });
-    }
-  } catch (error) {
-    console.error("Error updating news:", error);
-    return NextResponse.json(
-      { error: "Failed to update news" },
-      { status: 500 }
-    );
-  }
+export async function PUT() {
+  return new Response("Method not allowed", {
+    status: 405,
+  });
+  // const body = await request.json();
+  // const { id, type, data } = body;
+  // try {
+  //   if (type === "text") {
+  //     const updatedNews = await prisma.textNews.update({
+  //       where: { id },
+  //       data,
+  //     });
+  //     return NextResponse.json({ type: "text", data: updatedNews });
+  //   } else if (type === "video") {
+  //     const updatedNews = await prisma.videoNews.update({
+  //       where: { id },
+  //       data,
+  //     });
+  //     return NextResponse.json({ type: "video", data: updatedNews });
+  //   } else if (type === "image") {
+  //     const updatedNews = await prisma.imageNews.update({
+  //       where: { id },
+  //       data,
+  //     });
+  //     return NextResponse.json({ type: "image", data: updatedNews });
+  //   } else {
+  //     return NextResponse.json({ error: "Invalid news type" }, { status: 400 });
+  //   }
+  // } catch (error) {
+  //   console.error("Error updating news:", error);
+  //   return NextResponse.json(
+  //     { error: "Failed to update news" },
+  //     { status: 500 }
+  //   );
+  // }
 }
 
-export async function POST(request: NextRequest) {
-  const body = await request.json();
-  const { type, data } = body;
+export async function POST() {
+  return new Response("Method not allowed", {
+    status: 405,
+  });
+  // const body = await request.json();
+  // const { type, data } = body;
 
-  try {
-    if (type === "text") {
-      const newNews = await prisma.textNews.create({ data });
-      return NextResponse.json({ type: "text", data: newNews });
-    } else if (type === "video") {
-      const newNews = await prisma.videoNews.create({ data });
-      return NextResponse.json({ type: "video", data: newNews });
-    } else if (type === "image") {
-      const newNews = await prisma.imageNews.create({ data });
-      return NextResponse.json({ type: "image", data: newNews });
-    } else {
-      return NextResponse.json({ error: "Invalid news type" }, { status: 400 });
-    }
-  } catch (error) {
-    console.error("Error creating news:", error);
-    return NextResponse.json(
-      { error: "Failed to create news" },
-      { status: 500 }
-    );
-  }
+  // try {
+  //   if (type === "text") {
+  //     const newNews = await prisma.textNews.create({ data });
+  //     return NextResponse.json({ type: "text", data: newNews });
+  //   } else if (type === "video") {
+  //     const newNews = await prisma.videoNews.create({ data });
+  //     return NextResponse.json({ type: "video", data: newNews });
+  //   } else if (type === "image") {
+  //     const newNews = await prisma.imageNews.create({ data });
+  //     return NextResponse.json({ type: "image", data: newNews });
+  //   } else {
+  //     return NextResponse.json({ error: "Invalid news type" }, { status: 400 });
+  //   }
+  // } catch (error) {
+  //   console.error("Error creating news:", error);
+  //   return NextResponse.json(
+  //     { error: "Failed to create news" },
+  //     { status: 500 }
+  //   );
+  // }
 }
 
-export async function DELETE(request: NextRequest) {
-  const { searchParams } = request.nextUrl;
-  const id = searchParams.get("id");
-  const type = searchParams.get("type");
+export async function DELETE() {
+  return new Response("Method not allowed", {
+    status: 405,
+  });
+  // const { searchParams } = request.nextUrl;
+  // const id = searchParams.get("id");
+  // const type = searchParams.get("type");
 
-  if (!id || !type) {
-    return NextResponse.json({ error: "Missing id or type" }, { status: 400 });
-  }
+  // if (!id || !type) {
+  //   return NextResponse.json({ error: "Missing id or type" }, { status: 400 });
+  // }
 
-  try {
-    if (type === "text") {
-      await prisma.textNews.delete({ where: { id } });
-      return NextResponse.json({ message: "Text news deleted successfully" });
-    } else if (type === "video") {
-      await prisma.videoNews.delete({ where: { id } });
-      return NextResponse.json({ message: "Video news deleted successfully" });
-    } else if (type === "image") {
-      await prisma.imageNews.delete({ where: { id } });
-      return NextResponse.json({ message: "Image news deleted successfully" });
-    } else {
-      return NextResponse.json({ error: "Invalid news type" }, { status: 400 });
-    }
-  } catch (error) {
-    console.error("Error deleting news:", error);
-    return NextResponse.json(
-      { error: "Failed to delete news" },
-      { status: 500 }
-    );
-  }
+  // try {
+  //   if (type === "text") {
+  //     await prisma.textNews.delete({ where: { id } });
+  //     return NextResponse.json({ message: "Text news deleted successfully" });
+  //   } else if (type === "video") {
+  //     await prisma.videoNews.delete({ where: { id } });
+  //     return NextResponse.json({ message: "Video news deleted successfully" });
+  //   } else if (type === "image") {
+  //     await prisma.imageNews.delete({ where: { id } });
+  //     return NextResponse.json({ message: "Image news deleted successfully" });
+  //   } else {
+  //     return NextResponse.json({ error: "Invalid news type" }, { status: 400 });
+  //   }
+  // } catch (error) {
+  //   console.error("Error deleting news:", error);
+  //   return NextResponse.json(
+  //     { error: "Failed to delete news" },
+  //     { status: 500 }
+  //   );
+  // }
 }
